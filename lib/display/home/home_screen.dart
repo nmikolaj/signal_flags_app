@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signal_flags_app/utils/constants.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
