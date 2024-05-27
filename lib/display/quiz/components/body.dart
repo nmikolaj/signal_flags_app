@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:signal_flags_app/utils/constants.dart';
+import 'progress_bar.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -19,37 +20,13 @@ class Body extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: Column(
             children: [
-              Container(
-                height: 30,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Color.fromARGB(255, 63, 79, 104), width: 3),
-                  borderRadius: BorderRadius.circular(50),
+              ProgressBar(),
+              Text.rich(
+                TextSpan(
+                  text: "testtt",
+                  children: [],
                 ),
-                child: Stack(
-                  children: [
-                    LayoutBuilder(
-                      builder: (context, constraints) => Container(
-                        width: constraints.maxWidth * 0.5, //max width taken from LayoutBuilder
-                        decoration: BoxDecoration(
-                          gradient: kButtonGradient,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text("10 sec")],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              ),
             ],
           ),
         ),
@@ -57,3 +34,4 @@ class Body extends StatelessWidget {
     ]);
   }
 }
+

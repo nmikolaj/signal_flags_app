@@ -14,7 +14,8 @@ class QuizScreen extends StatelessWidget {
             TextButton(onPressed: () {}, child: Text("Pomiń")),
           ],
         ),
-        body: Body());
+        body: Body(),
+        );
   }
 }
 
