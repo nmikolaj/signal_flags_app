@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
       Container(
         color: Color.fromARGB(255, 31, 44, 61),
       ),
-      SafeArea(
+      const SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: Column(
@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
               ProgressBar(),
               Text.rich(
                 TextSpan(
-                  text: "testtt",
+                  text: "tesdttt",
                   children: [],
                 ),
               ),
