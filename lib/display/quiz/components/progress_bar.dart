@@ -24,12 +24,11 @@ class ProgressBar extends StatelessWidget {
       child: GetBuilder<QuestionController>(
         init: QuestionController(),
         builder: (controller) {
-          //print(controller.animation.value);
           return Stack(
             children: [
               LayoutBuilder(
                 builder: (context, constraints) => Container(
-                  width: constraints.maxWidth * 0.5,//controller.animation.value, //max width taken from LayoutBuilder
+                  width: constraints.maxWidth * controller.animation.value, //max width taken from LayoutBuilder
                   decoration: BoxDecoration(
                     gradient: kButtonGradient,
                     borderRadius: BorderRadius.circular(50),
