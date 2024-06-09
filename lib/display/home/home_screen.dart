@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                         gradient: kButtonGradient,
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: Text(
-                      "Nadanie sygnału",
+                      "1. Fiszki 2. Sprawdź siebie! -Nadanie sygnału -Odbiór sygnału",
                       style: Theme.of(context)
                           .textTheme
                           .labelLarge

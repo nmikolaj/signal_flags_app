@@ -18,7 +18,7 @@ class QuestionController extends GetxController with GetSingleTickerProviderStat
 
     _animationController.forward();
 
-      // to prevent memory leaks, pnn
+    // to prevent memory leaks, possibly unneeded
     @override
     void onClose() {
       _animationController.dispose();

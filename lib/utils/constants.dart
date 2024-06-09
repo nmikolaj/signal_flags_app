@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const kWhiteColor = Colors.white;
+const kBlackColor = Colors.black;
 const kSecondaryColor = Color.fromARGB(255, 107, 136, 231);
 const kBorderColor = Color.fromARGB(255, 63, 79, 104);
 const kButtonGradient = LinearGradient(
