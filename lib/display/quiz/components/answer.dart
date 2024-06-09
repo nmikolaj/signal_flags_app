@@ -16,19 +16,11 @@ class Answer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "1answer",
             style: TextStyle(color: kBlackColor, fontSize: 15),
-          ),
-          Container(
-            height: 25,
-            width: 25,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: kBlackColor),
-            ),
           ),
         ],
       ),

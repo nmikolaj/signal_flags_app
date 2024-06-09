@@ -18,15 +18,18 @@ class Body extends StatelessWidget {
         color: Color.fromARGB(255, 31, 44, 61),
       ),
       SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProgressBar(),
-              SizedBox(height: kDefaultPadding),
-              Divider(thickness: 1.5),
-              Text.rich(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: ProgressBar(),
+            ),
+            SizedBox(height: kDefaultPadding),
+            Divider(thickness: 1.5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: Text.rich(
                 TextSpan(
                   text: "Pytanie 1",
                   style: Theme.of(context)
@@ -44,11 +47,15 @@ class Body extends StatelessWidget {
                   ],
                 ),
               ),
-              Divider(thickness: 1.5),
-              SizedBox(height: kDefaultPadding),
-              QuestionCard(),
-            ],
-          ),
+            ),
+            Divider(thickness: 1.5),
+            SizedBox(height: kDefaultPadding),
+            Expanded(
+              child: PageView.builder(
+                itemBuilder: (context, index) => QuestionCard(),
+              ),
+            ),
+          ],
         ),
       )
     ]);
