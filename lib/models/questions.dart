@@ -1,3 +1,10 @@
+class Question {
+  final int id, answer;
+  final String question;
+  final List<String> answers;
+
+  Question({required this.id, required this.question, required this.answer, required this.answers}); // required for null exception
+}
 
 const List questions = [
   {

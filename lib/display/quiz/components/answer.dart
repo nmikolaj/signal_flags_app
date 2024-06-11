@@ -19,7 +19,7 @@ class Answer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "1answer",
+            "answer",
             style: TextStyle(color: kBlackColor, fontSize: 15),
           ),
         ],

@@ -5,8 +5,10 @@ import 'package:signal_flags_app/utils/constants.dart';
 
 class QuestionCard extends StatelessWidget {
   const QuestionCard({
-    super.key,
+    super.key, required this.question,
   });
+
+  final Question question;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class QuestionCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            questions[0]['question'],
+            question.question,
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium

@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:signal_flags_app/controllers/question_controller.dart';
 import 'package:signal_flags_app/display/quiz/components/question_card.dart';
 import 'package:signal_flags_app/models/questions.dart';
 import 'package:signal_flags_app/utils/constants.dart';
@@ -13,6 +15,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    QuestionController _questionController = Get.put(QuestionController());
     return Stack(children: [
       Container(
         color: Color.fromARGB(255, 31, 44, 61),
@@ -52,7 +55,9 @@ class Body extends StatelessWidget {
             SizedBox(height: kDefaultPadding),
             Expanded(
               child: PageView.builder(
-                itemBuilder: (context, index) => QuestionCard(),
+                itemCount: _questionController.question_list.length,
+                itemBuilder: (context, index) => QuestionCard(
+                    question: _questionController.question_list[index]),
               ),
             ),
           ],
