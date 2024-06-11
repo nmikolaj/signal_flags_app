@@ -18,6 +18,21 @@ class QuestionController extends GetxController with GetSingleTickerProviderStat
       .toList();
   List<Question> get question_list => this._questions;
   
+  bool _isAnswered = false;
+  bool get isAnswered => this._isAnswered;
+
+  late int _selectedAns; //TODO check late consequences
+  int get selectedAns => this._selectedAns;
+
+  late int _correctAns; 
+  int get correctAns => this._correctAns;
+
+  RxInt _questionNumber = 1.obs;
+  RxInt get questionNumber => this._questionNumber;
+
+  int _correctAnsCount = 0;
+  int get correctAnsCount => this._correctAnsCount;
+
 
   // called after widgets memory is allocated
   @override
@@ -40,4 +55,16 @@ class QuestionController extends GetxController with GetSingleTickerProviderStat
 
     super.onInit();
   }
+
+  void checkAns(Question question, int selectedIndex) {
+    _isAnswered = true;
+    _correctAns = question.answer;
+    _selectedAns = selectedIndex;
+
+    if(_correctAns == _selectedAns) _correctAnsCount++;
+
+    _animationController.stop();
+    update();
+  }
+
 }
