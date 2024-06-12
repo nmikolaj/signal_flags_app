@@ -32,22 +32,24 @@ class Body extends StatelessWidget {
             Divider(thickness: 1.5),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              child: Text.rich(
-                TextSpan(
-                  text: "Pytanie 1",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(color: kSecondaryColor),
-                  children: [
-                    TextSpan(
-                      text: "/10",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall
-                          ?.copyWith(color: kSecondaryColor),
-                    ),
-                  ],
+              child: Obx(
+                () => Text.rich(
+                  TextSpan(
+                    text: "Pytanie ${_questionController.questionNumber.value}",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium
+                        ?.copyWith(color: kSecondaryColor),
+                    children: [
+                      TextSpan(
+                        text: "/${_questionController.question_list.length}",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(color: kSecondaryColor),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -57,6 +59,8 @@ class Body extends StatelessWidget {
               child: PageView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 controller: _questionController.pageController,
+                onPageChanged:
+                    _questionController.updateQuestionNumber, // no args?
                 itemCount: _questionController.question_list.length,
                 itemBuilder: (context, index) => QuestionCard(
                     question: _questionController.question_list[index]),
