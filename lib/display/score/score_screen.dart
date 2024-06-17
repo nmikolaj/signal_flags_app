@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/question_controller.dart';
+import 'package:signal_flags_app/display/home/home_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
+import 'package:signal_flags_app/utils/widget_utils.dart';
 
 class ScoreScreen extends StatelessWidget {
   const ScoreScreen({super.key});
@@ -31,6 +33,7 @@ class ScoreScreen extends StatelessWidget {
                 ?.copyWith(color: kSecondaryColor),
           ),
           Spacer(flex: 4),
+          buildButton(context, "Home", () => Get.to(HomeScreen())),
         ],
       )
     ]));
