@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/display/score/score_screen.dart';
 import 'package:signal_flags_app/models/questions.dart';
 
 class QuestionController extends GetxController
@@ -74,7 +75,7 @@ class QuestionController extends GetxController
     _animationController.stop();
     update();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 1), () {
       nextQuestion();
     });
   }
@@ -83,12 +84,14 @@ class QuestionController extends GetxController
     if (_questionNumber.value != _question_list.length) {
       _isAnswered = false;
       _pageController.nextPage(
-          duration: Duration(milliseconds: 200), curve: Curves.ease);
+          duration: Duration(milliseconds: 300), curve: Curves.ease);
 
           // Counter reset
           _animationController.reset();
 
-          _animationController.forward().whenComplete(() => nextQuestion());
+          _animationController.forward().whenComplete(nextQuestion); //() => nextQuestion()
+    } else {
+      Get.to(ScoreScreen());
     }
   }
 

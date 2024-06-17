@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:signal_flags_app/display/home/home_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
+import 'package:signal_flags_app/display/score/score_screen.dart';
 
 
 void main() {
@@ -13,10 +15,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Signal Flags App',
       theme: ThemeData.dark(),
-      home: QuizScreen(),
+      home: HomeScreen(),
     );
   }
 }
