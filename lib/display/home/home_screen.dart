@@ -32,9 +32,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Text("Wybierz tryb"),
                     Spacer(),
-                    buildButton(context, "Fiszki", () => Get.to(QuizScreen())),
+                    buildButton("Fiszki", () => QuizScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
                     SizedBox(height: 14),
-                    buildButton(context, "Sprawdź siebie!", () => Get.to(QuizScreen())),
+                    buildButton("Sprawdź siebie!", () => QuizScreen()),
                     Spacer(flex: 2),
                   ],
                 ),

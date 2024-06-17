@@ -33,7 +33,7 @@ class ScoreScreen extends StatelessWidget {
                 ?.copyWith(color: kSecondaryColor),
           ),
           Spacer(flex: 4),
-          buildButton(context, "Home", () => Get.to(HomeScreen())),
+          buildButton("Home", () => HomeScreen()),
         ],
       )
     ]));
