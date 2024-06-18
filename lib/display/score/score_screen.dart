@@ -11,38 +11,45 @@ class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _controller = Get.put(QuestionController());
+    double screenWidth = MediaQuery.of(context).size.width;
+    double font_size = screenWidth * 0.1;
+
     return Scaffold(
-        backgroundColor: kBackgroundColor,
-        body: Stack(fit: StackFit.expand, children: [
-      Column(
-        children: [
-          Spacer(flex: 4),
-          Text(
-            "Wynik",
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: kSecondaryColor),
-          ),
-          Spacer(),
-          Text(
-            "${_controller.correctAnsCount}/${_controller.questionList.length}",
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: kSecondaryColor),
-          ),
-          Spacer(flex: 3),
-          ElevatedButton(
+        body: Container(
+      decoration: const BoxDecoration(
+          gradient: kBackgroundGradient), // gradient is defined as const too
+      child: Stack(fit: StackFit.expand, children: [
+        Column(
+          children: [
+            const Spacer(flex: 4),
+            Text(
+              "Wynik",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: font_size,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              "${_controller.correctAnsCount}/${_controller.questionList.length}",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: font_size,
+              ),
+            ),
+            const Spacer(flex: 3),
+            ElevatedButton(
               onPressed: () {
-                Get.delete<QuestionController>(); // unneded as Get.offAll removes it bc QuestionController is not marked as permanent in dependency tree
+                Get.delete<
+                    QuestionController>(); // unneded as Get.offAll removes it bc QuestionController is not marked as permanent in dependency tree
                 Get.offAll(() => HomeScreen());
               },
-              child: Text("Powrót"),  
+              child: Text("Powrót"),
             ),
-          Spacer(flex: 1),
-        ],
-      )
-    ]));
+            const Spacer(flex: 1),
+          ],
+        )
+      ]),
+    ));
   }
 }

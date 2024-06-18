@@ -19,7 +19,7 @@ class Answer extends StatelessWidget {
 
         Color getRightColor() {
           if(qnController.isAnswered) {
-            if(index == qnController.correctAns && qnController.selectedAns == qnController.correctAns) {
+            if(index == qnController.correctAns) {
               return kGreenColor;
             } else if (index == qnController.selectedAns && qnController.selectedAns != qnController.correctAns) {
               return kRedColor;
@@ -28,21 +28,42 @@ class Answer extends StatelessWidget {
           return kBlackColor;
         }
 
+        Color getBackgroundColor() {
+          if (qnController.isAnswered) {
+            if (index == qnController.correctAns) {
+              return kSlightGreenColor;
+            } else if (index == qnController.selectedAns && qnController.selectedAns != qnController.correctAns) {
+              return kSlightRedColor;
+            }
+          }
+          return kButtonColor;
+        }
+
+        double getBorderWidth() {
+          if(qnController.isAnswered) {
+            if(index == qnController.correctAns || index == qnController.selectedAns) {
+              return 3.0;
+            }
+          }
+          return 1.0; 
+        }
+
         return InkWell(
           onTap: press,
           child: Container(
             margin: EdgeInsets.only(top: kDefaultPadding),
             padding: EdgeInsets.all(kDefaultPadding),
             decoration: BoxDecoration(
-              border: Border.all(color: getRightColor()),
-              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: getRightColor(), width: getBorderWidth()),
+              borderRadius: BorderRadius.circular(20),
+              color: getBackgroundColor(),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   "${index + 1} $text",
-                  style: TextStyle(color: getRightColor(), fontSize: 15),
+                  style: TextStyle(color: kBlackColor, fontSize: 16),
                 ), 
               ],
             ),

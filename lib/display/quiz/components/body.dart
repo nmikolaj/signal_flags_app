@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
     QuestionController _questionController = Get.put(QuestionController());
     return Stack(children: [
       Container(
-        color: Color.fromARGB(255, 31, 44, 61),
+        color: kBackgroundColor,
       ),
       SafeArea(
         child: Column(

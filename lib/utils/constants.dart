@@ -4,9 +4,13 @@ const kWhiteColor = Colors.white;
 const kBlackColor = Colors.black;
 const kGreenColor = Colors.green;
 const kRedColor = Colors.red;
-const kBackgroundColor = Color.fromARGB(255, 128, 173, 160);
-const kSecondaryColor = Color.fromARGB(255, 107, 136, 231);
+const kBackgroundColor = Color.fromARGB(255, 6, 116, 150);
+const kBackgroundColor2 = Color.fromARGB(255, 31, 44, 61);
+const kSecondaryColor = Color.fromARGB(255, 134, 233, 250);
 const kBorderColor = Color.fromARGB(255, 63, 79, 104);
+const kButtonColor = Color.fromARGB(255, 225, 244, 255);
+const kSlightGreenColor = Color.fromARGB(255, 106, 230, 95);
+const kSlightRedColor = Color.fromARGB(255, 247, 120, 120);
 
 const kBackgroundGradient = LinearGradient(
   colors: [Color.fromARGB(255, 30, 19, 187), Color.fromARGB(255, 11, 132, 231)],

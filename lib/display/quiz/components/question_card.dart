@@ -13,15 +13,19 @@ class QuestionCard extends StatelessWidget {
 
   final Question question;
 
-
   @override
   Widget build(BuildContext context) {
     QuestionController _controller = Get.put(QuestionController());
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      padding: EdgeInsets.all(kDefaultPadding),
+      margin: EdgeInsets.only(
+        top: 0,
+        right: kDefaultPadding,
+        left: kDefaultPadding,
+        bottom: kDefaultPadding,
+      ),
+      padding: EdgeInsets.all(kDefaultPadding*2),
       decoration: BoxDecoration(
-        color: kBorderColor,
+        color: kWhiteColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Column(
@@ -31,7 +35,7 @@ class QuestionCard extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium
-                ?.copyWith(color: kWhiteColor),
+                ?.copyWith(color: kBlackColor),
           ),
           SizedBox(height: kDefaultPadding),
           ...List.generate(
