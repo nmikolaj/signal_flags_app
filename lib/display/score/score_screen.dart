@@ -18,7 +18,7 @@ class ScoreScreen extends StatelessWidget {
         children: [
           Spacer(flex: 4),
           Text(
-            "Score",
+            "Wynik",
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium
@@ -26,14 +26,21 @@ class ScoreScreen extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            "${_controller.correctAnsCount}/${_controller.question_list.length}",
+            "${_controller.correctAnsCount}/${_controller.questionList.length}",
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium
                 ?.copyWith(color: kSecondaryColor),
           ),
-          Spacer(flex: 4),
-          buildButton("Home", () => HomeScreen()),
+          Spacer(flex: 3),
+          ElevatedButton(
+              onPressed: () {
+                Get.delete<QuestionController>(); // unneded as Get.offAll removes it bc QuestionController is not marked as permanent in dependency tree
+                Get.offAll(() => HomeScreen());
+              },
+              child: Text("Powrót"),  
+            ),
+          Spacer(flex: 1),
         ],
       )
     ]));

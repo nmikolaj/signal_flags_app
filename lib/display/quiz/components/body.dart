@@ -42,7 +42,7 @@ class Body extends StatelessWidget {
                         ?.copyWith(color: kSecondaryColor),
                     children: [
                       TextSpan(
-                        text: "/${_questionController.question_list.length}",
+                        text: "/${_questionController.questionList.length}",
                         style: Theme.of(context)
                             .textTheme
                             .headlineSmall
@@ -61,9 +61,9 @@ class Body extends StatelessWidget {
                 controller: _questionController.pageController,
                 onPageChanged:
                     _questionController.updateQuestionNumber, // no args?
-                itemCount: _questionController.question_list.length,
+                itemCount: _questionController.questionList.length,
                 itemBuilder: (context, index) => QuestionCard(
-                    question: _questionController.question_list[index]),
+                    question: _questionController.questionList[index]),
               ),
             ),
           ],

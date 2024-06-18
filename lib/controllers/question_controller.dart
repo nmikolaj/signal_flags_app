@@ -13,7 +13,7 @@ class QuestionController extends GetxController
   late PageController _pageController;
   PageController get pageController => this._pageController;
 
-  List<Question> _question_list = questions
+  List<Question> _questionList = questions
       .map(
         (question) => Question(
             id: question['id'],
@@ -22,7 +22,7 @@ class QuestionController extends GetxController
             answer: question['correctAnswer']),
       )
       .toList();
-  List<Question> get question_list => this._question_list;
+  List<Question> get questionList => this._questionList;
 
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
@@ -50,19 +50,21 @@ class QuestionController extends GetxController
       });
 
     // After completion go to next question
-    _animationController.forward().whenComplete(() => nextQuestion()); // with () though it returns null
+    _animationController
+        .forward()
+        .whenComplete(() => nextQuestion()); // with () though it returns null
 
     _pageController = PageController();
-
-    // to prevent memory leaks
-    @override
-    void onClose() {
-      _animationController.dispose();
-      _pageController.dispose();
-      super.onClose();
-    }
-
     super.onInit();
+  }
+
+  // to prevent memory leaks
+  @override
+  void onClose() {
+    _animationController.stop();
+    _animationController.dispose();
+    _pageController.dispose();
+    super.onClose();
   }
 
   void checkAns(Question question, int selectedIndex) {
@@ -81,20 +83,21 @@ class QuestionController extends GetxController
   }
 
   void nextQuestion() {
-    if (_questionNumber.value != _question_list.length) {
+    if (_questionNumber.value != _questionList.length) {
       _isAnswered = false;
       _pageController.nextPage(
           duration: Duration(milliseconds: 300), curve: Curves.ease);
 
-          // Counter reset
-          _animationController.reset();
-
-          _animationController.forward().whenComplete(nextQuestion); //() => nextQuestion()
+      // Counter reset
+      _animationController.reset();
+      _animationController
+          .forward()
+          .whenComplete(nextQuestion); //() => nextQuestion()
+          
     } else {
       Get.to(() => ScoreScreen());
     }
   }
-
 
   void updateQuestionNumber(int index) {
     _questionNumber.value = index + 1;
