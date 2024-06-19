@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
@@ -19,13 +20,13 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(flex: 1),
+                    Spacer(flex: 3),
                     Text(
                       "Sygnały Flagowe",
                       style: TextStyle(
                         color: kWhiteColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 40, 
+                        fontSize: 40,
                       ),
                     ),
                     Text(
@@ -35,14 +36,15 @@ class HomeScreen extends StatelessWidget {
                         fontSize: 22,
                       ),
                     ),
-                    Spacer(),
-                    buildButton(
-                        "Quiz",
-                        () =>
-                            QuizScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
-                    SizedBox(height: 14),
-                    buildButton("Sprawdź siebie!", () => QuizScreen()),
                     Spacer(flex: 2),
+                    buildButton("Quiz", () => QuizScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
+                    SizedBox(height: 18),
+                    buildButton("Nadanie sygnału", () => QuizScreen()),
+                    SizedBox(height: 18),
+                    buildButton("Odbiór sygnału", () => QuizScreen()),
+                    SizedBox(height: 18),
+                    buildButton("Baza flag", () => DatasetScreen()),
+                    Spacer(flex: 4),
                   ],
                 ),
               ),

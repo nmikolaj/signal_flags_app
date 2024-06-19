@@ -33,7 +33,7 @@ class QuestionController extends GetxController
   int _correctAnsCount = 0;
   int get correctAnsCount => this._correctAnsCount;
 
-  // called after widgets memory is allocated
+  // Called after widgets memory is allocated
   @override
   void onInit() {
 
@@ -55,7 +55,7 @@ class QuestionController extends GetxController
     super.onInit();
   }
 
-  // to prevent memory leaks
+  // To prevent memory leaks
   @override
   void onClose() {
     _animationController.stop();
