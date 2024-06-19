@@ -70,7 +70,7 @@ class Answer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 imagePath.isNotEmpty
-                    ? Image.asset(imagePath, height: 60, width: 60)
+                    ? Image.asset(imagePath, height: 60, width: 60) // TODO softcode image size and square layout
                     : Text(
                         "$text",
                         style: TextStyle(color: kBlackColor, fontSize: 16),

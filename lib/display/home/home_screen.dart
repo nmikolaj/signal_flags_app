@@ -14,25 +14,32 @@ class HomeScreen extends StatelessWidget {
           children: [
             SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(flex: 1),
                     Text(
-                      "Nauka Sygnałów Flagowych",
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ) ??
-                          const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      "Sygnały Flagowe",
+                      style: TextStyle(
+                        color: kWhiteColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40, 
+                      ),
                     ),
-                    Text("Wybierz tryb"),
+                    Text(
+                      "Wybierz tryb",
+                      style: TextStyle(
+                        color: kWhiteColor,
+                        fontSize: 22,
+                      ),
+                    ),
                     Spacer(),
-                    buildButton("Quiz", () => QuizScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
+                    buildButton(
+                        "Quiz",
+                        () =>
+                            QuizScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
                     SizedBox(height: 14),
                     buildButton("Sprawdź siebie!", () => QuizScreen()),
                     Spacer(flex: 2),

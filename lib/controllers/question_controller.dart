@@ -41,7 +41,7 @@ class QuestionController extends GetxController
 
     _animationController =
         AnimationController(duration: Duration(seconds: 30), vsync: this);
-    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController) // unneded double?
+    _animation = Tween<double>(begin: 1, end: 0).animate(_animationController) // unneded double?
       ..addListener(() {
         update(); // update like setState
       });
@@ -141,7 +141,7 @@ List<Question> generateQuestions() {
 
     questionList.add(Question(
       id: questionList.length + 1,
-      question: "Which flag is for ${flag['name']}?",
+      question: "${flag['name']}",
       answers: imageAnswers,
       answer: imageAnswers.indexOf(flag['imagePath']!),
       isFlagQuestion: false,

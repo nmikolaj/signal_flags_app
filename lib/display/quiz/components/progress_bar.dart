@@ -12,12 +12,12 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
+      height: 26,
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(
             color: kBorderColor,
-            width: 3,
+            width: 2,
             ),
         borderRadius: BorderRadius.circular(50),
       ),
@@ -30,7 +30,7 @@ class ProgressBar extends StatelessWidget {
                 builder: (context, constraints) => Container(
                   width: constraints.maxWidth * controller.animation.value, //max width taken from LayoutBuilder
                   decoration: BoxDecoration(
-                    gradient: kButtonGradient,
+                    gradient: kProgressBarGradient,
                     borderRadius: BorderRadius.circular(50),
                   ),
                 ),

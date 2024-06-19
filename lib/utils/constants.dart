@@ -18,9 +18,14 @@ const kBackgroundGradient = LinearGradient(
   end: Alignment.bottomCenter,
 );
 const kButtonGradient = LinearGradient(
-  colors: [Color.fromARGB(255, 231, 198, 11), Color.fromARGB(255, 255, 173, 20)],
+  colors: [Color.fromARGB(255, 231, 198, 11), Color.fromARGB(255, 255, 179, 20)],
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
+);
+const kProgressBarGradient = LinearGradient(
+  colors: [Color.fromARGB(255, 231, 198, 11), Color.fromARGB(255, 255, 123, 0)],
+  begin: Alignment.centerRight,
+  end: Alignment.centerLeft,
 );
 
 const double kDefaultPadding = 20.0;
