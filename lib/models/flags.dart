@@ -1,0 +1,15 @@
+const List<Map<String, String>> flags = [
+  {"name": "Alfa", "imagePath": 'assets/flags/Alfa.png'},
+  {"name": "Bravo", "imagePath": 'assets/flags/Bravo.png'},
+  {"name": "Charlie", "imagePath": 'assets/flags/Charlie.png'},
+  {"name": "Delta", "imagePath": 'assets/flags/Delta.png'},
+  {"name": "Echo", "imagePath": 'assets/flags/Echo.png'},
+  {"name": "Foxrot", "imagePath": 'assets/flags/Foxtrot.png'},
+  {"name": "Golf", "imagePath": 'assets/flags/Golf.png'},
+  {"name": "Hotel", "imagePath": 'assets/flags/Hotel.png'},
+  {"name": "India", "imagePath": 'assets/flags/India.png'},
+  {"name": "Juliett", "imagePath": 'assets/flags/Juliett.png'},
+  {"name": "Kilo", "imagePath": 'assets/flags/Kilo.png'},
+  {"name": "Lima", "imagePath": 'assets/flags/Lima.png'},
+  {"name": "Mike", "imagePath": 'assets/flags/Mike.png'},
+];

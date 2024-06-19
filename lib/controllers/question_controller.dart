@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/display/score/score_screen.dart';
+import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/models/questions.dart';
+import 'dart:math';
 
 class QuestionController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -13,15 +15,7 @@ class QuestionController extends GetxController
   late PageController _pageController;
   PageController get pageController => this._pageController;
 
-  List<Question> _questionList = questions
-      .map(
-        (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            answers: question['answers'],
-            answer: question['correctAnswer']),
-      )
-      .toList();
+  List<Question> _questionList = [];
   List<Question> get questionList => this._questionList;
 
   bool _isAnswered = false;
@@ -42,9 +36,12 @@ class QuestionController extends GetxController
   // called after widgets memory is allocated
   @override
   void onInit() {
+
+    _questionList = generateQuestions();
+
     _animationController =
         AnimationController(duration: Duration(seconds: 30), vsync: this);
-    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
+    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController) // unneded double?
       ..addListener(() {
         update(); // update like setState
       });
@@ -102,4 +99,58 @@ class QuestionController extends GetxController
   void updateQuestionNumber(int index) {
     _questionNumber.value = index + 1;
   }
+}
+
+List<Question> generateQuestions() {
+  final random = Random();
+  final List<Question> questionList = [];
+
+  // Text questions
+  List<Map<String, String>> selectedFlags = List.from(flags)..shuffle(random);
+  selectedFlags = selectedFlags.take(5).toList(); // Select 5 random flags
+
+  for (var flag in selectedFlags) {
+    List<String> nameAnswers = flags.map((f) => f['name']!).toList()..shuffle();
+    nameAnswers = nameAnswers.take(4).toList();
+
+    if (!nameAnswers.contains(flag['name'])) {
+      nameAnswers[random.nextInt(4)] = flag['name']!;
+    }
+
+    questionList.add(Question(
+      id: questionList.length + 1,
+      question: "What is the name of this flag?",
+      answers: nameAnswers,
+      answer: nameAnswers.indexOf(flag['name']!),
+      isFlagQuestion: true,
+      flagImage: flag['imagePath'],
+    ));
+  }
+
+  // Image questions
+  selectedFlags = List.from(flags)..shuffle(random);
+  selectedFlags = selectedFlags.take(5).toList();   // Select new 5 random flags
+
+  for(var flag in selectedFlags) {
+    List<String> imageAnswers = flags.map((f) => f['imagePath']!).toList()..shuffle();
+    imageAnswers = imageAnswers.take(4).toList();
+
+    if (!imageAnswers.contains(flag['imagePath'])) {
+      imageAnswers[random.nextInt(4)] = flag['imagePath']!;
+    }
+
+    questionList.add(Question(
+      id: questionList.length + 1,
+      question: "Which flag is for ${flag['name']}?",
+      answers: imageAnswers,
+      answer: imageAnswers.indexOf(flag['imagePath']!),
+      isFlagQuestion: false,
+      flagImage: null,
+    ));
+  }
+
+  questionList.shuffle();
+
+  return questionList;
+
 }

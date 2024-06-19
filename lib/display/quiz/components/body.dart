@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
               child: ProgressBar(),
             ),
             SizedBox(height: kDefaultPadding),
-            Divider(thickness: 1.5),
+            Divider(thickness: 1.5, color: kBorderColor),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               child: Obx(
@@ -53,7 +53,7 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(thickness: 1.5),
+            Divider(thickness: 1.5, color: kBorderColor),
             SizedBox(height: kDefaultPadding),
             Expanded(
               child: PageView.builder(

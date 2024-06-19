@@ -23,26 +23,35 @@ class QuestionCard extends StatelessWidget {
         left: kDefaultPadding,
         bottom: kDefaultPadding,
       ),
-      padding: EdgeInsets.all(kDefaultPadding*2),
+      padding: EdgeInsets.only(
+        top: kDefaultPadding*2,
+        right: kDefaultPadding*2,
+        left: kDefaultPadding*2,
+        bottom: 0,
+      ),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Column(
         children: [
-          Text(
-            question.question,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: kBlackColor),
-          ),
+          question.isFlagQuestion
+              ? Image.asset(question.flagImage ?? '',
+                  height: 100, width: 100)
+              : Text(
+                  question.question,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium
+                      ?.copyWith(color: kBlackColor),
+                ),
           SizedBox(height: kDefaultPadding),
           ...List.generate(
             question.answers.length,
             (index) => Answer(
               index: index,
-              text: question.answers[index],
+              text: question.isFlagQuestion ? question.answers[index] : '',
+              imagePath: !question.isFlagQuestion ? question.answers[index] : '',
               press: () => _controller.checkAns(question, index),
             ),
           ),
