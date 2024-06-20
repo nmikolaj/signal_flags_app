@@ -29,3 +29,20 @@ const Map<String, Map<String, String>> flagMessages = {
   "Lima": {"en": "You should stop your vessel immediately.", "pl": "Powinieneś natychmiast zatrzymać swój statek."},
   "Mike": {"en": "My vessel is stopped; making no way.", "pl": "Mój statek jest zatrzymany; nie płynie."},
 };
+
+const List<Map<String, dynamic>> multipleFlagMessages = [
+  {
+    "flags": ["Alfa", "Bravo"],
+    "message": {
+      "en": "I have a diver down; keep well clear at slow speed.",
+      "pl": "Mam nurka w wodzie; trzymaj się z dala z małą prędkością."
+    }
+  },
+  {
+    "flags": ["Charlie", "Delta"],
+    "message": {
+      "en": "I am taking in, discharging, or carrying dangerous cargo.",
+      "pl": "Biorę, wyładowuję lub przewożę niebezpieczny ładunek."
+    }
+  },
+];

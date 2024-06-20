@@ -52,7 +52,7 @@ class QuestionCard extends StatelessWidget {
               index: index,
               text: question.isFlagQuestion ? question.answers[index] : '',
               imagePath: !question.isFlagQuestion ? question.answers[index] : '',
-              press: () => _controller.checkAns(question, index),
+              press: () => _controller.checkAnswer(question, index),
             ),
           ),
         ],

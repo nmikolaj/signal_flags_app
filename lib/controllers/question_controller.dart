@@ -64,7 +64,7 @@ class QuestionController extends GetxController
     super.onClose();
   }
 
-  void checkAns(Question question, int selectedIndex) {
+  void checkAnswer(Question question, int selectedIndex) {
     _isAnswered = true;
     _correctAns = question.answer;
     _selectedAns = selectedIndex;

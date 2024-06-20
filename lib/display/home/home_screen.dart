@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
+import 'package:signal_flags_app/display/transmit/transmit_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
 
@@ -39,11 +40,11 @@ class HomeScreen extends StatelessWidget {
                     Spacer(flex: 2),
                     buildButton("Quiz", () => QuizScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
                     SizedBox(height: 18),
-                    buildButton("Nadanie sygnału", () => QuizScreen()),
+                    buildButton("Nadanie sygnału", () => SignalScreen()),
                     SizedBox(height: 18),
                     buildButton("Odbiór sygnału", () => QuizScreen()),
                     SizedBox(height: 18),
-                    buildButton("Baza flag", () => DatasetScreen()),
+                    buildButton("Nauka", () => DatasetScreen()),
                     Spacer(flex: 4),
                   ],
                 ),
