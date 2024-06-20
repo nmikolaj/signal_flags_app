@@ -58,10 +58,8 @@ class Body extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (_signalController.checkAnswer()) {
-                          // TODO answer logic
-                        } else {
-                        }
+                        _signalController.checkAnswer();
+                          // TODO answer logic 
                       },
                       child: Text("Potwierdź wiadomość"),
                     ),

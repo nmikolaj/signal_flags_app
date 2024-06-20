@@ -30,8 +30,8 @@ class QuestionController extends GetxController
   RxInt _questionNumber = 1.obs;
   RxInt get questionNumber => this._questionNumber;
 
-  int _correctAnsCount = 0;
-  int get correctAnsCount => this._correctAnsCount;
+  RxInt _correctAnsCount = 0.obs;
+  RxInt get correctAnsCount => this._correctAnsCount;
 
   // Called after widgets memory is allocated
   @override
@@ -69,7 +69,7 @@ class QuestionController extends GetxController
     _correctAns = question.answer;
     _selectedAns = selectedIndex;
 
-    if (_correctAns == _selectedAns) _correctAnsCount++;
+    if (_correctAns == _selectedAns) _correctAnsCount.value++;
 
     _animationController.stop();
     update();
@@ -92,7 +92,7 @@ class QuestionController extends GetxController
           .whenComplete(nextQuestion); //() => nextQuestion()
           
     } else {
-      Get.to(() => ScoreScreen());
+      Get.to(() => ScoreScreen(correctAnswers: _correctAnsCount.value, totalQuestions: _questionList.length,));
     }
   }
 
