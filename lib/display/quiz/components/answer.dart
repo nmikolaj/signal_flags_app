@@ -30,7 +30,7 @@ class Answer extends StatelessWidget {
               return kRedColor;
             }
           }
-          return kBlackColor;
+          return kBackgroundColor;
         }
 
         Color getBackgroundColor() {

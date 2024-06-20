@@ -31,7 +31,7 @@ class ScoreScreen extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "${_controller.correctAnsCount}/${_controller.questionList.length}",
+              "${_controller.correctAnsCount/_controller.questionList.length * 100}%",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: font_size,
