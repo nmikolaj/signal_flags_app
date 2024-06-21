@@ -81,8 +81,10 @@ class Body extends StatelessWidget {
                       child: Wrap(
                         spacing: 8.0,
                         runSpacing: 8.0,
-                        children: _signalController.selectedFlags.map((flagName) {
-                          final flag = flags.firstWhere((f) => f['name'] == flagName);
+                        children:
+                            _signalController.selectedFlags.map((flagName) {
+                          final flag =
+                              flags.firstWhere((f) => f['name'] == flagName);
                           return Image.asset(
                             flag['imagePath']!,
                             width: 40,
@@ -100,20 +102,25 @@ class Body extends StatelessWidget {
                     ),
                     Divider(thickness: 1.5, color: kSecondaryColor),
                     SizedBox(height: kDefaultPadding),
-                    Wrap(
-                      spacing: 15,
-                      runSpacing: 18,
-                      children: flags.map((flag) {
-                        return GestureDetector(
-                          onTap: () =>
-                              _signalController.selectFlag(flag['name']!),
-                          child: Image.asset(
-                            flag['imagePath']!,
-                            width: 60,
-                            height: 60,
-                          ),
-                        );
-                      }).toList(),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Wrap(
+                          spacing: 15,
+                          runSpacing: 18,
+                          children: flags.map((flag) {
+                            return GestureDetector(
+                              onTap: () =>
+                                  _signalController.selectFlag(flag['name']!),
+                              child: Image.asset(
+                                flag['imagePath']!,
+                                width: 60,
+                                height: 60,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                     ),
                   ],
                 ),
