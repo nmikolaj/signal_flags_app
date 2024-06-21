@@ -39,7 +39,7 @@ class ScoreScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "${(correctAnswers / totalQuestions * 100).toStringAsFixed(1)}%",
+                "${(correctAnswers / totalQuestions * 100).toStringAsFixed(1)}%", //sc test
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: font_size,
