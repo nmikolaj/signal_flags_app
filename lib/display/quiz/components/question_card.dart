@@ -37,24 +37,46 @@ class QuestionCard extends StatelessWidget {
         children: [
           question.isFlagQuestion
               ? Image.asset(question.flagImage ?? '',
-                  height: 100, width: 100)
+                  height: 90, width: 90)
               : Text(
                   question.question,
                   style: Theme.of(context)
                       .textTheme
-                      .headlineMedium
+                      .headlineLarge
                       ?.copyWith(color: kBlackColor),
                 ),
-          SizedBox(height: kDefaultPadding),
-          ...List.generate(
-            question.answers.length,
-            (index) => Answer(
-              index: index,
-              text: question.isFlagQuestion ? question.answers[index] : '',
-              imagePath: !question.isFlagQuestion ? question.answers[index] : '',
-              press: () => _controller.checkAnswer(question, index),
+          if (!question.isFlagQuestion)
+            SizedBox(height: kDefaultPadding*3)
+          else
+            SizedBox(height: kDefaultPadding),
+          if (!question.isFlagQuestion)
+            GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1,
+                crossAxisSpacing: kDefaultPadding,
+                mainAxisSpacing: kDefaultPadding/2,
+              ),
+              itemCount: question.answers.length,
+              itemBuilder: (context, index) => Answer(
+                index: index,
+                text: '',
+                imagePath: question.answers[index],
+                press: () => _controller.checkAnswer(question, index),
+              ),
+            )
+          else
+            ...List.generate(
+              question.answers.length,
+              (index) => Answer(
+                index: index,
+                text: question.answers[index],
+                imagePath: '',
+                press: () => _controller.checkAnswer(question, index),
+              ),
             ),
-          ),
         ],
       ),
     );
