@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/transmit_controller.dart';
 import 'package:signal_flags_app/display/home/home_screen.dart';
-import 'package:signal_flags_app/display/transmit/components/body.dart';
+import 'package:signal_flags_app/display/transmit/components/transmit_body.dart';
 
 class SignalScreen extends StatelessWidget {
   @override

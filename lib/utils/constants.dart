@@ -14,7 +14,8 @@ const kSlightGreenColor = Color.fromARGB(255, 106, 230, 95);
 const kSlightRedColor = Color.fromARGB(255, 247, 120, 120);
 
 const kBackgroundGradient = LinearGradient(
-  colors: [Color.fromARGB(255, 30, 19, 187), Color.fromARGB(255, 11, 132, 231)],
+  colors: [Color.fromARGB(255, 7, 79, 161), Color.fromARGB(255, 25, 22, 71)],
+  //colors: [Color.fromARGB(255, 30, 19, 187), Color.fromARGB(255, 11, 132, 231)],
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
 );

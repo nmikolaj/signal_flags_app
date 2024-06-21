@@ -5,11 +5,13 @@ import 'package:signal_flags_app/utils/constants.dart';
 
 class ScoreScreen extends StatelessWidget {
   final int correctAnswers;
+  final int wrongAnswers;
   final int totalQuestions;
 
   const ScoreScreen({
     Key? key,
     required this.correctAnswers,
+    required this.wrongAnswers,
     required this.totalQuestions,
   }) : super(key: key);
 
@@ -17,6 +19,7 @@ class ScoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double font_size = screenWidth * 0.1;
+    int passedAnswers = totalQuestions - correctAnswers - wrongAnswers;
 
     return Scaffold(
       body: Container(
@@ -42,6 +45,28 @@ class ScoreScreen extends StatelessWidget {
                   fontSize: font_size,
                 ),
               ),
+              const Spacer(),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildStat("Dobre", correctAnswers, Colors.green),
+                        _buildStat("Błędne", wrongAnswers, Colors.red),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildStat("Pominięte", passedAnswers, Colors.blue),
+                        _buildStat("Wszystkie", totalQuestions, Colors.orange),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               const Spacer(flex: 3),
               ElevatedButton(
                 onPressed: () {
@@ -54,6 +79,38 @@ class ScoreScreen extends StatelessWidget {
             ],
           )
         ]),
+      ),
+    );
+  }
+
+  Widget _buildStat(String title, int value, Color color) {
+    return Container(
+      width: 150,
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Column(
+        children: [
+          Text(
+            value.toString(),
+            style: TextStyle(
+              color: kWhiteColor,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 4),
+          Text(
+            title,
+            style: TextStyle(
+              color: kWhiteColor,
+              fontSize: 16,
+            ),
+          ),
+        ],
       ),
     );
   }

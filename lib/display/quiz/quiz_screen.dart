@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/question_controller.dart';
 import 'package:signal_flags_app/display/home/home_screen.dart';
-import 'package:signal_flags_app/display/quiz/components/body.dart';
+import 'package:signal_flags_app/display/quiz/components/quiz_body.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class QuizScreen extends StatelessWidget {

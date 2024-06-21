@@ -59,20 +59,20 @@ class Body extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         _signalController.checkAnswer();
-                          // TODO answer logic 
                       },
                       child: Text("Potwierdź wiadomość"),
                     ),
                     SizedBox(height: kDefaultPadding),
                     Wrap(
-                      spacing: 10,
+                      spacing: 15,
+                      runSpacing: 18,
                       children: flags.map((flag) {
                         return GestureDetector(
                           onTap: () => _signalController.selectFlag(flag['name']!),
                           child: Image.asset(
                             flag['imagePath']!,
-                            width: 50,
-                            height: 50,
+                            width: 60,
+                            height: 60,
                           ),
                         );
                       }).toList(),

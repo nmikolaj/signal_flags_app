@@ -21,7 +21,7 @@ class QuestionController extends GetxController
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  late int _selectedAns; //TODO check late consequences
+  late int _selectedAns; // late is fine as long as initialized before usage
   int get selectedAns => this._selectedAns;
 
   late int _correctAns;
@@ -32,6 +32,9 @@ class QuestionController extends GetxController
 
   RxInt _correctAnsCount = 0.obs;
   RxInt get correctAnsCount => this._correctAnsCount;
+
+  RxInt _wrongAnsCount = 0.obs;
+  RxInt get wrongAnsCount => this._wrongAnsCount;
 
   // Called after widgets memory is allocated
   @override
@@ -49,7 +52,7 @@ class QuestionController extends GetxController
     // After completion go to next question
     _animationController
         .forward()
-        .whenComplete(() => nextQuestion()); // with () though it returns null
+        .whenComplete(nextQuestion);
 
     _pageController = PageController();
     super.onInit();
@@ -69,7 +72,11 @@ class QuestionController extends GetxController
     _correctAns = question.answer;
     _selectedAns = selectedIndex;
 
-    if (_correctAns == _selectedAns) _correctAnsCount.value++;
+    if (_correctAns == _selectedAns) {
+      _correctAnsCount.value++;
+    } else {
+      _wrongAnsCount.value++;
+    }
 
     _animationController.stop();
     update();
@@ -92,7 +99,7 @@ class QuestionController extends GetxController
           .whenComplete(nextQuestion); //() => nextQuestion()
           
     } else {
-      Get.to(() => ScoreScreen(correctAnswers: _correctAnsCount.value, totalQuestions: _questionList.length,));
+      Get.to(() => ScoreScreen(correctAnswers: _correctAnsCount.value, wrongAnswers: _wrongAnsCount.value, totalQuestions: _questionList.length,));
     }
   }
 
@@ -102,7 +109,7 @@ class QuestionController extends GetxController
 }
 
 List<Question> generateQuestions() {
-  final random = Random();
+  final Random random = Random();
   final List<Question> questionList = [];
 
   // Text questions
