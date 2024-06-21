@@ -9,32 +9,32 @@ import 'dart:math';
 class QuestionController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation _animation;
-  Animation get animation => _animation; // instead this.animation
+  late Animation<double> _animation; // <double> is more type-safe
+  Animation<double> get animation => _animation; // instead this.animation
 
   late PageController _pageController;
-  PageController get pageController => this._pageController;
+  PageController get pageController => _pageController;
 
   List<Question> _questionList = [];
-  List<Question> get questionList => this._questionList;
+  List<Question> get questionList => _questionList;
 
   bool _isAnswered = false;
-  bool get isAnswered => this._isAnswered;
+  bool get isAnswered => _isAnswered;
 
   late int _selectedAns; // late is fine as long as initialized before usage
-  int get selectedAns => this._selectedAns;
+  int get selectedAns => _selectedAns;
 
   late int _correctAns;
-  int get correctAns => this._correctAns;
+  int get correctAns => _correctAns;
 
   RxInt _questionNumber = 1.obs;
-  RxInt get questionNumber => this._questionNumber;
+  RxInt get questionNumber => _questionNumber;
 
   RxInt _correctAnsCount = 0.obs;
-  RxInt get correctAnsCount => this._correctAnsCount;
+  RxInt get correctAnsCount => _correctAnsCount;
 
   RxInt _wrongAnsCount = 0.obs;
-  RxInt get wrongAnsCount => this._wrongAnsCount;
+  RxInt get wrongAnsCount => _wrongAnsCount;
 
   // Called after widgets memory is allocated
   @override
@@ -43,10 +43,10 @@ class QuestionController extends GetxController
     _questionList = generateQuestions();
 
     _animationController =
-        AnimationController(duration: Duration(seconds: 30), vsync: this);
-    _animation = Tween<double>(begin: 1, end: 0).animate(_animationController) // unneded double?
+        AnimationController(duration: const Duration(seconds: 30), vsync: this);
+    _animation = Tween<double>(begin: 1, end: 0).animate(_animationController)
       ..addListener(() {
-        update(); // update like setState
+        update(["progressBar"]); // Update only progress bar on each tick
       });
 
     // After completion go to next question
@@ -81,7 +81,7 @@ class QuestionController extends GetxController
     _animationController.stop();
     update();
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       nextQuestion();
     });
   }
@@ -90,7 +90,7 @@ class QuestionController extends GetxController
     if (_questionNumber.value != _questionList.length) {
       _isAnswered = false;
       _pageController.nextPage(
-          duration: Duration(milliseconds: 300), curve: Curves.ease);
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
 
       // Counter reset
       _animationController.reset();
@@ -117,7 +117,7 @@ List<Question> generateQuestions() {
   selectedFlags = selectedFlags.take(5).toList(); // Select 5 random flags
 
   for (var flag in selectedFlags) {
-    List<String> nameAnswers = flags.map((f) => f['name']!).toList()..shuffle();
+    List<String> nameAnswers = flags.map((f) => f['name']!).toList()..shuffle(random);
     nameAnswers = nameAnswers.take(4).toList();
 
     if (!nameAnswers.contains(flag['name'])) {
@@ -139,7 +139,7 @@ List<Question> generateQuestions() {
   selectedFlags = selectedFlags.take(5).toList();   // Select new 5 random flags
 
   for(var flag in selectedFlags) {
-    List<String> imageAnswers = flags.map((f) => f['imagePath']!).toList()..shuffle();
+    List<String> imageAnswers = flags.map((f) => f['imagePath']!).toList()..shuffle(random);
     imageAnswers = imageAnswers.take(4).toList();
 
     if (!imageAnswers.contains(flag['imagePath'])) {
@@ -156,7 +156,7 @@ List<Question> generateQuestions() {
     ));
   }
 
-  questionList.shuffle();
+  questionList.shuffle(random);
 
   return questionList;
 

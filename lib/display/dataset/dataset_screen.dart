@@ -19,6 +19,14 @@ class DatasetScreen extends StatelessWidget {
             final flagName = flag['name']!.toUpperCase();
             return ListTile(
               leading: Image.asset(flag['imagePath']!),
+              /*leading: Container(
+                width: 50.0, // Adjust the width as needed
+                height: 50.0, // Adjust the height as needed
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black), // Add black border
+                ),
+                child: Image.asset(flag['imagePath']!),
+              ),*/
               title: RichText(
                 text: TextSpan(
                   style: DefaultTextStyle.of(context).style.copyWith(

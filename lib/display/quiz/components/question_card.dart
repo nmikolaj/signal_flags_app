@@ -15,15 +15,15 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController());
+    QuestionController controller = Get.find<QuestionController>(); // Get.find() as controller is already initialized in parent widget
     return Container(
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         top: 0,
         right: kDefaultPadding,
         left: kDefaultPadding,
         bottom: kDefaultPadding,
       ),
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: kDefaultPadding*2,
         right: kDefaultPadding*2,
         left: kDefaultPadding*2,
@@ -46,14 +46,14 @@ class QuestionCard extends StatelessWidget {
                       ?.copyWith(color: kBlackColor),
                 ),
           if (!question.isFlagQuestion)
-            SizedBox(height: kDefaultPadding*3)
+            const SizedBox(height: kDefaultPadding*3)
           else
-            SizedBox(height: kDefaultPadding),
+            const SizedBox(height: kDefaultPadding),
           if (!question.isFlagQuestion)
             GridView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1,
                 crossAxisSpacing: kDefaultPadding,
@@ -64,7 +64,7 @@ class QuestionCard extends StatelessWidget {
                 index: index,
                 text: '',
                 imagePath: question.answers[index],
-                press: () => _controller.checkAnswer(question, index),
+                press: () => controller.checkAnswer(question, index),
               ),
             )
           else
@@ -74,7 +74,7 @@ class QuestionCard extends StatelessWidget {
                 index: index,
                 text: question.answers[index],
                 imagePath: '',
-                press: () => _controller.checkAnswer(question, index),
+                press: () => controller.checkAnswer(question, index),
               ),
             ),
         ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/question_controller.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 
@@ -11,20 +11,17 @@ class ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 26,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(
-            color: kBorderColor,
-            width: 2,
-            ),
-        borderRadius: BorderRadius.circular(50),
-      ),
-      child: GetBuilder<QuestionController>(
-        init: QuestionController(),
-        builder: (controller) {
-          return Stack(
+    return GetBuilder<QuestionController>(
+      id: 'progressBar',
+      builder: (controller) {
+        return Container(
+          width: double.infinity,
+          height: 26,
+          decoration: BoxDecoration(
+            border: Border.all(color: kBorderColor, width: 2),
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: Stack(
             children: [
               LayoutBuilder(
                 builder: (context, constraints) => Container(
@@ -45,9 +42,9 @@ class ProgressBar extends StatelessWidget {
                 ),
               ),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -19,7 +19,7 @@ class Answer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuestionController>(
-      init: QuestionController(),
+      //init: QuestionController(), Works fine without it
       builder: (qnController) {
         Color getRightColor() {
           if (qnController.isAnswered) {
@@ -71,6 +71,12 @@ class Answer extends StatelessWidget {
               children: [
                 imagePath.isNotEmpty
                     ? Image.asset(imagePath, height: 60, width: 60) // TODO softcode image size and square layout
+                    /*Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 1.0),
+                        ),
+                        child: Image.asset(imagePath, height: 60, width: 60),
+                      )*/
                     : Text(
                         "$text",
                         style: TextStyle(color: kBlackColor, fontSize: 18),
