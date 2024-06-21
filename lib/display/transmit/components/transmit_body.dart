@@ -39,36 +39,74 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(thickness: 1.5, color: kBackgroundColor),
             SizedBox(height: kDefaultPadding),
             Expanded(
               child: Obx(
                 () => Column(
                   children: [
-                    Text(
-                      _signalController.signalList[
-                              _signalController.questionNumber.value - 1]
-                          ['message']['pl'],
-                      style: TextStyle(color: kWhiteColor, fontSize: 20),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: kBackgroundColor2,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          _signalController.signalList[
+                                  _signalController.questionNumber.value - 1]
+                              ['message']['pl'],
+                          style: TextStyle(color: kWhiteColor, fontSize: 20),
+                        ),
+                      ),
                     ),
-                    SizedBox(height: kDefaultPadding),
-                    Text(
-                      "Wybrane flagi: ${_signalController.selectedFlags.join(", ")}",
-                      style: TextStyle(color: kWhiteColor, fontSize: 16),
+                    SizedBox(height: kDefaultPadding / 2),
+                    Text("Wybrane flagi: ",
+                        style: TextStyle(
+                          color: kWhiteColor,
+                          fontSize: 14,
+                        )),
+                    SizedBox(height: kDefaultPadding / 2),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      constraints: BoxConstraints(
+                        minWidth: 300,
+                        minHeight: 50,
+                        maxWidth: 380,
+                      ),
+                      child: Wrap(
+                        spacing: 8.0,
+                        runSpacing: 8.0,
+                        children: _signalController.selectedFlags.map((flagName) {
+                          final flag = flags.firstWhere((f) => f['name'] == flagName);
+                          return Image.asset(
+                            flag['imagePath']!,
+                            width: 40,
+                            height: 40,
+                          );
+                        }).toList(),
+                      ),
                     ),
+                    SizedBox(height: kDefaultPadding / 2),
                     ElevatedButton(
                       onPressed: () {
                         _signalController.checkAnswer();
                       },
-                      child: Text("Potwierdź wiadomość"),
+                      child: Text("Potwierdź"),
                     ),
+                    Divider(thickness: 1.5, color: kSecondaryColor),
                     SizedBox(height: kDefaultPadding),
                     Wrap(
                       spacing: 15,
                       runSpacing: 18,
                       children: flags.map((flag) {
                         return GestureDetector(
-                          onTap: () => _signalController.selectFlag(flag['name']!),
+                          onTap: () =>
+                              _signalController.selectFlag(flag['name']!),
                           child: Image.asset(
                             flag['imagePath']!,
                             width: 60,
