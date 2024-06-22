@@ -75,7 +75,7 @@ class Body extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       constraints: BoxConstraints(
                         minWidth: 300,
-                        minHeight: 50,
+                        minHeight: 60,
                         maxWidth: 380,
                       ),
                       child: Wrap(
@@ -94,31 +94,64 @@ class Body extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: kDefaultPadding / 2),
-                    ElevatedButton(
-                      onPressed: () {
-                        _signalController.checkAnswer();
-                      },
-                      child: Text("Potwierdź"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: kDefaultPadding),
+                          child: IconButton(
+                            icon: Icon(Icons.thumb_up_alt_rounded, color: kWhiteColor),
+                            onPressed: () {
+                              _signalController.checkAnswer();
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: kDefaultPadding),
+                          child: IconButton(
+                            icon: Icon(Icons.backspace, color: kWhiteColor),
+                            onPressed: () {
+                              _signalController.removeLastFlag();
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                    Divider(thickness: 1.5, color: kSecondaryColor),
-                    SizedBox(height: kDefaultPadding),
+                    
+                    SizedBox(height: kDefaultPadding/2),
+                    Container(
+                        height: 1.5, 
+                        color: Colors.blue.shade300, 
+                      ),
+                    Container(
+                        height: 6,
+                        color: Color.fromARGB(255, 26, 119, 196), 
+                      ),
+                    Container(
+                        height: 1.5,
+                        color: Colors.indigo.shade700,
+                      ),
+                    //SizedBox(height: kDefaultPadding/2),
                     Expanded(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
-                        child: Wrap(
-                          spacing: 15,
-                          runSpacing: 18,
-                          children: flags.map((flag) {
-                            return GestureDetector(
-                              onTap: () =>
-                                  _signalController.selectFlag(flag['name']!),
-                              child: Image.asset(
-                                flag['imagePath']!,
-                                width: 60,
-                                height: 60,
-                              ),
-                            );
-                          }).toList(),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: kDefaultPadding),
+                          child: Wrap(
+                            spacing: 15,
+                            runSpacing: 18,
+                            children: flags.map((flag) {
+                              return GestureDetector(
+                                onTap: () =>
+                                    _signalController.selectFlag(flag['name']!),
+                                child: Image.asset(
+                                  flag['imagePath']!,
+                                  width: 60,
+                                  height: 60,
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ),
                       ),
                     ),

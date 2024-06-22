@@ -42,6 +42,12 @@ class SignalController extends GetxController {
     _selectedFlags.add(flag);
   }
 
+  void removeLastFlag() {
+    if(_selectedFlags.isNotEmpty){
+      _selectedFlags.removeLast();
+    }
+  }
+
   void checkAnswer() {
     Map<String, dynamic> currentSignal = _signalList[_questionNumber.value - 1];
 

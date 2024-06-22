@@ -10,7 +10,7 @@ class QuestionController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation; // <double> is more type-safe
-  Animation<double> get animation => _animation; // instead this.animation
+  Animation<double> get animation => _animation;
 
   late PageController _pageController;
   PageController get pageController => _pageController;
