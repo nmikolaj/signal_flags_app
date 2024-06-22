@@ -49,14 +49,27 @@ class SignalController extends GetxController {
   }
 
   void checkAnswer() {
-    Map<String, dynamic> currentSignal = _signalList[_questionNumber.value - 1];
+  Map<String, dynamic> currentSignal = _signalList[_questionNumber.value - 1];
 
-    if (Set.from(currentSignal['flags']).containsAll(_selectedFlags) && Set.from(_selectedFlags).containsAll(currentSignal['flags'])) {
+  if (_selectedFlags.length == currentSignal['flags'].length) {
+    bool isCorrect = true;
+    for (int i = 0; i < _selectedFlags.length; i++) {
+      if (_selectedFlags[i] != currentSignal['flags'][i]) {
+        isCorrect = false;
+        break;
+      }
+    }
+
+    if (isCorrect) {
       _correctAnswers.value++;
     } else {
       _wrongAnswers.value++;
     }
-    
-    nextSignal();
+  } else {
+    _wrongAnswers.value++;
   }
+
+  nextSignal();
+  }
+  
 }
