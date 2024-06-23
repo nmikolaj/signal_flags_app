@@ -73,4 +73,66 @@ const List<Map<String, dynamic>> multipleFlagMessages = [
       "pl": "Biorę, wyładowuję lub przewożę niebezpieczny ładunek."
     }
   },
+  {
+    "flags": ["Mike", "Alfa", "Bravo"],
+    "message": {
+      "en": "I request you to make rendezvous in position indicated.",
+      "pl": "Proszę o spotkanie we wskazanym miejscu."
+    }
+  },
+];
+
+
+const List<Map<String, dynamic>> messages = [
+  {
+    "flags": ["Alfa"],
+    "message": {
+      "en": "I have a diver down; keep well clear at slow speed.",
+      "pl": "Mam nurka w wodzie; trzymaj się z dala z małą prędkością."
+    },
+  },
+  {
+    "flags": ["Bravo"],
+    "message": {
+      "en": "I am taking in, discharging, or carrying dangerous cargo.",
+      "pl": "Biorę, wyładowuję lub przewożę niebezpieczny ładunek."
+    },
+  },
+  {
+    "flags": ["Charlie"],
+    "message": {
+      "en": "Yes (affirmative).",
+      "pl": "Tak (pozytywnie)."
+    },
+  },
+  {
+    "flags": ["Delta"],
+    "message": {
+      "en": "Keep clear of me; I am maneuvering with difficulty.",
+      "pl": "Trzymaj się z dala ode mnie; Manewruję z trudnościami."
+    },
+  },
+  // Add all other single-flag messages here
+  {
+    "flags": ["Alfa", "Bravo"],
+    "message": {
+      "en": "I have a diver down; keep well clear at slow speed.",
+      "pl": "Mam nurka w wodzie; trzymaj się z dala z małą prędkością."
+    },
+  },
+  {
+    "flags": ["Charlie", "Delta"],
+    "message": {
+      "en": "I am taking in, discharging, or carrying dangerous cargo.",
+      "pl": "Biorę, wyładowuję lub przewożę niebezpieczny ładunek."
+    },
+  },
+  {
+    "flags": ["Mike", "Alfa", "Bravo"],
+    "message": {
+      "en": "I request you to make rendezvous in position indicated.",
+      "pl": "Proszę o spotkanie we wskazanym miejscu."
+    },
+  },
+  // Add all other multiple-flag messages here
 ];

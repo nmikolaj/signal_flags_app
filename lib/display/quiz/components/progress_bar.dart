@@ -16,7 +16,7 @@ class ProgressBar extends StatelessWidget {
       builder: (controller) {
         return Container(
           width: double.infinity,
-          height: 26,
+          height: 18,
           decoration: BoxDecoration(
             border: Border.all(color: kBorderColor, width: 2),
             borderRadius: BorderRadius.circular(50),

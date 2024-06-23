@@ -61,11 +61,17 @@ class Body extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: kDefaultPadding / 2),
-                    Text("Wybrane flagi: ",
-                        style: TextStyle(
-                          color: kWhiteColor,
-                          fontSize: 14,
-                        )),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Wybrane flagi: ",
+                            style: TextStyle(
+                              color: kWhiteColor,
+                              fontSize: 14,
+                            )),
+                      ),
+                    ),
                     SizedBox(height: kDefaultPadding / 2),
                     Container(
                       decoration: BoxDecoration(

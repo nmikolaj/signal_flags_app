@@ -22,7 +22,7 @@ class SignalController extends GetxController {
   void onInit() {
     super.onInit();
     // Load signal questions
-    _signalList.value = multipleFlagMessages;
+    _signalList.value = messages;
   }
 
   void nextSignal() {
