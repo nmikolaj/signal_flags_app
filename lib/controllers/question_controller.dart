@@ -36,11 +36,14 @@ class QuestionController extends GetxController
   RxInt _wrongAnsCount = 0.obs;
   RxInt get wrongAnsCount => _wrongAnsCount;
 
+  String mode;
+  QuestionController(this.mode);
+
   // Called after widgets memory is allocated
   @override
   void onInit() {
 
-    _questionList = generateQuestions();
+    _questionList = generateQuestions(mode);
 
     _animationController =
         AnimationController(duration: const Duration(seconds: 30), vsync: this);
@@ -108,16 +111,17 @@ class QuestionController extends GetxController
   }
 }
 
-List<Question> generateQuestions() {
+List<Question> generateQuestions(String mode) {
   final Random random = Random();
   final List<Question> questionList = [];
 
   // Text questions
-  List<Map<String, String>> selectedFlags = List.from(flags)..shuffle(random);
+  List<Map<String, String>> selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
+  selectedFlags.shuffle(random);
   selectedFlags = selectedFlags.take(5).toList(); // Select 5 random flags
 
   for (var flag in selectedFlags) {
-    List<String> nameAnswers = flags.map((f) => f['name']!).toList()..shuffle(random);
+    List<String> nameAnswers = flags.where((f) => f['type'] == "normal").map((f) => f['name']!).toList()..shuffle(random);
     nameAnswers = nameAnswers.take(4).toList();
 
     if (!nameAnswers.contains(flag['name'])) {
@@ -135,11 +139,12 @@ List<Question> generateQuestions() {
   }
 
   // Image questions
-  selectedFlags = List.from(flags)..shuffle(random);
+  selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
+  selectedFlags.shuffle(random);
   selectedFlags = selectedFlags.take(5).toList();   // Select new 5 random flags
 
   for(var flag in selectedFlags) {
-    List<String> imageAnswers = flags.map((f) => f['imagePath']!).toList()..shuffle(random);
+    List<String> imageAnswers = flags.where((f) => f['type'] == "normal").map((f) => f['imagePath']!).toList()..shuffle(random);
     imageAnswers = imageAnswers.take(4).toList();
 
     if (!imageAnswers.contains(flag['imagePath'])) {

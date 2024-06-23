@@ -9,13 +9,16 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'progress_bar.dart';
 
 class Body extends StatelessWidget {
+  final String mode;
+
   const Body({
-    super.key,
-  });
+    Key? key,
+    required this.mode,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController());
+    QuestionController _questionController = Get.put(QuestionController(mode));
     return Stack(children: [
       Container(
         color: kBackgroundColor,
