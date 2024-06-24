@@ -148,7 +148,7 @@ List<Question> generateQuestions(String mode) {
   selectedFlags = selectedFlags.take(5).toList(); // Select 5 random flags
 
   for (var flag in selectedFlags) {
-    List<String> nameAnswers = flags.where((f) => f['type'] == "normal").map((f) => f['name']!).toList()..shuffle(random);
+    List<String> nameAnswers = flags.where((f) => f['type'] == mode).map((f) => f['name']!).toList()..shuffle(random);
     nameAnswers = nameAnswers.take(4).toList();
 
     if (!nameAnswers.contains(flag['name'])) {
@@ -172,7 +172,7 @@ List<Question> generateQuestions(String mode) {
   selectedFlags = selectedFlags.take(5).toList();   // Select 5 random flags again
 
   for(var flag in selectedFlags) {
-    List<String> imageAnswers = flags.where((f) => f['type'] == "normal").map((f) => f['imagePath']!).toList()..shuffle(random);
+    List<String> imageAnswers = flags.where((f) => f['type'] == mode).map((f) => f['imagePath']!).toList()..shuffle(random);
     imageAnswers = imageAnswers.take(4).toList();
 
     if (!imageAnswers.contains(flag['imagePath'])) {
