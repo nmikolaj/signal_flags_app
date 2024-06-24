@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/question_controller.dart';
 import 'package:signal_flags_app/display/quiz/components/question_card.dart';
+import 'package:signal_flags_app/display/receive/receive_question_card.dart';
 import 'package:signal_flags_app/models/questions.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'progress_bar.dart';
@@ -65,7 +66,7 @@ class Body extends StatelessWidget {
                 onPageChanged:
                     _questionController.updateQuestionNumber, // no args?
                 itemCount: _questionController.questionList.length,
-                itemBuilder: (context, index) => QuestionCard(
+                itemBuilder: (context, index) => ReceiveQuestionCard(
                     question: _questionController.questionList[index]),
               ),
             ),

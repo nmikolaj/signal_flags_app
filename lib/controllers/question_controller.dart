@@ -115,6 +115,33 @@ List<Question> generateQuestions(String mode) {
   final Random random = Random();
   final List<Question> questionList = [];
 
+  if (mode == 'messages') {
+    // Message questions
+    List<Map<String, dynamic>> selectedMessages = messages.toList();
+
+    selectedMessages.shuffle(random);
+    selectedMessages = selectedMessages.take(5).toList(); // Select 5 random messages
+
+    for (var messageData in selectedMessages) {
+      List<String> messageAnswers = messages.map((m) => m['message']['en'] as String).toList()..shuffle(random);
+      messageAnswers = messageAnswers.take(4).toList();
+
+      if (!messageAnswers.contains(messageData['message']['en'])) {
+        messageAnswers[random.nextInt(4)] = messageData['message']['en'];
+      }
+
+      questionList.add(Question(
+        id: questionList.length + 1,
+        question: "What is the message associated with these flags?",
+        answers: messageAnswers,
+        answer: messageAnswers.indexOf(messageData['message']['en']),
+        isFlagQuestion: false, // used for handling in body
+        flagImage: null,
+        flags: (messageData['flags'] as List).map((flag) => flag as String).toList(),
+      ));
+    }
+
+  } else {
   // Text questions
   List<Map<String, String>> selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
   selectedFlags.shuffle(random);
@@ -135,6 +162,7 @@ List<Question> generateQuestions(String mode) {
       answer: nameAnswers.indexOf(flag['name']!),
       isFlagQuestion: true,
       flagImage: flag['imagePath'],
+      flags: [],
     ));
   }
 
@@ -158,9 +186,10 @@ List<Question> generateQuestions(String mode) {
       answer: imageAnswers.indexOf(flag['imagePath']!),
       isFlagQuestion: false,
       flagImage: null,
+      flags: [],
     ));
   }
-
+  }
   questionList.shuffle(random);
 
   return questionList;

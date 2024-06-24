@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:signal_flags_app/display/score/score_screen.dart';
 import 'package:signal_flags_app/models/flags.dart';
@@ -22,7 +24,7 @@ class SignalController extends GetxController {
   void onInit() {
     super.onInit();
     // Load signal questions
-    _signalList.value = messages;
+    _signalList.value = _getRandomMessages(5);
   }
 
   void nextSignal() {
@@ -70,6 +72,20 @@ class SignalController extends GetxController {
   }
 
   nextSignal();
+  }
+
+  List<Map<String, dynamic>> _getRandomMessages(int count) {
+    final random = Random();
+    final selectedMessages = <Map<String, dynamic>>[];
+    final messagesCopy = List<Map<String, dynamic>>.from(messages);
+
+    for (int i = 0; i < count; i++) {
+      if (messagesCopy.isEmpty) break;
+      final index = random.nextInt(messagesCopy.length);
+      selectedMessages.add(messagesCopy.removeAt(index));
+    }
+
+    return selectedMessages;
   }
   
 }

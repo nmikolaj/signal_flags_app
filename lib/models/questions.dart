@@ -4,6 +4,7 @@ class Question {
   final List<String> answers;
   final bool isFlagQuestion;
   final String? flagImage;
+  final List<String> flags;
 
   Question(
       { // required for null exception
@@ -12,6 +13,7 @@ class Question {
       required this.answer,
       required this.answers,
       required this.isFlagQuestion,
-      this.flagImage}); // nullable for questions with text
+      this.flagImage, // nullable for questions with text
+      required this.flags}); 
 }
 
