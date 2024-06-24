@@ -123,18 +123,18 @@ List<Question> generateQuestions(String mode) {
     selectedMessages = selectedMessages.take(5).toList(); // Select 5 random messages
 
     for (var messageData in selectedMessages) {
-      List<String> messageAnswers = messages.map((m) => m['message']['en'] as String).toList()..shuffle(random);
+      List<String> messageAnswers = messages.map((m) => m['message']['pl'] as String).toList()..shuffle(random);
       messageAnswers = messageAnswers.take(4).toList();
 
-      if (!messageAnswers.contains(messageData['message']['en'])) {
-        messageAnswers[random.nextInt(4)] = messageData['message']['en'];
+      if (!messageAnswers.contains(messageData['message']['pl'])) {
+        messageAnswers[random.nextInt(4)] = messageData['message']['pl'];
       }
 
       questionList.add(Question(
         id: questionList.length + 1,
         question: "What is the message associated with these flags?",
         answers: messageAnswers,
-        answer: messageAnswers.indexOf(messageData['message']['en']),
+        answer: messageAnswers.indexOf(messageData['message']['pl']),
         isFlagQuestion: false, // used for handling in body
         flagImage: null,
         flags: (messageData['flags'] as List).map((flag) => flag as String).toList(),
@@ -169,7 +169,7 @@ List<Question> generateQuestions(String mode) {
   // Image questions
   selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
   selectedFlags.shuffle(random);
-  selectedFlags = selectedFlags.take(5).toList();   // Select new 5 random flags
+  selectedFlags = selectedFlags.take(5).toList();   // Select 5 random flags again
 
   for(var flag in selectedFlags) {
     List<String> imageAnswers = flags.where((f) => f['type'] == "normal").map((f) => f['imagePath']!).toList()..shuffle(random);

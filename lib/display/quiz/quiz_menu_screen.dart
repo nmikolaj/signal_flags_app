@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
-import 'package:signal_flags_app/display/quiz/quiz_menu_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
-import 'package:signal_flags_app/display/transmit/transmit_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
 
-class HomeScreen extends StatelessWidget {
+class QuizMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,14 +14,13 @@ class HomeScreen extends StatelessWidget {
           children: [
             SafeArea(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(flex: 3),
                     Text(
-                      "Sygnały Flagowe",
+                      "Quiz",
                       style: TextStyle(
                         color: kWhiteColor,
                         fontWeight: FontWeight.bold,
@@ -39,11 +35,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Spacer(flex: 2),
-                    buildButton("Quiz", () => QuizMenuScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
+                    buildButton("Klasyczne", () => QuizScreen(mode: "normal")),
                     SizedBox(height: 18),
-                    buildButton("Nadanie sygnału", () => SignalScreen()),
+                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric')),
                     SizedBox(height: 18),
-                    buildButton("Nauka", () => DatasetScreen()),
+                    buildButton("Sygnały", () => QuizScreen(mode: 'messages')),
                     Spacer(flex: 4),
                   ],
                 ),

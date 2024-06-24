@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/question_controller.dart';
 import 'package:signal_flags_app/display/quiz/components/question_card.dart';
-import 'package:signal_flags_app/display/receive/receive_question_card.dart';
+import 'package:signal_flags_app/display/signal/signal_question_card.dart';
 import 'package:signal_flags_app/models/questions.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'progress_bar.dart';
@@ -64,10 +64,17 @@ class Body extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 controller: _questionController.pageController,
                 onPageChanged:
-                    _questionController.updateQuestionNumber, // no args?
+                    _questionController.updateQuestionNumber,
                 itemCount: _questionController.questionList.length,
-                itemBuilder: (context, index) => ReceiveQuestionCard(
-                    question: _questionController.questionList[index]),
+                itemBuilder: (context, index) {
+                  if (mode == 'messages') {
+                    return SignalQuestionCard(
+                        question: _questionController.questionList[index]);
+                  } else {
+                    return QuestionCard(
+                        question: _questionController.questionList[index]);
+                  }
+                },
               ),
             ),
           ],

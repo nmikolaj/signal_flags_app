@@ -69,18 +69,15 @@ class Answer extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                imagePath.isNotEmpty
-                    ? Image.asset(imagePath, height: 60, width: 60) // TODO softcode image size and square layout
-                    /*Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 1.0),
-                        ),
-                        child: Image.asset(imagePath, height: 60, width: 60),
-                      )*/
-                    : Text(
-                        "$text",
-                        style: TextStyle(color: kBlackColor, fontSize: 18),
-                      ),
+                if (imagePath.isNotEmpty)
+                  Image.asset(imagePath, height: 60, width: 60) 
+                else
+                  Flexible(
+                    child: Text(
+                      text,
+                      style: TextStyle(color: kBlackColor, fontSize: 18),
+                    ),
+                  ),
               ],
             ),
           ),

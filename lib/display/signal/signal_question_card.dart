@@ -6,8 +6,8 @@ import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/models/questions.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 
-class ReceiveQuestionCard extends StatelessWidget {
-  const ReceiveQuestionCard({
+class SignalQuestionCard extends StatelessWidget {
+  const SignalQuestionCard({
     super.key,
     required this.question,
   });
@@ -24,38 +24,41 @@ class ReceiveQuestionCard extends StatelessWidget {
         left: kDefaultPadding,
         bottom: kDefaultPadding,
       ),
-      padding: const EdgeInsets.only(
-        top: kDefaultPadding*2,
-        right: kDefaultPadding*2,
-        left: kDefaultPadding*2,
-        bottom: 0,
-      ),
+      padding: const EdgeInsets.all(kDefaultPadding),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Column(
         children: [
+          const SizedBox(height: kDefaultPadding/2),
           if (question.flags.isNotEmpty)
-                  Wrap(
-                    spacing: kDefaultPadding,
-                    children: question.flags
-                        .map((flagName) => Image.asset(
-                            flags.firstWhere((flag) => flag['name'] == flagName)['imagePath']!,
-                            height: 60,
-                            width: 60))
-                        .toList(),
+            Wrap(
+              spacing: kDefaultPadding,
+              children: question.flags
+                  .map((flagName) => Image.asset(
+                      flags.firstWhere(
+                          (flag) => flag['name'] == flagName)['imagePath']!,
+                      height: 70,
+                      width: 70))
+                  .toList(),
+            ),
+          const SizedBox(height: kDefaultPadding/2),
+          Flexible(
+            child: SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                  question.answers.length,
+                  (index) => Answer(
+                    index: index,
+                    text: question.answers[index],
+                    imagePath: '',
+                    press: () => controller.checkAnswer(question, index),
                   ),
-            const SizedBox(height: kDefaultPadding),
-            ...List.generate(
-              question.answers.length,
-              (index) => Answer(
-                index: index,
-                text: question.answers[index],
-                imagePath: '',
-                press: () => controller.checkAnswer(question, index),
+                ),
               ),
             ),
+          ),
         ],
       ),
     );

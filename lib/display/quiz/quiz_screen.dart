@@ -6,11 +6,14 @@ import 'package:signal_flags_app/display/quiz/components/quiz_body.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class QuizScreen extends StatelessWidget {
-  const QuizScreen({super.key});
+  final String mode;
+
+  const QuizScreen({super.key, required this.mode});
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController('messages'));
+    QuestionController _controller = Get.put(QuestionController(mode));
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -27,7 +30,7 @@ class QuizScreen extends StatelessWidget {
           TextButton(onPressed: _controller.nextQuestion, child: Text("Pomiń")),
         ],
       ),
-      body: Body(mode: 'messages'),
+      body: Body(mode: mode),
     );
   }
 }
