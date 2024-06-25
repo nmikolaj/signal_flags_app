@@ -30,7 +30,7 @@ class ExportBody extends StatelessWidget {
                         ),
                         padding: const EdgeInsets.all(10),
                         child: Text(
-                          "SIGNAL",
+                          _controller.selectedFlags.map((flagName) => flagName[0]).join(),
                           style: TextStyle(color: kWhiteColor, fontSize: 20),
                         ),
                       ),
@@ -81,7 +81,7 @@ class ExportBody extends StatelessWidget {
                           child: IconButton(
                             icon: Icon(Icons.thumb_up_alt_rounded, color: kWhiteColor),
                             onPressed: () {
-                              _controller.submitSelection();
+                              _controller.exportMessage();
                             },
                           ),
                         ),

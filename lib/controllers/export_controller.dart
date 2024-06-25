@@ -15,8 +15,8 @@ class ExportController extends GetxController {
     }
   }
 
-  void submitSelection() {
-    // Functionality to handle flag selection submission
-    // Placeholder for future implementation
+  void exportMessage() {
+    // Logic for exporting flags as image
+    // To try: Screenshot plugin, RenderRepaintBoundary, rendering.dart
   }
 }
