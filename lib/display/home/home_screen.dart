@@ -29,7 +29,14 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(flex: 5),
-                    const Center(
+                    Stack(alignment: Alignment(0.7, 1.0),
+                      children: [
+                        Image.asset(
+                          'assets/images/two_flags.png',
+                          width: 150, 
+                          height: 150, 
+                        ),
+                        Center(
                       child: Text(
                         "Sygnały Flagowe",
                         style: TextStyle(
@@ -39,6 +46,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                      ],
+                    ),
                     const Text(
                       "  Wybierz tryb",
                       style: TextStyle(
@@ -47,10 +56,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 4),
-                    buildButton(
-                        "Flagi",
-                        () =>
-                            FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
+                    buildButton("Flagi", () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
                     const SizedBox(height: 18),
                     buildButton("Sygnały", () => SignalMenuScreen()),
                     const SizedBox(height: 18),
