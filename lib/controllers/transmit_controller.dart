@@ -26,6 +26,8 @@ class SignalController extends GetxController {
 
   RxBool answerChecked = false.obs;
 
+  RxBool answeredCorrectly = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -39,6 +41,7 @@ class SignalController extends GetxController {
       _selectedFlags.clear();
       _selectedFlagsCorrect.clear();
       answerChecked.value = false;
+      answeredCorrectly.value = false;
     } else {
       Get.to(() => ScoreScreen(
         correctAnswers: _correctAnswers.value,
@@ -86,6 +89,7 @@ class SignalController extends GetxController {
 
     if (isCorrect) {
       _correctAnswers.value++;
+      answeredCorrectly.value = true;
     } else {
       _wrongAnswers.value++;
     }

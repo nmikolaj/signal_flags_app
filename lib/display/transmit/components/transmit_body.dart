@@ -75,7 +75,9 @@ class Body extends StatelessWidget {
                     SizedBox(height: kDefaultPadding / 2),
                     Container(
                       decoration: BoxDecoration(
-                        color: kWhiteColor,
+                        color: _signalController.answeredCorrectly.value
+                            ? kSlightGreenColor
+                            : kWhiteColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       padding: const EdgeInsets.all(10),
@@ -84,7 +86,7 @@ class Body extends StatelessWidget {
                         minHeight: 60,
                         maxWidth: 380,
                       ),
-                      child: Obx(() => Wrap(
+                      child: Wrap(
                         spacing: 8.0,
                         runSpacing: 8.0,
                         children:
@@ -103,13 +105,20 @@ class Body extends StatelessWidget {
                               if (_signalController.answerChecked.value && !isCorrect)
                                 Positioned.fill(
                                   child: Container(
-                                    color: Colors.red.withOpacity(0.5),
+                                    color: Colors.transparent,
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/flags/x.png',
+                                        width: 35,
+                                        height: 35,
+                                      ),
+                                    ),
                                   ),
                                 ),
                             ],
                           );
                         }),
-                      )),
+                      ),
                     ),
                     SizedBox(height: kDefaultPadding / 2),
                     Row(
@@ -119,18 +128,18 @@ class Body extends StatelessWidget {
                           padding: const EdgeInsets.only(left: kDefaultPadding),
                           child: IconButton(
                             icon: Icon(Icons.thumb_up_alt_rounded, color: kWhiteColor),
-                            onPressed: () {
-                              _signalController.checkAnswer();
-                            },
+                            onPressed: _signalController.answerChecked.value
+                                ? null
+                                : () {_signalController.checkAnswer();},
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: kDefaultPadding),
                           child: IconButton(
                             icon: Icon(Icons.backspace, color: kWhiteColor),
-                            onPressed: () {
-                              _signalController.removeLastFlag();
-                            },
+                            onPressed: _signalController.answerChecked.value
+                                ? null
+                                : () {_signalController.removeLastFlag();},
                           ),
                         ),
                       ],
@@ -160,8 +169,9 @@ class Body extends StatelessWidget {
                             runSpacing: 18,
                             children: flags.map((flag) {
                               return GestureDetector(
-                                onTap: () =>
-                                    _signalController.selectFlag(flag['name']!),
+                                onTap: _signalController.answerChecked.value
+                                    ? null
+                                    : () => _signalController.selectFlag(flag['name']!),
                                 child: Image.asset(
                                   flag['imagePath']!,
                                   width: 60,
