@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/display/export/export_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
 import 'package:signal_flags_app/display/transmit/transmit_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
@@ -9,6 +10,11 @@ class SignalMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Container(
         decoration: BoxDecoration(gradient: kBackgroundGradient),
         child: Stack(
@@ -35,7 +41,7 @@ class SignalMenuScreen extends StatelessWidget {
                     SizedBox(height: 18),
                     buildButton("Nadanie sygnału", () => TransmitScreen()),
                     SizedBox(height: 18),
-                    buildButton("Eksport sygnału", () => TransmitScreen()),
+                    buildButton("Eksport sygnału", () => ExportScreen()),
                     Spacer(flex: 4),
                   ],
                 ),
