@@ -108,7 +108,7 @@ class Body extends StatelessWidget {
                                     color: Colors.transparent,
                                     child: Center(
                                       child: Image.asset(
-                                        'assets/flags/x.png',
+                                        'assets/images/x.png',
                                         width: 35,
                                         height: 35,
                                       ),

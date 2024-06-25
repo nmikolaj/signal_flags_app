@@ -13,7 +13,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(gradient: kBackgroundGradient),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/sea.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Stack(
           children: [
             SafeArea(
@@ -24,28 +29,33 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(flex: 5),
-                    Text(
-                      "Sygnały Flagowe",
-                      style: TextStyle(
-                        color: kWhiteColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 44,
+                    const Center(
+                      child: Text(
+                        "Sygnały Flagowe",
+                        style: TextStyle(
+                          color: kWhiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 44,
+                        ),
                       ),
                     ),
-                    Text(
-                      "Wybierz tryb",
+                    const Text(
+                      "  Wybierz tryb",
                       style: TextStyle(
                         color: kWhiteColor,
                         fontSize: 22,
                       ),
                     ),
-                    Spacer(flex: 4),
-                    buildButton("Flagi", () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
-                    SizedBox(height: 18),
+                    const Spacer(flex: 4),
+                    buildButton(
+                        "Flagi",
+                        () =>
+                            FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
+                    const SizedBox(height: 18),
                     buildButton("Sygnały", () => SignalMenuScreen()),
-                    SizedBox(height: 18),
+                    const SizedBox(height: 18),
                     buildButton("Nauka", () => DatasetScreen()),
-                    Spacer(flex: 4),
+                    const Spacer(flex: 4),
                   ],
                 ),
               ),

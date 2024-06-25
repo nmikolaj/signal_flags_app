@@ -20,29 +20,50 @@ class ScoreScreen extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double font_size = screenWidth * 0.1;
     int passedAnswers = totalQuestions - correctAnswers - wrongAnswers;
+    int percentage = ((correctAnswers / totalQuestions) * 100).toInt();
 
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: kBackgroundGradient,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: kWhiteColor),
+          onPressed: () {
+            Get.offAll(() => HomeScreen());
+          },
         ),
-        child: Stack(fit: StackFit.expand, children: [
+      ),
+      body: Stack(
+
+        fit: StackFit.expand,
+
+        children: [
+          Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/sea.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+          ),
           Column(
             children: [
               const Spacer(flex: 4),
               Text(
                 "Wynik",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: kWhiteColor,
                   fontSize: font_size,
                 ),
               ),
               const Spacer(),
               Text(
-                "${(correctAnswers / totalQuestions * 100).toStringAsFixed(1)}%", //sc test
+                "$percentage%", //sc test
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: font_size,
+                  color: kWhiteColor,
+                  fontSize: font_size * 1.4,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               const Spacer(),
@@ -67,18 +88,10 @@ class ScoreScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const Spacer(flex: 3),
-              ElevatedButton(
-                onPressed: () {
-                  //Get.delete<QuestionController>(); Get.offAll already removes it bc QuestionController is not marked as permanent in dependency tree
-                  Get.offAll(() => HomeScreen());
-                },
-                child: Text("Powrót"),
-              ),
-              const Spacer(flex: 1),
+              const Spacer(flex: 4),
             ],
-          )
-        ]),
+          ),
+        ],
       ),
     );
   }
@@ -89,7 +102,7 @@ class ScoreScreen extends StatelessWidget {
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: color,
+        color: color.withOpacity(0.6),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(

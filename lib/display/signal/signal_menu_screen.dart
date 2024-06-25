@@ -16,17 +16,23 @@ class SignalMenuScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: Container(
-        decoration: BoxDecoration(gradient: kBackgroundGradient),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/sea.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Stack(
           children: [
             SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(flex: 5),
-                    Center(
+                    const Spacer(flex: 5),
+                    const Center(
                       child: Text(
                         "Sygnały",
                         style: TextStyle(
@@ -36,13 +42,13 @@ class SignalMenuScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Spacer(flex: 4),
+                    const Spacer(flex: 4),
                     buildButton("Quiz", () => QuizScreen(mode: 'messages')),
-                    SizedBox(height: 18),
+                    const SizedBox(height: 18),
                     buildButton("Nadanie sygnału", () => TransmitScreen()),
-                    SizedBox(height: 18),
+                    const SizedBox(height: 18),
                     buildButton("Stwórz własny", () => ExportScreen()),
-                    Spacer(flex: 4),
+                    const Spacer(flex: 4),
                   ],
                 ),
               ),

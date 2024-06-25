@@ -15,17 +15,23 @@ class FlagsMenuScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: Container(
-        decoration: BoxDecoration(gradient: kBackgroundGradient),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/sea.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Stack(
           children: [
             SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(flex: 5),
-                    Center(
+                    const Center(
                       child: Text(
                         "Flagi",
                         style: TextStyle(
@@ -35,12 +41,12 @@ class FlagsMenuScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Spacer(flex: 4),
+                    const Spacer(flex: 4),
                     buildButton("Klasyczne", () => QuizScreen(mode: "normal")),
-                    SizedBox(height: 18),
+                    const SizedBox(height: 18),
                     buildButton("Numeryczne", () => QuizScreen(mode: 'numeric')),
-                    SizedBox(height: 18),
-                    Spacer(flex: 4),
+                    const SizedBox(height: 18),
+                    const Spacer(flex: 4),
                   ],
                 ),
               ),
