@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/export_controller.dart';
 import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/utils/constants.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 
 class ExportBody extends StatelessWidget {
+  final WidgetsToImageController widgetsToImageController = WidgetsToImageController();
+
   @override
   Widget build(BuildContext context) {
     ExportController _controller = Get.put(ExportController());
@@ -48,28 +51,31 @@ class ExportBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: kDefaultPadding / 2),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: kWhiteColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: const EdgeInsets.all(10),
-                      constraints: BoxConstraints(
-                        minWidth: 300,
-                        minHeight: 60,
-                        maxWidth: 380,
-                      ),
-                      child: Wrap(
-                        spacing: 8.0,
-                        runSpacing: 8.0,
-                        children: _controller.selectedFlags.map((flagName) {
-                          final flag = flags.firstWhere((f) => f['name'] == flagName);
-                          return Image.asset(
-                            flag['imagePath']!,
-                            width: 40,
-                            height: 40,
-                          );
-                        }).toList(),
+                    WidgetsToImage(
+                      controller: widgetsToImageController,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: kWhiteColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        constraints: BoxConstraints(
+                          minWidth: 300,
+                          minHeight: 60,
+                          maxWidth: 380,
+                        ),
+                        child: Wrap(
+                          spacing: 8.0,
+                          runSpacing: 8.0,
+                          children: _controller.selectedFlags.map((flagName) {
+                            final flag = flags.firstWhere((f) => f['name'] == flagName);
+                            return Image.asset(
+                              flag['imagePath']!,
+                              width: 40,
+                              height: 40,
+                            );
+                          }).toList(),
+                        ),
                       ),
                     ),
                     SizedBox(height: kDefaultPadding / 2),
@@ -79,9 +85,9 @@ class ExportBody extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: kDefaultPadding),
                           child: IconButton(
-                            icon: Icon(Icons.thumb_up_alt_rounded, color: kWhiteColor),
+                            icon: Icon(Icons.share_rounded, color: kWhiteColor, size: 35),
                             onPressed: () {
-                              _controller.exportMessage();
+                              _controller.exportMessage(widgetsToImageController);
                             },
                           ),
                         ),

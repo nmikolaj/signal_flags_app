@@ -41,7 +41,7 @@ class SignalMenuScreen extends StatelessWidget {
                     SizedBox(height: 18),
                     buildButton("Nadanie sygnału", () => TransmitScreen()),
                     SizedBox(height: 18),
-                    buildButton("Eksport sygnału", () => ExportScreen()),
+                    buildButton("Udostępnij sygnał", () => ExportScreen()),
                     Spacer(flex: 4),
                   ],
                 ),

@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 import 'package:signal_flags_app/models/flags.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ExportController extends GetxController {
   RxList<String> _selectedFlags = <String>[].obs;
@@ -15,8 +19,21 @@ class ExportController extends GetxController {
     }
   }
 
-  void exportMessage() {
-    // Logic for exporting flags as image
-    // To try: Screenshot plugin, RenderRepaintBoundary, rendering.dart
+  void exportMessage(WidgetsToImageController widgetsToImageController) async {
+    final directory = (await getApplicationDocumentsDirectory()).path;
+    final fileName = 'signal.png';
+    final path = '$directory/$fileName';
+
+    final imageBytes = await widgetsToImageController.capture();
+    if (imageBytes != null) {
+      final file = File(path);
+      await file.writeAsBytes(imageBytes);
+      shareImage(path);
+    }
   }
+
+  void shareImage(String path) {
+    Share.shareFiles([path], text: 'Check out these flags!');
+  }
+
 }
