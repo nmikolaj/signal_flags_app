@@ -5,7 +5,7 @@ import 'package:signal_flags_app/display/home/home_screen.dart';
 import 'package:signal_flags_app/display/transmit/components/transmit_body.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 
-class SignalScreen extends StatelessWidget {
+class TransmitScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SignalController _controller = Get.put(SignalController());

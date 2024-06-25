@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
+import 'package:signal_flags_app/display/transmit/transmit_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
 
-class FlagsMenuScreen extends StatelessWidget {
+class SignalMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,7 @@ class FlagsMenuScreen extends StatelessWidget {
                     Spacer(flex: 5),
                     Center(
                       child: Text(
-                        "Flagi",
+                        "Sygnały",
                         style: TextStyle(
                           color: kWhiteColor,
                           fontWeight: FontWeight.bold,
@@ -30,10 +31,11 @@ class FlagsMenuScreen extends StatelessWidget {
                       ),
                     ),
                     Spacer(flex: 4),
-                    buildButton("Klasyczne", () => QuizScreen(mode: "normal")),
+                    buildButton("Quiz", () => QuizScreen(mode: 'messages')),
                     SizedBox(height: 18),
-                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric')),
+                    buildButton("Nadanie sygnału", () => TransmitScreen()),
                     SizedBox(height: 18),
+                    buildButton("Eksport sygnału", () => TransmitScreen()),
                     Spacer(flex: 4),
                   ],
                 ),

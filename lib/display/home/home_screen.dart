@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_menu_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
+import 'package:signal_flags_app/display/signal/signal_menu_screen.dart';
 import 'package:signal_flags_app/display/transmit/transmit_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
@@ -22,7 +23,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(flex: 3),
+                    Spacer(flex: 5),
                     Text(
                       "Sygnały Flagowe",
                       style: TextStyle(
@@ -38,10 +39,10 @@ class HomeScreen extends StatelessWidget {
                         fontSize: 22,
                       ),
                     ),
-                    Spacer(flex: 2),
-                    buildButton("Quiz", () => QuizMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
+                    Spacer(flex: 4),
+                    buildButton("Flagi", () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
                     SizedBox(height: 18),
-                    buildButton("Nadanie sygnału", () => SignalScreen()),
+                    buildButton("Sygnały", () => SignalMenuScreen()),
                     SizedBox(height: 18),
                     buildButton("Nauka", () => DatasetScreen()),
                     Spacer(flex: 4),
