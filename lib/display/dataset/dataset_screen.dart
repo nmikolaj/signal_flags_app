@@ -15,7 +15,7 @@ class DatasetScreen extends StatelessWidget {
         title: const Text("Baza Flag"),
       ),
       body: Container(
-        color: kBackgroundColor3,
+        color: kWhiteColor, //kBackgroundColor3,
         child: ListView.builder(
           itemCount: messages.length,
           itemBuilder: (context, index) {
@@ -64,11 +64,14 @@ class DatasetScreen extends StatelessWidget {
               );
             } else {
               final flagImages = message['flags']
-                  .map<Widget>((flag) => Image.asset(
-                        flagMap[flag]!['imagePath']!,
-                        width: 50,
-                        height: 50,
-                      ))
+                  .map<Widget>((flag) => Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Image.asset(
+                          flagMap[flag]!['imagePath']!,
+                          width: 50,
+                          height: 50,
+                        ),
+                  ))
                   .toList();
               return ListTile(
                 leading: Row(

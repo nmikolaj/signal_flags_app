@@ -235,11 +235,101 @@ const List<Map<String, dynamic>> messages = [
     },
   },
   {
+    "flags": ["Alfa", "Charlie"],
+    "message": {
+      "en": "I am abandoning my vessel.",
+      "pl": "Opuszczam swój statek."
+    },
+  },
+  {
+    "flags": ["Alfa", "Echo"],
+    "message": {
+      "en": "I must abandon my vessel.",
+      "pl": "Muszę opuścić swój statek."
+    },
+  },
+  {
+    "flags": ["Alfa", "Foxtrot"],
+    "message": {
+      "en": "I do not intend to abandon my vessel.",
+      "pl": "Nie zamierzam opuszczać swojego statku."
+    },
+  },
+  {
+    "flags": ["Alfa", "Golf"],
+    "message": {
+      "en": "You should abandon your vessel as quickly as possible.",
+      "pl": "Powinieneś jak najszybciej opuścić swój statek."
+    },
+  },
+  {
+    "flags": ["Alfa", "Hotel"],
+    "message": {
+      "en": "You should not abandon your vessel.",
+      "pl": "Nie powinieneś opuszczać swojego statku."
+    },
+  },
+  {
+    "flags": ["Alfa", "Lima"],
+    "message": {
+      "en": "I have a doctor on board.",
+      "pl": "Mam lekarza na pokładzie."
+    },
+  },
+  {
+    "flags": ["Alfa", "Mike"],
+    "message": {
+      "en": "Have you a doctor?",
+      "pl": "Czy masz lekarza?"
+    },
+  },
+  {
+    "flags": ["Alfa", "November"],
+    "message": {
+      "en": "I need a doctor.",
+      "pl": "Potrzebuję lekarza."
+    },
+  },
+  {
+    "flags": ["Mike", "Alfa", "Alfa"],
+    "message": {
+      "en": "I request urgent medical advice.",
+      "pl": "Proszę o pilną poradę medyczną."
+    },
+  },
+  {
     "flags": ["Mike", "Alfa", "Bravo"],
     "message": {
       "en": "I request you to make rendezvous in position indicated.",
       "pl": "Proszę o spotkanie we wskazanym miejscu."
     },
   },
-  // Add all other multiple-flag messages here
+  {
+    "flags": ["Mike", "Alfa", "Charlie"],
+    "message": {
+      "en": "I request you to arrange hospital admission.",
+      "pl": "Proszę o zorganizowanie przyjęcia do szpitala."
+    },
+  },
+  {
+    "flags": ["Mike", "Alfa", "Delta"],
+    "message": {
+      "en": "I am ... (indicate number) hours from the nearest port.",
+      "pl": "Jestem ... (podaj liczbę) godzin od najbliższego portu."
+    },
+  },
+  {
+    "flags": ["Mike", "Alfa", "Oscar"],
+    "message": {
+      "en": "General condition of the patient is good.",
+      "pl": "Ogólny stan pacjenta jest dobry."
+    },
+  },
+  {
+    "flags": ["Mike", "Alfa", "Papa"],
+    "message": {
+      "en": "General condition of the patient is serious.",
+      "pl": "Ogólny stan pacjenta jest poważny."
+    },
+  },
 ];

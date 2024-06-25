@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Spacer(flex: 2),
-                    buildButton("Quiz", () => QuizMenuScreen()), // widget is instantiated only when user taps the button (GetX recommendation)
+                    buildButton("Quiz", () => QuizMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
                     SizedBox(height: 18),
                     buildButton("Nadanie sygnału", () => SignalScreen()),
                     SizedBox(height: 18),

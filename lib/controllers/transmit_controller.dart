@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:get/get.dart';
 import 'package:signal_flags_app/display/score/score_screen.dart';
 import 'package:signal_flags_app/models/flags.dart';
