@@ -84,20 +84,32 @@ class Body extends StatelessWidget {
                         minHeight: 60,
                         maxWidth: 380,
                       ),
-                      child: Wrap(
+                      child: Obx(() => Wrap(
                         spacing: 8.0,
                         runSpacing: 8.0,
                         children:
-                            _signalController.selectedFlags.map((flagName) {
-                          final flag =
-                              flags.firstWhere((f) => f['name'] == flagName);
-                          return Image.asset(
-                            flag['imagePath']!,
-                            width: 40,
-                            height: 40,
+                            List.generate(_signalController.selectedFlags.length, (index) {
+                          final flagName = _signalController.selectedFlags[index];
+                          final flag = flags.firstWhere((f) => f['name'] == flagName);
+                          final isCorrect = _signalController.answerChecked.value && _signalController.selectedFlagsCorrect.length > index && _signalController.selectedFlagsCorrect[index];
+
+                          return Stack(
+                            children: [
+                              Image.asset(
+                                flag['imagePath']!,
+                                width: 40,
+                                height: 40,
+                              ),
+                              if (_signalController.answerChecked.value && !isCorrect)
+                                Positioned.fill(
+                                  child: Container(
+                                    color: Colors.red.withOpacity(0.5),
+                                  ),
+                                ),
+                            ],
                           );
-                        }).toList(),
-                      ),
+                        }),
+                      )),
                     ),
                     SizedBox(height: kDefaultPadding / 2),
                     Row(
@@ -161,6 +173,22 @@ class Body extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Obx(() {
+                      if (_signalController.showNextButton.value) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _signalController.nextSignal();
+                              _signalController.showNextButton.value = false;
+                            },
+                            child: Text("Next Signal"),
+                          ),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    }),
                   ],
                 ),
               ),

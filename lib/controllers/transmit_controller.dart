@@ -13,11 +13,18 @@ class SignalController extends GetxController {
   RxList<String> _selectedFlags = <String>[].obs;
   List<String> get selectedFlags => _selectedFlags;
 
+  RxList<bool> _selectedFlagsCorrect = <bool>[].obs;
+  List<bool> get selectedFlagsCorrect => _selectedFlagsCorrect;
+
   RxInt _correctAnswers = 0.obs;
   RxInt get correctAnswers => _correctAnswers;
 
   RxInt _wrongAnswers = 0.obs;
   RxInt get wrongAnswers => _wrongAnswers;
+
+  RxBool showNextButton = false.obs;
+
+  RxBool answerChecked = false.obs;
 
   @override
   void onInit() {
@@ -30,6 +37,8 @@ class SignalController extends GetxController {
     if (_questionNumber.value != _signalList.length) {
       _questionNumber.value++;
       _selectedFlags.clear();
+      _selectedFlagsCorrect.clear();
+      answerChecked.value = false;
     } else {
       Get.to(() => ScoreScreen(
         correctAnswers: _correctAnswers.value,
@@ -46,18 +55,32 @@ class SignalController extends GetxController {
   void removeLastFlag() {
     if(_selectedFlags.isNotEmpty){
       _selectedFlags.removeLast();
+      if (_selectedFlagsCorrect.isNotEmpty) {
+        _selectedFlagsCorrect.removeLast();
+      }
     }
   }
 
   void checkAnswer() {
-  Map<String, dynamic> currentSignal = _signalList[_questionNumber.value - 1];
+    Map<String, dynamic> currentSignal = _signalList[_questionNumber.value - 1];
 
-  if (_selectedFlags.length == currentSignal['flags'].length) {
     bool isCorrect = true;
+    _selectedFlagsCorrect.clear();
+
     for (int i = 0; i < _selectedFlags.length; i++) {
-      if (_selectedFlags[i] != currentSignal['flags'][i]) {
+      if (i < currentSignal['flags'].length && _selectedFlags[i] == currentSignal['flags'][i]) {
+        _selectedFlagsCorrect.add(true);
+      } else {
+        _selectedFlagsCorrect.add(false);
         isCorrect = false;
-        break;
+      }
+    }
+
+    // If there are more selected flags than required, mark the extra ones as incorrect
+    if (_selectedFlags.length != currentSignal['flags'].length) {
+      isCorrect = false;
+      for (int i = currentSignal['flags'].length; i < _selectedFlags.length; i++) {
+        _selectedFlagsCorrect[i] = false;
       }
     }
 
@@ -66,11 +89,10 @@ class SignalController extends GetxController {
     } else {
       _wrongAnswers.value++;
     }
-  } else {
-    _wrongAnswers.value++;
-  }
 
-  nextSignal();
+    showNextButton.value = true;
+
+    answerChecked.value = true;
   }
 
   List<Map<String, dynamic>> _getRandomMessages(int count) {
