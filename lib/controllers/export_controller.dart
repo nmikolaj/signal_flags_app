@@ -36,4 +36,18 @@ class ExportController extends GetxController {
     Share.shareFiles([path], text: 'Check out these flags!');
   }
 
+void addMessage() {
+    String message = selectedFlags.map((flagName) => flagName[0]).join();
+    ownMessages.add({
+      "flags": _selectedFlags.toList(),
+      "message": {
+        "en": message,
+        "pl": message
+      }
+    });
+    _selectedFlags.clear();
+
+    update();
+  }
+
 }

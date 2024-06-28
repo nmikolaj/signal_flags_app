@@ -6,7 +6,8 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
 class ExportBody extends StatelessWidget {
-  final WidgetsToImageController widgetsToImageController = WidgetsToImageController();
+  final WidgetsToImageController widgetsToImageController =
+      WidgetsToImageController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +30,24 @@ class ExportBody extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           color: kBackgroundColor2,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(18),
                         ),
                         padding: const EdgeInsets.all(10),
+                        constraints: BoxConstraints(
+                          minWidth: 160, 
+                        ),
                         child: Text(
-                          _controller.selectedFlags.map((flagName) => flagName[0]).join(),
+                          _controller.selectedFlags
+                              .map((flagName) => flagName[0])
+                              .join(),
                           style: TextStyle(color: kWhiteColor, fontSize: 20),
                         ),
                       ),
                     ),
                     SizedBox(height: kDefaultPadding / 2),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text("Wybrane flagi: ",
@@ -68,7 +75,8 @@ class ExportBody extends StatelessWidget {
                           spacing: 8.0,
                           runSpacing: 8.0,
                           children: _controller.selectedFlags.map((flagName) {
-                            final flag = flags.firstWhere((f) => f['name'] == flagName);
+                            final flag =
+                                flags.firstWhere((f) => f['name'] == flagName);
                             return Image.asset(
                               flag['imagePath']!,
                               width: 40,
@@ -84,15 +92,28 @@ class ExportBody extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: kDefaultPadding),
-                          child: IconButton(
-                            icon: Icon(Icons.share_rounded, color: kWhiteColor, size: 35),
-                            onPressed: () {
-                              _controller.exportMessage(widgetsToImageController);
-                            },
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.add_rounded, color: kWhiteColor, size: 40),
+                                onPressed: () {
+                                  _controller.addMessage();
+                                },
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.share_rounded,
+                                    color: kWhiteColor, size: 30),
+                                onPressed: () {
+                                  _controller
+                                      .exportMessage(widgetsToImageController);
+                                },
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: kDefaultPadding),
+                          padding:
+                              const EdgeInsets.only(right: kDefaultPadding),
                           child: IconButton(
                             icon: Icon(Icons.backspace, color: kWhiteColor),
                             onPressed: () {
@@ -125,7 +146,8 @@ class ExportBody extends StatelessWidget {
                             runSpacing: 18,
                             children: flags.map((flag) {
                               return GestureDetector(
-                                onTap: () => _controller.selectFlag(flag['name']!),
+                                onTap: () =>
+                                    _controller.selectFlag(flag['name']!),
                                 child: Image.asset(
                                   flag['imagePath']!,
                                   width: 60,
