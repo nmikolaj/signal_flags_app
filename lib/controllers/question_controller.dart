@@ -37,11 +37,16 @@ class QuestionController extends GetxController
   RxInt get wrongAnsCount => _wrongAnsCount;
 
   String mode;
+
+  late DateTime _startTime;
+
   QuestionController(this.mode);
 
   // Called after widgets memory is allocated
   @override
   void onInit() {
+
+    _startTime = DateTime.now();
 
     _questionList = generateQuestions(mode);
 
@@ -102,7 +107,9 @@ class QuestionController extends GetxController
           .whenComplete(nextQuestion); //() => nextQuestion()
           
     } else {
-      Get.to(() => ScoreScreen(correctAnswers: _correctAnsCount.value, wrongAnswers: _wrongAnsCount.value, totalQuestions: _questionList.length,));
+      final duration = DateTime.now().difference(_startTime);
+
+      Get.to(() => ScoreScreen(correctAnswers: _correctAnsCount.value, wrongAnswers: _wrongAnsCount.value, totalQuestions: _questionList.length, elapsedTime: duration,));
     }
   }
 

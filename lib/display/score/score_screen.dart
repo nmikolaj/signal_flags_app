@@ -7,12 +7,14 @@ class ScoreScreen extends StatelessWidget {
   final int correctAnswers;
   final int wrongAnswers;
   final int totalQuestions;
+  final Duration elapsedTime;
 
   const ScoreScreen({
     Key? key,
     required this.correctAnswers,
     required this.wrongAnswers,
     required this.totalQuestions,
+    required this.elapsedTime,
   }) : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class ScoreScreen extends StatelessWidget {
     double font_size = screenWidth * 0.1;
     int passedAnswers = totalQuestions - correctAnswers - wrongAnswers;
     int percentage = ((correctAnswers / totalQuestions) * 100).toInt();
+    String elapsedTimeString = "${elapsedTime.inMinutes}:${(elapsedTime.inSeconds % 60).toString().padLeft(2, '0')}";
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -35,9 +38,7 @@ class ScoreScreen extends StatelessWidget {
         ),
       ),
       body: Stack(
-
         fit: StackFit.expand,
-
         children: [
           Container(
         decoration: BoxDecoration(
@@ -82,7 +83,7 @@ class ScoreScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         _buildStat("Pominięte", passedAnswers, Colors.blue),
-                        _buildStat("Wszystkie", totalQuestions, Colors.orange),
+                        _buildStat("Czas", elapsedTimeString, Colors.orange),
                       ],
                     ),
                   ],
@@ -96,13 +97,13 @@ class ScoreScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStat(String title, int value, Color color) {
+  Widget _buildStat(String title, dynamic value, Color color) {
     return Container(
       width: 150,
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.6),
+        color: color.withOpacity(0.8),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(

@@ -28,10 +28,14 @@ class SignalController extends GetxController {
 
   RxBool answeredCorrectly = false.obs;
 
+  late DateTime _startTime;
+
   @override
   void onInit() {
     super.onInit();
-    // Load signal questions
+
+     _startTime = DateTime.now();
+
     _signalList.value = _getRandomMessages(5);
   }
 
@@ -43,10 +47,13 @@ class SignalController extends GetxController {
       answerChecked.value = false;
       answeredCorrectly.value = false;
     } else {
+      final duration = DateTime.now().difference(_startTime);
+
       Get.to(() => ScoreScreen(
         correctAnswers: _correctAnswers.value,
         wrongAnswers: _wrongAnswers.value,
         totalQuestions: _signalList.length,
+        elapsedTime: duration,
       ));
     }
   }
