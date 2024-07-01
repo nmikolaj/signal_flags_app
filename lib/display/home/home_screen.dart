@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Center(
                       child: Text(
-                        "Sygnały Flagowe",
+                        "Flagi Sygnałowe",
                         style: TextStyle(
                           color: kWhiteColor,
                           fontWeight: FontWeight.bold,
