@@ -13,7 +13,7 @@ class Answer extends StatelessWidget {
   });
   final int index;
   final String text;
-  final VoidCallback press;
+  final VoidCallback? press; // When press is null, InkWell handles it by not responding to tap events
   final String imagePath;
 
   @override
@@ -56,7 +56,7 @@ class Answer extends StatelessWidget {
         }
 
         return InkWell(
-          onTap: press,
+          onTap: qnController.isAnswered ? null : press,
           child: Container(
             margin: EdgeInsets.only(top: kDefaultPadding),
             padding: EdgeInsets.all(kDefaultPadding),
