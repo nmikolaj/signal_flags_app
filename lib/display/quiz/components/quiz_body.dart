@@ -12,15 +12,17 @@ import 'progress_bar.dart';
 
 class Body extends StatelessWidget {
   final String mode;
+  final bool showProgressBar;
 
   const Body({
     Key? key,
     required this.mode,
+    required this.showProgressBar,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController(mode));
+    QuestionController _questionController = Get.put(QuestionController(mode, showProgressBar));
     return Stack(children: [
       Container(
         color: kBackgroundColor,
@@ -29,7 +31,7 @@ class Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+            if(showProgressBar) Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               child: ProgressBar(),
             ),

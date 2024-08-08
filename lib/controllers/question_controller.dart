@@ -38,9 +38,11 @@ class QuestionController extends GetxController
 
   String mode;
 
+  bool showProgressBar;
+
   late DateTime _startTime;
 
-  QuestionController(this.mode);
+  QuestionController(this.mode, this.showProgressBar);
 
   // Called after widgets memory is allocated
   @override
@@ -50,6 +52,7 @@ class QuestionController extends GetxController
 
     _questionList = generateQuestions(mode);
 
+    if (showProgressBar) {
     _animationController =
         AnimationController(duration: const Duration(seconds: 30), vsync: this);
     _animation = Tween<double>(begin: 1, end: 0).animate(_animationController)
@@ -61,6 +64,7 @@ class QuestionController extends GetxController
     _animationController
         .forward()
         .whenComplete(nextQuestion);
+    }
 
     _pageController = PageController();
     super.onInit();
@@ -69,8 +73,11 @@ class QuestionController extends GetxController
   // To prevent memory leaks
   @override
   void onClose() {
-    _animationController.stop();
-    _animationController.dispose();
+    if (showProgressBar) {
+      _animationController.stop();
+      _animationController.dispose();
+    }
+
     _pageController.dispose();
     super.onClose();
   }
@@ -86,7 +93,9 @@ class QuestionController extends GetxController
       _wrongAnsCount.value++;
     }
 
-    _animationController.stop();
+    if (showProgressBar) {
+      _animationController.stop();
+    }
     update();
 
     Future.delayed(const Duration(seconds: 1), () {
@@ -101,10 +110,12 @@ class QuestionController extends GetxController
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
 
       // Counter reset
-      _animationController.reset();
-      _animationController
+      if (showProgressBar) {
+        _animationController.reset();
+        _animationController
           .forward()
           .whenComplete(nextQuestion); //() => nextQuestion()
+      }
           
     } else {
       final duration = DateTime.now().difference(_startTime);

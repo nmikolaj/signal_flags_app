@@ -6,6 +6,8 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
 
 class FlagsMenuScreen extends StatelessWidget {
+  final RxBool _showProgressBar = true.obs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +44,33 @@ class FlagsMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 4),
-                    buildButton("Klasyczne", () => QuizScreen(mode: "normal")),
+                    buildButton("Klasyczne", () => QuizScreen(mode: "normal", showProgressBar: _showProgressBar.value)),
                     const SizedBox(height: 18),
-                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric')),
+                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric', showProgressBar: _showProgressBar.value)),
                     const SizedBox(height: 18),
-                    const Spacer(flex: 4),
+                    const Spacer(flex: 1),
+                    Obx(() => Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Czasomierz",
+                          style: TextStyle(color: kWhiteColor, fontSize: 25),
+                        ),
+                        SizedBox(width: 10),
+                        Transform.scale(
+                          scale: 1.5,
+                          child: Checkbox(
+                            value: _showProgressBar.value,
+                            onChanged: (value) {
+                              _showProgressBar.value = value!;
+                            },
+                            activeColor: kSecondaryColor,
+                            checkColor: kBlackColor,
+                          ),
+                        ),
+                      ],
+                    )),
+                    const Spacer(flex: 3),
                   ],
                 ),
               ),

@@ -7,6 +7,8 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
 
 class SignalMenuScreen extends StatelessWidget {
+  final RxBool _showProgressBar = true.obs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +45,7 @@ class SignalMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 4),
-                    buildButton("Quiz", () => QuizScreen(mode: 'messages')),
+                    buildButton("Quiz", () => QuizScreen(mode: 'messages', showProgressBar: _showProgressBar.value,)),
                     const SizedBox(height: 18),
                     buildButton("Nadanie sygnału", () => TransmitScreen()),
                     const SizedBox(height: 18),
