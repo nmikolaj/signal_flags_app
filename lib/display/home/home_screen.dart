@@ -29,27 +29,34 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(flex: 5),
-                    Stack(alignment: Alignment(0.7, 1.0),
+                    Stack(
                       children: [
-                        Image.asset(
-                          'assets/images/two_flags.png',
-                          width: 150, 
-                          height: 150, 
+                        Positioned(
+                          top: -5,
+                          right: 30,
+                          child: Image.asset(
+                            'assets/images/two_flags.png',
+                            width: 150, 
+                            height: 150, 
+                          ),
                         ),
-                        Center(
-                      child: Text(
-                        "Flagi Sygnałowe",
-                        style: TextStyle(
-                          color: kWhiteColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 44,
+                        const Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 80.0),
+                        child: Text(
+                          "Sygnały Flagowe",
+                          style: TextStyle(
+                            color: kWhiteColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 44,
+                          ),
                         ),
                       ),
                     ),
                       ],
                     ),
                     const Text(
-                      "  Wybierz tryb",
+                      "   Wybierz tryb",
                       style: TextStyle(
                         color: kWhiteColor,
                         fontSize: 22,

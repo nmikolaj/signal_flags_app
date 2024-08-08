@@ -16,16 +16,12 @@ Widget buildButton(String text, Widget Function() getScreen) {
         width: Get.width * 0.82,
         alignment: Alignment.center,
         padding: EdgeInsets.all(kDefaultPadding * 0.6),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blueAccent, Colors.lightBlueAccent],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+        decoration: const BoxDecoration(
+          gradient: kButtonGradient,
           borderRadius: BorderRadius.all(Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black26,
+              color: kBlackColor,
               blurRadius: 10,
               offset: Offset(0, 5),
             ),

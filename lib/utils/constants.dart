@@ -20,9 +20,9 @@ const kBackgroundGradient = LinearGradient(
   end: Alignment.bottomCenter,
 );
 const kButtonGradient = LinearGradient(
-  colors: [Color.fromARGB(255, 231, 198, 11), Color.fromARGB(255, 255, 179, 20)],
-  begin: Alignment.centerLeft,
-  end: Alignment.centerRight,
+  colors: [Colors.blueAccent, Colors.lightBlueAccent],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
 );
 const kProgressBarGradient = LinearGradient(
   colors: [Color.fromARGB(255, 231, 198, 11), Color.fromARGB(255, 255, 153, 0)],
