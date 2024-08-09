@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/sea.jpg'),
+            image: AssetImage('assets/images/background.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(flex: 5),
+                    Spacer(flex: 3),
                     Stack(
                       children: [
                         Positioned(
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                         fontSize: 22,
                       ),
                     ),
-                    const Spacer(flex: 4),
+                    const Spacer(flex: 6),
                     buildButton("Flagi", () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
                     const SizedBox(height: 18),
                     buildButton("Sygnały", () => SignalMenuScreen()),

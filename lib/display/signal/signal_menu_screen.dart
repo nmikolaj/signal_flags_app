@@ -20,7 +20,7 @@ class SignalMenuScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/sea.jpg'),
+            image: AssetImage('assets/images/background.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -33,7 +33,7 @@ class SignalMenuScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Spacer(flex: 5),
+                    const Spacer(flex: 4),
                     const Center(
                       child: Text(
                         "Sygnały",
@@ -44,7 +44,7 @@ class SignalMenuScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Spacer(flex: 4),
+                    const Spacer(flex: 5),
                     buildButton("Quiz", () => QuizScreen(mode: 'messages', showProgressBar: _showProgressBar.value,)),
                     const SizedBox(height: 18),
                     buildButton("Nadanie sygnału", () => TransmitScreen()),
