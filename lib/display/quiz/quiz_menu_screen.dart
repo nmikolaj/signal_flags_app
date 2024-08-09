@@ -37,7 +37,7 @@ class FlagsMenuScreen extends StatelessWidget {
                       child: Text(
                         "Flagi",
                         style: TextStyle(
-                          color: kWhiteColor,
+                          color: kHeaderColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 50,
                         ),

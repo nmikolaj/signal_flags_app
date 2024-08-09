@@ -38,7 +38,7 @@ class SignalMenuScreen extends StatelessWidget {
                       child: Text(
                         "Sygnały",
                         style: TextStyle(
-                          color: kWhiteColor,
+                          color: kHeaderColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 50,
                         ),

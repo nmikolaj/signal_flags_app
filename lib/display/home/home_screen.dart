@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                         child: Text(
                           "Sygnały Flagowe",
                           style: TextStyle(
-                            color: kWhiteColor,
+                            color: kHeaderColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 44,
                           ),
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                     const Text(
                       "   Wybierz tryb",
                       style: TextStyle(
-                        color: kWhiteColor,
+                        color: kHeaderColor,
                         fontSize: 22,
                       ),
                     ),

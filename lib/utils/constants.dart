@@ -7,6 +7,7 @@ const kRedColor = Colors.red;
 const kBackgroundColor = Color.fromARGB(255, 6, 116, 150);
 const kBackgroundColor2 = Color.fromARGB(255, 31, 44, 61);
 const kBackgroundColor3 = Color.fromARGB(255, 224, 233, 245);
+const kHeaderColor = Color.fromRGBO(32, 100, 127, 1);
 const kSecondaryColor = Color.fromARGB(255, 134, 233, 250);
 const kBorderColor = Color.fromARGB(255, 63, 79, 104);
 const kButtonColor = Color.fromARGB(255, 225, 244, 255);
