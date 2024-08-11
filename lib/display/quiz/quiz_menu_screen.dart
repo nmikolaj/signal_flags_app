@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/controllers/flags_menu_controller.dart';
 import 'package:signal_flags_app/display/home/home_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
 
 class FlagsMenuScreen extends StatelessWidget {
-  final RxBool _showProgressBar = true.obs;
-  RxInt selectedFlagCount = 1.obs;
+  final FlagsMenuController _controller = Get.put(FlagsMenuController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class FlagsMenuScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background.jpg'),
             fit: BoxFit.cover,
@@ -33,7 +33,7 @@ class FlagsMenuScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(flex: 4),
+                    const Spacer(flex: 4),
                     const Center(
                       child: Text(
                         "Flagi",
@@ -45,9 +45,9 @@ class FlagsMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 5),
-                    buildButton("Klasyczne", () => QuizScreen(mode: "normal", showProgressBar: _showProgressBar.value, flagCount: selectedFlagCount.value)),
+                    buildButton("Klasyczne", () => QuizScreen(mode: "normal", showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
                     const SizedBox(height: 18),
-                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric', showProgressBar: _showProgressBar.value, flagCount: selectedFlagCount.value)),
+                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
                     const SizedBox(height: 18),
                     const Spacer(flex: 1),
                     Obx(() => Row(
@@ -61,9 +61,9 @@ class FlagsMenuScreen extends StatelessWidget {
                         Transform.scale(
                           scale: 1.5,
                           child: Checkbox(
-                            value: _showProgressBar.value,
+                            value: _controller.showProgressBar.value,
                             onChanged: (value) {
-                              _showProgressBar.value = value!;
+                              _controller.showProgressBar.value = value!;
                             },
                             activeColor: kSecondaryColor,
                             checkColor: kBlackColor,

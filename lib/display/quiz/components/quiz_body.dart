@@ -31,8 +31,8 @@ class Body extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               child: ProgressBar(),
             ),
-            SizedBox(height: kDefaultPadding),
-            Divider(thickness: 1.5, color: kBackgroundColor),
+            const SizedBox(height: kDefaultPadding),
+            const Divider(thickness: 1.5, color: kBackgroundColor),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               child: Obx(
@@ -72,11 +72,11 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(thickness: 1.5, color: kBackgroundColor),
-            SizedBox(height: kDefaultPadding),
+            const Divider(thickness: 1.5, color: kBackgroundColor),
+            const SizedBox(height: kDefaultPadding),
             Expanded(
               child: PageView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _questionController.pageController,
                 onPageChanged:
                     _questionController.updateQuestionNumber,
