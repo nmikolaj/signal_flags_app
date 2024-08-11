@@ -46,7 +46,7 @@ class SignalMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 5),
-                    buildButton("Quiz", () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value)),
+                    buildButton("Quiz", () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
                     buildButton("Nadanie sygnału", () => TransmitScreen()),
                     const SizedBox(height: 18),

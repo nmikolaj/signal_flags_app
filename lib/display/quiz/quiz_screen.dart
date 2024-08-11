@@ -8,12 +8,13 @@ import 'package:websafe_svg/websafe_svg.dart';
 class QuizScreen extends StatelessWidget {
   final String mode;
   final bool showProgressBar;
+  final int flagCount; 
 
-  const QuizScreen({super.key, required this.mode, required this.showProgressBar});
+  const QuizScreen({super.key, required this.mode, required this.showProgressBar, required this.flagCount});
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController(mode, showProgressBar));
+    QuestionController _controller = Get.put(QuestionController(mode, showProgressBar, flagCount));
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -31,7 +32,7 @@ class QuizScreen extends StatelessWidget {
           TextButton(onPressed: _controller.nextQuestion, child: Text("Pomiń")),
         ],
       ),
-      body: Body(mode: mode, showProgressBar: showProgressBar),
+      body: Body(mode: mode, showProgressBar: showProgressBar, flagCount: flagCount),
     );
   }
 }

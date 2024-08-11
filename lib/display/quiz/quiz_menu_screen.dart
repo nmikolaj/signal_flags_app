@@ -7,6 +7,7 @@ import 'package:signal_flags_app/utils/widget_utils.dart';
 
 class FlagsMenuScreen extends StatelessWidget {
   final RxBool _showProgressBar = true.obs;
+  RxInt selectedFlagCount = 1.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +45,9 @@ class FlagsMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 5),
-                    buildButton("Klasyczne", () => QuizScreen(mode: "normal", showProgressBar: _showProgressBar.value)),
+                    buildButton("Klasyczne", () => QuizScreen(mode: "normal", showProgressBar: _showProgressBar.value, flagCount: selectedFlagCount.value)),
                     const SizedBox(height: 18),
-                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric', showProgressBar: _showProgressBar.value)),
+                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric', showProgressBar: _showProgressBar.value, flagCount: selectedFlagCount.value)),
                     const SizedBox(height: 18),
                     const Spacer(flex: 1),
                     Obx(() => Row(

@@ -2,17 +2,17 @@ import 'package:get/get.dart';
 
 class SignalMenuController extends GetxController {
 
-  RxInt selectedFlagCount = 1.obs;
-
   RxBool showProgressBar = true.obs;
 
-  // Updates slider value
-  void updateFlagCount(int count) {
-    selectedFlagCount.value = count;
-  }
+  RxInt selectedFlagCount = 1.obs; // For choosing number of flags in generated questions
 
   // Toggles progressbar visibility
   void toggleProgressBar(bool value) {
     showProgressBar.value = value;
+  }
+
+  // Updates slider value
+  void updateFlagCount(int count) {
+    selectedFlagCount.value = count;
   }
 }

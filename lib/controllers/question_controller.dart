@@ -40,9 +40,11 @@ class QuestionController extends GetxController
 
   bool showProgressBar;
 
+  int flagCount;
+
   late DateTime _startTime;
 
-  QuestionController(this.mode, this.showProgressBar);
+  QuestionController(this.mode, this.showProgressBar, this.flagCount);
 
   // Called after widgets memory is allocated
   @override
@@ -50,7 +52,7 @@ class QuestionController extends GetxController
 
     _startTime = DateTime.now();
 
-    _questionList = generateQuestions(mode);
+    _questionList = generateQuestions(mode, flagCount);
 
     if (showProgressBar) {
     _animationController =
@@ -129,13 +131,13 @@ class QuestionController extends GetxController
   }
 }
 
-List<Question> generateQuestions(String mode) {
+List<Question> generateQuestions(String mode, int flagCount) {
   final Random random = Random();
   final List<Question> questionList = [];
 
   if (mode == 'messages') {
     // Message questions
-    List<Map<String, dynamic>> selectedMessages = messages.toList();
+    List<Map<String, dynamic>> selectedMessages = messages.toList().where((msg) => msg['flags'].length == flagCount).toList();;
 
     selectedMessages.shuffle(random);
     selectedMessages = selectedMessages.take(5).toList(); // Select 5 random messages

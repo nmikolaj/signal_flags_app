@@ -13,16 +13,18 @@ import 'progress_bar.dart';
 class Body extends StatelessWidget {
   final String mode;
   final bool showProgressBar;
+  final int flagCount;
 
   const Body({
     Key? key,
     required this.mode,
     required this.showProgressBar,
+    required this.flagCount,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController(mode, showProgressBar));
+    QuestionController _questionController = Get.put(QuestionController(mode, showProgressBar, flagCount));
     return Stack(children: [
       Container(
         color: kBackgroundColor,
