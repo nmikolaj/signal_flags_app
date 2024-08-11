@@ -32,7 +32,7 @@ class QuizScreen extends StatelessWidget {
           TextButton(onPressed: _controller.nextQuestion, child: Text("Pomiń")),
         ],
       ),
-      body: Body(mode: mode, showProgressBar: showProgressBar, flagCount: flagCount),
+      body: const Body(),
     );
   }
 }

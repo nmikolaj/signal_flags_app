@@ -11,20 +11,14 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'progress_bar.dart';
 
 class Body extends StatelessWidget {
-  final String mode;
-  final bool showProgressBar;
-  final int flagCount;
 
   const Body({
     Key? key,
-    required this.mode,
-    required this.showProgressBar,
-    required this.flagCount,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController(mode, showProgressBar, flagCount));
+    final QuestionController _questionController = Get.find<QuestionController>();
     return Stack(children: [
       Container(
         color: kBackgroundColor,
@@ -33,7 +27,7 @@ class Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if(showProgressBar) Padding(
+            if(_questionController.showProgressBar) Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               child: ProgressBar(),
             ),
@@ -88,7 +82,7 @@ class Body extends StatelessWidget {
                     _questionController.updateQuestionNumber,
                 itemCount: _questionController.questionList.length,
                 itemBuilder: (context, index) {
-                  if (mode == 'messages') {
+                  if (_questionController.mode == 'messages') {
                     return SignalQuestionCard(
                         question: _questionController.questionList[index]);
                   } else {
