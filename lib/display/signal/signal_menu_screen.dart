@@ -34,7 +34,7 @@ class SignalMenuScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Spacer(flex: 4),
+                    const Spacer(flex: 5),
                     const Center(
                       child: Text(
                         "Sygnały",

@@ -22,7 +22,7 @@ Widget buildButton(String text, Widget Function() getScreen) {
           borderRadius: BorderRadius.all(Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-              color: Color.fromARGB(255, 57, 125, 181),
+              color: Color.fromARGB(255, 61, 136, 197),
               blurRadius: 9,
               offset: Offset(0, 5),
             ),
@@ -31,7 +31,7 @@ Widget buildButton(String text, Widget Function() getScreen) {
         child: StrokeText(
           text: text,
           textStyle: buttonTextStyle,
-          strokeWidth: 4,
+          strokeWidth: 3,
           strokeColor: Color.fromARGB(255, 60, 139, 224),
         ),
       ),
