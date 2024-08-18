@@ -6,9 +6,13 @@ import 'package:signal_flags_app/display/transmit/components/transmit_body.dart'
 import 'package:signal_flags_app/utils/constants.dart';
 
 class TransmitScreen extends StatelessWidget {
+  final int flagCount;
+
+  const TransmitScreen({super.key, required this.flagCount});
+
   @override
   Widget build(BuildContext context) {
-    SignalController _controller = Get.put(SignalController());
+    SignalController _controller = Get.put(SignalController(flagCount: flagCount));
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

@@ -48,7 +48,7 @@ class SignalMenuScreen extends StatelessWidget {
                     const Spacer(flex: 5),
                     buildButton("Quiz", () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
-                    buildButton("Nadanie sygnału", () => TransmitScreen()),
+                    buildButton("Nadanie sygnału", () => TransmitScreen(flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
                     Obx(() => Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +75,7 @@ class SignalMenuScreen extends StatelessWidget {
                     Obx(() => Column(
                       children: [
                         Text(
-                          "Liczba flag: ${_controller.selectedFlagCount}",
+                          "Liczba flag: ${_controller.selectedFlagCount}", //.value
                           style: TextStyle(color: kWhiteColor, fontSize: 24),
                         ),
                         Slider(

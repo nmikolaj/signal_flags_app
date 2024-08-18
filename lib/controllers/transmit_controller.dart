@@ -28,7 +28,11 @@ class SignalController extends GetxController {
 
   RxBool answeredCorrectly = false.obs;
 
+  final int flagCount;
+
   late DateTime _startTime;
+
+  SignalController({required this.flagCount});
 
   @override
   void onInit() {
@@ -36,7 +40,7 @@ class SignalController extends GetxController {
 
      _startTime = DateTime.now();
 
-    _signalList.value = _getRandomMessages(5);
+    _signalList.value = _getRandomMessages(5, flagCount);
   }
 
   void nextSignal() {
@@ -106,15 +110,15 @@ class SignalController extends GetxController {
     answerChecked.value = true;
   }
 
-  List<Map<String, dynamic>> _getRandomMessages(int count) {
+  List<Map<String, dynamic>> _getRandomMessages(int messagesCount, int flagCount) {
     final random = Random();
     final selectedMessages = <Map<String, dynamic>>[];
-    final messagesCopy = List<Map<String, dynamic>>.from(messages);
+    final extractedMessages = messages.toList().where((msg) => msg['flags'].length == flagCount).toList();
 
-    for (int i = 0; i < count; i++) {
-      if (messagesCopy.isEmpty) break;
-      final index = random.nextInt(messagesCopy.length);
-      selectedMessages.add(messagesCopy.removeAt(index));
+    for (int i = 0; i < messagesCount; i++) {
+      if (extractedMessages.isEmpty) break;
+      final index = random.nextInt(extractedMessages.length);
+      selectedMessages.add(extractedMessages.removeAt(index));
     }
 
     return selectedMessages;

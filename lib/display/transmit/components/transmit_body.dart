@@ -7,7 +7,7 @@ import 'package:signal_flags_app/utils/constants.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SignalController _signalController = Get.put(SignalController());
+    SignalController _signalController = Get.find<SignalController>();
     return Stack(
       children: [
         Container(
@@ -170,7 +170,7 @@ class Body extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: double.infinity,
-                          color: Color.fromARGB(255, 211, 211, 211), //Color.fromARGB(255, 61, 131, 184),
+                          color: Color.fromARGB(255, 211, 211, 211),
                           child: Center(
                             child: Stack(
                               children: [
