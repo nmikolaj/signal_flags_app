@@ -33,7 +33,7 @@ class DatasetScreen extends StatelessWidget {
                       .map((flag) => flagMap[flag]!['name'])
                       .join(", ");
 
-                  if (message['flags'].length == 1) {
+                  if (controller.selectedMode.value == 1) {
                     final flag = flagMap[message['flags'].first]!;
                     return ListTile(
                       leading: Image.asset(flag['imagePath']!),
@@ -72,7 +72,7 @@ class DatasetScreen extends StatelessWidget {
                         ],
                       ),
                     );
-                  } else {
+                  } else if (controller.selectedMode.value == 2) {
                     final flagImages = message['flags']
                         .map<Widget>((flag) => Padding(
                               padding: const EdgeInsets.only(right: 4.0),
@@ -106,6 +106,39 @@ class DatasetScreen extends StatelessWidget {
                         ],
                       ),
                     );
+                  } else {
+                    final flagImages = message['flags']
+                        .map<Widget>((flag) => Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 4.0, bottom: 4.0),
+                              child: Image.asset(
+                                flagMap[flag]!['imagePath']!,
+                                width: 40,
+                                height: 40,
+                              ),
+                            ))
+                        .toList();
+
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Wrap(
+                            children: flagImages,
+                          ),
+                          SizedBox(height: 5.0),
+                          Text(
+                            message['message']['en'],
+                            style: const TextStyle(
+                                color: kBlackColor,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    );
                   }
                 },
               );
@@ -114,30 +147,30 @@ class DatasetScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Obx(() => BottomNavigationBar(
-        currentIndex: controller.selectedMode.value - 1,
-        onTap: (index) {
-          controller.updateMode(index + 1);
-        },
-        
-        backgroundColor: kBackgroundColor2,
-        selectedItemColor: Color.fromARGB(255, 87, 213, 255),
-        unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
-        
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.emoji_flags_rounded),
-            label: "Pojedyncze",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map_outlined),
-            label: "Wiele",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.install_mobile),
-            label: "Własne",
-          ),
-        ],
-      )),
+            currentIndex: controller.selectedMode.value - 1,
+            onTap: (index) {
+              controller.updateMode(index + 1);
+            },
+            
+            backgroundColor: kBackgroundColor2,
+            selectedItemColor: Color.fromARGB(255, 87, 213, 255),
+            unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
+
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.emoji_flags_rounded),
+                label: "Pojedyncze",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.map_outlined),
+                label: "Wiele",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.install_mobile),
+                label: "Własne",
+              ),
+            ],
+          )),
     );
   }
 }
