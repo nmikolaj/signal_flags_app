@@ -23,9 +23,7 @@ class DatasetScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Obx(() {
-              final filteredMessages = messages.where((message) {  //TODO predefine lists for better performance
-                return message['flags'].length == controller.selectedMode.value;
-              }).toList();
+              final filteredMessages = controller.filteredMessages;
 
               return ListView.builder(
                 itemCount: filteredMessages.length,
