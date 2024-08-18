@@ -11,9 +11,7 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'progress_bar.dart';
 
 class Body extends StatelessWidget {
-  const Body({
-    Key? key,
-  }) : super(key: key);
+  const Body({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +68,8 @@ class Body extends StatelessWidget {
                         size: 40,
                       ),
                       onPressed: () {
-                        Get.to(() => DatasetScreen())!.then((_) {
-                          _questionController.update();
+                        Get.to(() => DatasetScreen())?.then((_) {
+                          _questionController.update(); //TODO unneeded?
                         });
                       },
                     ),

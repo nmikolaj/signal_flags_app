@@ -6,6 +6,8 @@ import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 
 class Body extends StatelessWidget {
+  const Body({super.key});
+
   @override
   Widget build(BuildContext context) {
     SignalController _signalController = Get.find<SignalController>();
@@ -44,7 +46,7 @@ class Body extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                    padding: const EdgeInsets.only(right: 30.0),
+                    padding: const EdgeInsets.only(right: 25.0),
                     child: IconButton(
                       icon: const Icon(
                         Icons.menu_book_rounded,

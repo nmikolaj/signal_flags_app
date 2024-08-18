@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/question_controller.dart';
 import 'package:signal_flags_app/display/home/home_screen.dart';
 import 'package:signal_flags_app/display/quiz/components/quiz_body.dart';
-import 'package:websafe_svg/websafe_svg.dart';
+import 'package:signal_flags_app/utils/constants.dart';
 
 class QuizScreen extends StatelessWidget {
   final String mode;
@@ -29,10 +29,13 @@ class QuizScreen extends StatelessWidget {
           },
         ),
         actions: [
-          TextButton(onPressed: _controller.nextQuestion, child: Text("Pomiń")),
+          TextButton(onPressed: _controller.nextQuestion, child: const Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Text("Pomiń", style: TextStyle(fontSize: 17, color: kWhiteColor)),
+          )),
         ],
       ),
-      body: const Body(),
+      body: Body(),
     );
   }
 }

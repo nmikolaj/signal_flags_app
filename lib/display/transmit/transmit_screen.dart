@@ -26,7 +26,10 @@ class TransmitScreen extends StatelessWidget {
           },
         ),
         actions: [
-          TextButton(onPressed: _controller.nextSignal, child: Text("Pomiń")),
+          TextButton(onPressed: _controller.nextSignal, child: const Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Text("Pomiń", style: TextStyle(fontSize: 17, color: kWhiteColor)),
+          )),
         ],
       ),
       body: Body(),
