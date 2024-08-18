@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/transmit_controller.dart';
+import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 
@@ -19,25 +20,43 @@ class Body extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: Obx(
-                  () => Text.rich(
-                    TextSpan(
-                      text: "Sygnał ${_signalController.questionNumber.value}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium
-                          ?.copyWith(color: kSecondaryColor),
-                      children: [
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Obx(
+                      () => Text.rich(
                         TextSpan(
-                          text: "/${_signalController.signalList.length}",
+                          text: "Sygnał ${_signalController.questionNumber.value}",
                           style: Theme.of(context)
                               .textTheme
-                              .headlineSmall
+                              .headlineMedium
                               ?.copyWith(color: kSecondaryColor),
+                          children: [
+                            TextSpan(
+                              text: "/${_signalController.signalList.length}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall
+                                  ?.copyWith(color: kSecondaryColor),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
+                    ),
+                    Padding(
+                    padding: const EdgeInsets.only(right: 30.0),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.menu_book_rounded,
+                        color: kSecondaryColor,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        Get.to(() => DatasetScreen());
+                      },
                     ),
                   ),
+                  ],
                 ),
               ),
               SizedBox(height: kDefaultPadding),
