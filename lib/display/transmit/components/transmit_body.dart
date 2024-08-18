@@ -11,7 +11,7 @@ class Body extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          color: kBackgroundColor,
+          color: kBackgroundColor2,
         ),
         SafeArea(
           child: Column(
@@ -49,7 +49,7 @@ class Body extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: kBackgroundColor2,
+                            color: Color.fromARGB(255, 157, 236, 252),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           padding: const EdgeInsets.all(10),
@@ -57,7 +57,7 @@ class Body extends StatelessWidget {
                             _signalController.signalList[
                                     _signalController.questionNumber.value - 1]
                                 ['message']['pl'],
-                            style: TextStyle(color: kWhiteColor, fontSize: 20),
+                            style: TextStyle(color: kBlackColor, fontSize: 20),
                           ),
                         ),
                       ),
@@ -157,91 +157,97 @@ class Body extends StatelessWidget {
                       SizedBox(height: kDefaultPadding / 2),
                       Container(
                         height: 1.5,
-                        color: Colors.blue.shade300,
+                        color: Color.fromARGB(255, 53, 99, 140),
                       ),
                       Container(
                         height: 6,
-                        color: Color.fromARGB(255, 26, 119, 196),
+                        color: Color.fromARGB(255, 44, 121, 183),
                       ),
                       Container(
                         height: 1.5,
-                        color: Colors.indigo.shade700,
+                        color: Color.fromARGB(255, 121, 200, 237),
                       ),
                       Expanded(
-                        child: Stack(
-                          children: [
-                            SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: kDefaultPadding),
-                                child: Wrap(
-                                  spacing: 15,
-                                  runSpacing: 18,
-                                  children: flags.map((flag) {
-                                    return GestureDetector(
-                                      onTap: _signalController.answerChecked.value
-                                          ? null
-                                          : () => _signalController.selectFlag(flag['name']!),
-                                      child: Image.asset(
-                                        flag['imagePath']!,
-                                        width: 60,
-                                        height: 60,
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ),
-                            Obx(() {
-                              if (_signalController.showNextButton.value) {
-                                return Positioned(
-                                  bottom: 140.0,
-                                  right: 60.0,
-                                  child: InkWell(
-                                    onTap: () {
-                                      _signalController.nextSignal();
-                                      _signalController.showNextButton.value = false;
-                                    },
-                                    child: Container(
-                                      width: 240,
-                                      height: 70,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: [Color.fromARGB(255, 178, 206, 255), Color.fromARGB(255, 34, 185, 255)],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ),
-                                        borderRadius: BorderRadius.circular(30),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Color.fromARGB(255, 0, 55, 100),
-                                            blurRadius: 45,
-                                            offset: Offset(0, 15), 
+                        child: Container(
+                          width: double.infinity,
+                          color: Color.fromARGB(255, 211, 211, 211), //Color.fromARGB(255, 61, 131, 184),
+                          child: Center(
+                            child: Stack(
+                              children: [
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: kDefaultPadding),
+                                    child: Wrap(
+                                      spacing: 15,
+                                      runSpacing: 18,
+                                      children: flags.map((flag) {
+                                        return GestureDetector(
+                                          onTap: _signalController.answerChecked.value
+                                              ? null
+                                              : () => _signalController.selectFlag(flag['name']!),
+                                          child: Image.asset(
+                                            flag['imagePath']!,
+                                            width: 60,
+                                            height: 60,
                                           ),
-                                        ],
-                                      ),
-                                      child: Text(
-                                        "Następne",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
+                                        );
+                                      }).toList(),
                                     ),
                                   ),
-                                );
-                              } else {
-                                return Positioned(
-                                  bottom: 140.0,
-                                  right: 70.0,
-                                  child: SizedBox(width: 100, height: 100),
-                                );;
-                              }
-                            }),
-                          ],
+                                ),
+                                Obx(() {
+                                  if (_signalController.showNextButton.value) {
+                                    return Positioned(
+                                      bottom: 140.0,
+                                      right: 60.0,
+                                      child: InkWell(
+                                        onTap: () {
+                                          _signalController.nextSignal();
+                                          _signalController.showNextButton.value = false;
+                                        },
+                                        child: Container(
+                                          width: 240,
+                                          height: 70,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              colors: [Color.fromARGB(255, 178, 206, 255), Color.fromARGB(255, 34, 185, 255)],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                            borderRadius: BorderRadius.circular(30),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color.fromARGB(255, 0, 55, 100),
+                                                blurRadius: 45,
+                                                offset: Offset(0, 15), 
+                                              ),
+                                            ],
+                                          ),
+                                          child: Text(
+                                            "Następne",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return Positioned(
+                                      bottom: 140.0,
+                                      right: 60.0,
+                                      child: SizedBox(width: 240, height: 70),
+                                    );;
+                                  }
+                                }),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
