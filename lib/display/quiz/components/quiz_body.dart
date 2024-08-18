@@ -11,14 +11,14 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'progress_bar.dart';
 
 class Body extends StatelessWidget {
-
   const Body({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final QuestionController _questionController = Get.find<QuestionController>();
+    final QuestionController _questionController =
+        Get.find<QuestionController>();
     return Stack(children: [
       Container(
         color: kBackgroundColor,
@@ -27,21 +27,24 @@ class Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if(_questionController.showProgressBar) Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              child: ProgressBar(),
-            ),
+            if (_questionController.showProgressBar)
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: ProgressBar(),
+              ),
             const SizedBox(height: kDefaultPadding),
             const Divider(thickness: 1.5, color: kBackgroundColor),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              child: Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text.rich(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Obx(
+                    () => Text.rich(
                       TextSpan(
-                        text: "Pytanie ${_questionController.questionNumber.value}",
+                        text:
+                            "Pytanie ${_questionController.questionNumber.value}",
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium
@@ -57,19 +60,23 @@ class Body extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 30.0),
-                      child: IconButton(
-                        icon: Icon(Icons.menu_book_rounded, color: kSecondaryColor, size: 40,),
-                        onPressed: () {
-                          Get.to(() => DatasetScreen())!.then((_) {
-                            _questionController.update();
-                          });
-                        },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 30.0),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.menu_book_rounded,
+                        color: kSecondaryColor,
+                        size: 40,
                       ),
+                      onPressed: () {
+                        Get.to(() => DatasetScreen())!.then((_) {
+                          _questionController.update();
+                        });
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             const Divider(thickness: 1.5, color: kBackgroundColor),
@@ -78,8 +85,7 @@ class Body extends StatelessWidget {
               child: PageView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: _questionController.pageController,
-                onPageChanged:
-                    _questionController.updateQuestionNumber,
+                onPageChanged: _questionController.updateQuestionNumber,
                 itemCount: _questionController.questionList.length,
                 itemBuilder: (context, index) {
                   if (_questionController.mode == 'messages') {
