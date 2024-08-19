@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:signal_flags_app/models/custom_messages.dart';
 import 'package:signal_flags_app/models/flags.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'dart:io';
@@ -8,6 +9,8 @@ import 'package:share_plus/share_plus.dart';
 class ExportController extends GetxController {
   RxList<String> _selectedFlags = <String>[].obs;
   List<String> get selectedFlags => _selectedFlags;
+
+  final CustomMessages flagsModel = CustomMessages();
 
   void selectFlag(String flag) {
     _selectedFlags.add(flag);
@@ -36,15 +39,17 @@ class ExportController extends GetxController {
     Share.shareFiles([path], text: 'Check out these flags!');
   }
 
-void addMessage() {
+void addMessage() async {
     String message = selectedFlags.map((flagName) => flagName[0]).join();
+    List<Map<String, dynamic>> ownMessages = await flagsModel.readMessages();
     ownMessages.add({
       "flags": _selectedFlags.toList(),
-      "message": {
-        "en": message,
-        "pl": message
-      }
+      "message": message,
     });
+
+    // Save updated ownMessages to local storage
+    await flagsModel.writeMessages(ownMessages);
+
     _selectedFlags.clear();
 
     update();

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:signal_flags_app/models/custom_messages.dart';
 import 'package:signal_flags_app/models/flags.dart';
 
 class DatasetController extends GetxController {
@@ -9,12 +10,19 @@ class DatasetController extends GetxController {
   List<Map<String, dynamic>> multipleFlagsMessages = [];
   List<Map<String, dynamic>> customFlagsMessages = [];
 
+  final CustomMessages flagsModel = CustomMessages();
+
   @override
   void onInit() {
     super.onInit();
     singleFlagsMessages = messages.where((message) => message['flags'].length == 1).toList();
     multipleFlagsMessages = messages.where((message) => message['flags'].length > 1).toList();
-    customFlagsMessages = ownMessages;
+    loadCustomMessages();
+  }
+
+  void loadCustomMessages() async {
+    customFlagsMessages = await flagsModel.readMessages();
+    update();
   }
 
   List<Map<String, dynamic>> get filteredMessages {

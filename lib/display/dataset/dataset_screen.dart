@@ -118,10 +118,10 @@ class DatasetScreen extends StatelessWidget {
                               ),
                             ))
                         .toList();
-
+                    //print("${message.keys}");
+                    //print("${message['message']}");
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16.0, horizontal: 16.0),
+                      padding: const EdgeInsets.only(top: 20.0, right: 16.0, left: 16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -130,12 +130,13 @@ class DatasetScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 5.0),
                           Text(
-                            message['message']['en'],
+                            message['message'],
                             style: const TextStyle(
                                 color: kBlackColor,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold),
                           ),
+                          Divider(color: kBackgroundColor, thickness: 2.0)
                         ],
                       ),
                     );
@@ -151,7 +152,7 @@ class DatasetScreen extends StatelessWidget {
             onTap: (index) {
               controller.updateMode(index + 1);
             },
-            
+
             backgroundColor: kBackgroundColor2,
             selectedItemColor: Color.fromARGB(255, 87, 213, 255),
             unselectedItemColor: Color.fromARGB(255, 226, 226, 226),

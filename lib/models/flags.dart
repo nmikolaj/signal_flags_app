@@ -333,5 +333,3 @@ const List<Map<String, dynamic>> messages = [
     },
   },
 ];
-
-List<Map<String, dynamic>> ownMessages = [];
