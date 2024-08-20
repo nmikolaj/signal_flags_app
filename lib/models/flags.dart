@@ -37,7 +37,7 @@ const List<Map<String, String>> flags = [
   {"name": "9 Novenine", "imagePath": 'assets/flags/Novenine.png', "type": "numeric"},
 ];
 
-const List<Map<String, dynamic>> messages = [
+const List<Map<String, dynamic>> singleFlagSignals = [
   {
     "flags": ["Alfa"],
     "message": {
@@ -220,6 +220,9 @@ const List<Map<String, dynamic>> messages = [
       "pl": "Potrzebuję holownika."
     },
   },
+];
+
+const List<Map<String, dynamic>> multipleFlagsSignals = [
   {
     "flags": ["Alfa", "Bravo"],
     "message": {

@@ -18,8 +18,8 @@ class DatasetController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    singleFlagsMessages = messages.where((message) => message['flags'].length == 1).toList();
-    multipleFlagsMessages = messages.where((message) => message['flags'].length > 1).toList();
+    singleFlagsMessages = singleFlagSignals.where((message) => message['flags'].length == 1).toList();
+    multipleFlagsMessages = multipleFlagsSignals.where((message) => message['flags'].length > 1).toList();
     loadCustomMessages();
   }
 

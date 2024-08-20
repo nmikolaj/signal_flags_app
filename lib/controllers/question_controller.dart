@@ -137,13 +137,27 @@ List<Question> generateQuestions(String mode, int flagCount) {
 
   if (mode == 'messages') {
     // Message questions
-    List<Map<String, dynamic>> selectedMessages = messages.toList().where((msg) => msg['flags'].length == flagCount).toList();
+    List<Map<String, dynamic>> selectedMessages;
+
+    // Select sepecific messages based on flagCount (different section types in future)
+    if (flagCount == 1) {
+      selectedMessages = singleFlagSignals.toList();
+    } else {
+      selectedMessages = multipleFlagsSignals.toList();
+    }
 
     selectedMessages.shuffle(random);
     selectedMessages = selectedMessages.take(5).toList(); // Select 5 random messages
 
     for (var messageData in selectedMessages) {
-      List<String> messageAnswers = messages.map((m) => m['message']['pl'] as String).toList()..shuffle(random);
+      List<String> messageAnswers;
+
+      if (flagCount == 1) {
+        messageAnswers = singleFlagSignals.map((m) => m['message']['pl'] as String).toList()..shuffle(random);
+      } else {
+        messageAnswers = multipleFlagsSignals.map((m) => m['message']['pl'] as String).toList()..shuffle(random);
+      }
+
       messageAnswers = messageAnswers.take(4).toList();
 
       if (!messageAnswers.contains(messageData['message']['pl'])) {

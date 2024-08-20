@@ -112,8 +112,14 @@ class SignalController extends GetxController {
 
   List<Map<String, dynamic>> _getRandomMessages(int messagesCount, int flagCount) {
     final random = Random();
-    final selectedMessages = <Map<String, dynamic>>[];
-    final extractedMessages = messages.toList().where((msg) => msg['flags'].length == flagCount).toList();
+    final List<Map<String, dynamic>> selectedMessages = [];
+    final List<Map<String, dynamic>> extractedMessages;
+
+    if (flagCount == 1) {
+      extractedMessages = singleFlagSignals.toList();
+    } else {
+      extractedMessages = multipleFlagsSignals.toList();
+    }
 
     for (int i = 0; i < messagesCount; i++) {
       if (extractedMessages.isEmpty) break;
