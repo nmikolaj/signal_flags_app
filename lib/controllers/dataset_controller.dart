@@ -10,6 +10,9 @@ class DatasetController extends GetxController {
   List<Map<String, dynamic>> multipleFlagsMessages = [];
   List<Map<String, dynamic>> customFlagsMessages = [];
 
+
+  List<Map<String, String>> numericFlags = flags.where((flag) => flag['type'] == 'numeric').toList();
+
   final CustomMessages flagsModel = CustomMessages();
 
   @override

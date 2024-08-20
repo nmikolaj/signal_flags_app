@@ -26,8 +26,49 @@ class DatasetScreen extends StatelessWidget {
               final filteredMessages = controller.filteredMessages;
 
               return ListView.builder(
-                itemCount: filteredMessages.length,
+                itemCount: filteredMessages.length + 1, // +1 for numeric flags/SizedBox.shrink()
                 itemBuilder: (context, index) {
+                  if (index == filteredMessages.length) {
+                    // If last item, show numeric flags
+                    if (controller.selectedMode.value == 1) {
+                      final numericFlags = controller.numericFlags;
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Wrap(
+                          spacing: 18.0,
+                          children: numericFlags.map((flag) {
+                            return Column(
+                              children: [
+                                Image.asset(flag['imagePath']!,
+                                    width: 70, height: 60),
+                                RichText(
+                                  text: TextSpan(
+                                    style: const TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold),
+                                    children: [
+                                      TextSpan(
+                                        text: flag['name']![0],
+                                        style:
+                                            const TextStyle(color: kRedColor),
+                                      ),
+                                      TextSpan(
+                                        text: flag['name']!.substring(1),
+                                        style: const TextStyle(
+                                            color: kBackgroundColor2),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  }
                   final message = filteredMessages[index];
                   final flagNames = message['flags']
                       .map((flag) => flagMap[flag]!['name'])
@@ -156,7 +197,7 @@ class DatasetScreen extends StatelessWidget {
             backgroundColor: kBackgroundColor2,
             selectedItemColor: Color.fromARGB(255, 87, 213, 255),
             unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
-
+            
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.emoji_flags_rounded),
