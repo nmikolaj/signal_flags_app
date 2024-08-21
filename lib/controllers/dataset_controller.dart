@@ -3,12 +3,18 @@ import 'package:signal_flags_app/models/custom_messages.dart';
 import 'package:signal_flags_app/models/flags.dart';
 
 class DatasetController extends GetxController {
+  // Selected mode
   var selectedMode = 1.obs;
 
-  // Predefined lists for each mode
+  // Selected dropdown category
+  var selectedCategoryIndex = 0.obs;
+
+  // Predefined lists for each mode and category
   List<Map<String, dynamic>> singleFlagsMessages = [];
-  List<Map<String, dynamic>> multipleFlagsMessages = [];
   List<Map<String, dynamic>> customFlagsMessages = [];
+
+  List<Map<String, dynamic>> distressMessages = distressSignals;
+  List<Map<String, dynamic>> casualtiesDamagesMessages = casualtiesDamagesSignals;
 
 
   List<Map<String, String>> numericFlags = flags.where((flag) => flag['type'] == 'numeric').toList();
@@ -18,8 +24,7 @@ class DatasetController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    singleFlagsMessages = singleFlagSignals.where((message) => message['flags'].length == 1).toList();
-    multipleFlagsMessages = multipleFlagsSignals.where((message) => message['flags'].length > 1).toList();
+    singleFlagsMessages = singleFlagSignals;
     loadCustomMessages();
   }
 
@@ -33,7 +38,7 @@ class DatasetController extends GetxController {
       case 1:
         return singleFlagsMessages;
       case 2:
-        return multipleFlagsMessages;
+        return _getCategoryMessages();
       case 3:
         return customFlagsMessages;
       default:
@@ -41,7 +46,23 @@ class DatasetController extends GetxController {
     }
   }
 
+  List<Map<String, dynamic>> _getCategoryMessages() {
+    switch (selectedCategoryIndex.value) {
+      case 0:
+        return distressMessages;
+      case 1:
+        return casualtiesDamagesMessages;
+      default:
+        return [];
+    }
+  }
+
   void updateMode(int mode) {
     selectedMode.value = mode;
+  }
+
+   void updateCategory(int index) {
+    selectedCategoryIndex.value = index;
+    update();
   }
 }

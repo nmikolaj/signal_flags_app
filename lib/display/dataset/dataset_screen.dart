@@ -17,6 +17,30 @@ class DatasetScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kBackgroundColor2,
         title: const Text("Baza Flag"),
+        actions: [
+          Obx(() {
+            if (controller.selectedMode.value == 2) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButton<int>(
+                  value: controller.selectedCategoryIndex.value,
+                  items: const [
+                    DropdownMenuItem(value: 0, child: Text('Distress')),
+                    DropdownMenuItem(
+                        value: 1, child: Text('Casualties-Damages')),
+                  ],
+                  onChanged: (value) {
+                    if (value != null) {
+                      controller.updateCategory(value);
+                    }
+                  },
+                ),
+              );
+            } else {
+              return SizedBox.shrink();
+            }
+          }),
+        ],
       ),
       backgroundColor: kWhiteColor,
       body: Column(
