@@ -7,7 +7,7 @@ class DatasetController extends GetxController {
   var selectedMode = 1.obs;
 
   // Selected dropdown category
-  var selectedCategoryIndex = 0.obs;
+  var selectedCategoryIndex = 1.obs;
 
   // Predefined lists for each mode and category
   List<Map<String, dynamic>> singleFlagsMessages = [];
@@ -78,21 +78,21 @@ class DatasetController extends GetxController {
 
   List<Map<String, dynamic>> _getCategoryMessages() {
     switch (selectedCategoryIndex.value) {
-      case 0:
-        return flattenedDistressMessages;
       case 1:
-        return flattenedPositionRescueMessages;
+        return flattenedDistressMessages;
       case 2:
-        return flattenedCasualtiesDamagesMessages;
+        return flattenedPositionRescueMessages;
       case 3:
-        return flattenedNavigationHydrographyMessages;
+        return flattenedCasualtiesDamagesMessages;
       case 4:
-        return flattenedManeuversMessages;
+        return flattenedNavigationHydrographyMessages;
       case 5:
-        return flattenedMiscellaneousMessages;
+        return flattenedManeuversMessages;
       case 6:
-        return flattenedMeteorologyWeatherMessages;
+        return flattenedMiscellaneousMessages;
       case 7:
+        return flattenedMeteorologyWeatherMessages;
+      case 8:
         return flattenedCommunicationsMessages;
       default:
         return [];

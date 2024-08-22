@@ -25,14 +25,14 @@ class DatasetScreen extends StatelessWidget {
                 child: DropdownButton<int>(
                   value: controller.selectedCategoryIndex.value,
                   items: const [
-                    DropdownMenuItem(value: 0, child: Text('Distress-Emergency')),
-                    DropdownMenuItem(value: 1, child: Text('Position-Rescue')),
-                    DropdownMenuItem(value: 2, child: Text('Casualties-Damages')),
-                    DropdownMenuItem(value: 3, child: Text('Navigation-Hydrography')),
-                    DropdownMenuItem(value: 4, child: Text('Maneuvers')),
-                    DropdownMenuItem(value: 5, child: Text('Miscellaneous')),
-                    DropdownMenuItem(value: 6, child: Text('Meteorology-Weather')),
-                    DropdownMenuItem(value: 7, child: Text('Communications')),
+                    DropdownMenuItem(value: 1, child: Text('Distress-Emergency')),
+                    DropdownMenuItem(value: 2, child: Text('Position-Rescue')),
+                    DropdownMenuItem(value: 3, child: Text('Casualties-Damages')),
+                    DropdownMenuItem(value: 4, child: Text('Navigation-Hydrography')),
+                    DropdownMenuItem(value: 5, child: Text('Maneuvers')),
+                    DropdownMenuItem(value: 6, child: Text('Miscellaneous')),
+                    DropdownMenuItem(value: 7, child: Text('Meteorology-Weather')),
+                    DropdownMenuItem(value: 8, child: Text('Communications')),
                   ],
                   onChanged: (value) {
                     if (value != null) {
@@ -229,7 +229,7 @@ class DatasetScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.close,
                                   color: kRedColor,
                                   size: 30,
