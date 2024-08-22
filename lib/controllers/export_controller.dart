@@ -39,7 +39,7 @@ class ExportController extends GetxController {
     Share.shareFiles([path], text: 'Check out these flags!');
   }
 
-void addMessage() async {
+  void addMessage() async {
     String message = selectedFlags.map((flagName) => flagName[0]).join();
     List<Map<String, dynamic>> ownMessages = await flagsModel.readMessages();
     ownMessages.add({

@@ -209,15 +209,24 @@ class DatasetScreen extends StatelessWidget {
                               ),
                             ))
                         .toList();
-                    //print("${message.keys}");
-                    //print("${message['message']}");
+
                     return Padding(
                       padding: const EdgeInsets.only(top: 20.0, right: 16.0, left: 16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Wrap(
-                            children: flagImages,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Wrap(
+                                children: flagImages,
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.close, color: kRedColor),
+                                onPressed: () { controller.deleteCustomMessage(index);
+                                }
+                              ),
+                            ],
                           ),
                           SizedBox(height: 5.0),
                           Text(

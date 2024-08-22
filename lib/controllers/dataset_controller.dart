@@ -11,7 +11,8 @@ class DatasetController extends GetxController {
 
   // Predefined lists for each mode and category
   List<Map<String, dynamic>> singleFlagsMessages = [];
-  List<Map<String, dynamic>> customFlagsMessages = [];
+
+  RxList<Map<String, dynamic>> customFlagsMessages = <Map<String, dynamic>>[].obs;
 
   List<Map<String, dynamic>> distressEmergencyMessages = distressEmergencySignals;
   List<Map<String, dynamic>> positionRescueMessages = positionRescueSignals;
@@ -99,9 +100,14 @@ class DatasetController extends GetxController {
   }
 
   void loadCustomMessages() async {
-    customFlagsMessages = await flagsModel.readMessages();
-    update();
-  }
+    var messages = await flagsModel.readMessages();
+    customFlagsMessages.assignAll(messages);  // assignAll to update RxList
+}
+
+  void deleteCustomMessage(int index) async {
+    customFlagsMessages.removeAt(index);
+    await flagsModel.writeMessages(customFlagsMessages);
+}
 
   void updateMode(int mode) {
     selectedMode.value = mode;
@@ -109,6 +115,6 @@ class DatasetController extends GetxController {
 
    void updateCategory(int index) {
     selectedCategoryIndex.value = index;
-    update();
+    // No need for update() as RxList notifies Obx
   }
 }
