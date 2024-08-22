@@ -25,9 +25,14 @@ class DatasetScreen extends StatelessWidget {
                 child: DropdownButton<int>(
                   value: controller.selectedCategoryIndex.value,
                   items: const [
-                    DropdownMenuItem(value: 0, child: Text('Distress')),
-                    DropdownMenuItem(
-                        value: 1, child: Text('Casualties-Damages')),
+                    DropdownMenuItem(value: 0, child: Text('Distress-Emergency')),
+                    DropdownMenuItem(value: 1, child: Text('Position-Rescue')),
+                    DropdownMenuItem(value: 2, child: Text('Casualties-Damages')),
+                    DropdownMenuItem(value: 3, child: Text('Navigation-Hydrography')),
+                    DropdownMenuItem(value: 4, child: Text('Maneuvers')),
+                    DropdownMenuItem(value: 5, child: Text('Miscellaneous')),
+                    DropdownMenuItem(value: 6, child: Text('Meteorology-Weather')),
+                    DropdownMenuItem(value: 7, child: Text('Communications')),
                   ],
                   onChanged: (value) {
                     if (value != null) {
@@ -93,7 +98,28 @@ class DatasetScreen extends StatelessWidget {
                       return const SizedBox.shrink();
                     }
                   }
+
                   final message = filteredMessages[index];
+                  print(message['flags']);
+                  print(message['subcategory']);
+
+                  // Check if it is a subcategory header
+                  if (message.containsKey('subcategory')) {
+                    //print(message['subcategory']);
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+                      child: Text(
+                        message['subcategory'],
+                        style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: kBackgroundColor2,
+                        ),
+                      ),
+                    );
+                  }
+
+                  // Regular signal rendering
                   final flagNames = message['flags']
                       .map((flag) => flagMap[flag]!['name'])
                       .join(", ");
