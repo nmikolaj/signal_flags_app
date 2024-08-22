@@ -72,23 +72,32 @@ class SignalMenuScreen extends StatelessWidget {
                       ],
                     )),
                     const SizedBox(height: 8),
-                    Obx(() => Column(
+                    Obx(() => Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Liczba flag: ${_controller.selectedFlagCount}", //.value
+                          "Kategoria: ",
                           style: TextStyle(color: kWhiteColor, fontSize: 24),
                         ),
-                        Slider(
-                          value: _controller.selectedFlagCount.value.toDouble(), // Using double to interact with Slider
-                          min: 1,
-                          max: 3,
-                          divisions: 2,
-                          label: _controller.selectedFlagCount.value.toString(),
-                          onChanged: (value) {
-                            _controller.updateFlagCount(value.toInt());
-                          },
-                          activeColor: kSecondaryColor,
-                          inactiveColor: kWhiteColor,
+                        DropdownButton<int>(
+                              value: _controller.selectedFlagCount.value,
+                              items: const [
+                                DropdownMenuItem(
+                                    value: 1, child: Text('1')),
+                                DropdownMenuItem(
+                                    value: 2, child: Text('2')),
+                                DropdownMenuItem(
+                                    value: 3, child: Text('3')),
+                              ],
+                              onChanged: (value) {
+                                if (value != null) {
+                                  _controller.updateFlagCount(value);
+                                }
+                              },
+                              dropdownColor: kSecondaryColor,
+                              style: TextStyle(
+                                  color: kWhiteColor,
+                                  fontSize: 24),
                         ),
                       ],
                     )),
