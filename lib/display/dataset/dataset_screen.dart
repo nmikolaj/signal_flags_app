@@ -218,13 +218,25 @@ class DatasetScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Wrap(
-                                children: flagImages,
+                              Flexible(
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: MediaQuery.of(context).size.width - 60,
+                                  ),
+                                  child: Wrap(
+                                    children: flagImages,
+                                  ),
+                                ),
                               ),
                               IconButton(
-                                icon: Icon(Icons.close, color: kRedColor),
-                                onPressed: () { controller.deleteCustomMessage(index);
-                                }
+                                icon: Icon(
+                                  Icons.close,
+                                  color: kRedColor,
+                                  size: 30,
+                                ),
+                                onPressed: () {
+                                  controller.deleteCustomMessage(index);
+                                },
                               ),
                             ],
                           ),
