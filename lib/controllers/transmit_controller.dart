@@ -4,6 +4,8 @@ import 'package:signal_flags_app/display/score/score_screen.dart';
 import 'package:signal_flags_app/models/flags.dart';
 
 class SignalController extends GetxController {
+  final int maxFlags = 35;
+
   RxList<Map<String, dynamic>> _signalList = <Map<String, dynamic>>[].obs;
   List<Map<String, dynamic>> get signalList => _signalList;
 
@@ -63,7 +65,9 @@ class SignalController extends GetxController {
   }
 
   void selectFlag(String flag) {
-    _selectedFlags.add(flag);
+    if (_selectedFlags.length < maxFlags) {
+      _selectedFlags.add(flag);
+    }
   }
 
   void removeLastFlag() {

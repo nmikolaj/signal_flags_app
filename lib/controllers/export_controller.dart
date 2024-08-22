@@ -7,13 +7,17 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ExportController extends GetxController {
+  final int maxFlags = 35;
+  
   RxList<String> _selectedFlags = <String>[].obs;
   List<String> get selectedFlags => _selectedFlags;
 
   final CustomMessages flagsModel = CustomMessages();
 
   void selectFlag(String flag) {
-    _selectedFlags.add(flag);
+    if (_selectedFlags.length < maxFlags) {
+      _selectedFlags.add(flag);
+    }
   }
 
   void removeLastFlag() {
