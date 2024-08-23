@@ -52,7 +52,7 @@ class QuestionController extends GetxController
 
     _startTime = DateTime.now();
 
-    _questionList = generateQuestions(mode, flagCount);
+    _questionList = generateQuestions(mode);
 
     if (showProgressBar) {
     _animationController =
@@ -83,6 +83,130 @@ class QuestionController extends GetxController
     _pageController.dispose();
     super.onClose();
   }
+
+  List<Question> generateQuestions(String mode) {
+    final Random random = Random();
+    final List<Question> questionList = [];
+
+    if (mode == 'messages') {
+      // Messages questions
+      List<Map<String, dynamic>> selectedMessages = _getCategoryMessages().toList();
+
+      List<String> allMessageAnswers = selectedMessages.map((m) => m['message']['pl'] as String).toList(); // Answers taken from the whole category list
+
+      selectedMessages.shuffle(random);
+      selectedMessages = selectedMessages.take(5).toList(); // Selects 5 random messages
+
+      for (var messageData in selectedMessages) {
+        List<String> messageAnswers = allMessageAnswers.toList()..shuffle(random);
+
+        messageAnswers = messageAnswers.take(4).toList();
+
+        if (!messageAnswers.contains(messageData['message']['pl'])) {
+          // Adds correct answer if chosen answers don't already contain it
+          messageAnswers[random.nextInt(4)] = messageData['message']['pl'];
+        }
+
+        questionList.add(Question(
+          id: questionList.length + 1,
+          question: "What is the message associated with these flags?",
+          answers: messageAnswers,
+          answer: messageAnswers.indexOf(messageData['message']['pl']),
+          isFlagQuestion: false, // used for handling in body
+          flagImage: null,
+          flags: (messageData['flags'] as List).map((flag) => flag as String).toList(),
+        ));
+      }
+    } else {
+      // Text questions
+      List<Map<String, String>> selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
+      selectedFlags.shuffle(random);
+      selectedFlags = selectedFlags.take(5).toList(); // Select 5 random flags
+
+      for (var flag in selectedFlags) {
+        List<String> nameAnswers = flags.where((f) => f['type'] == mode).map((f) => f['name']!).toList()..shuffle(random);
+        nameAnswers = nameAnswers.take(4).toList();
+
+        if (!nameAnswers.contains(flag['name'])) {
+          nameAnswers[random.nextInt(4)] = flag['name']!;
+        }
+
+        questionList.add(Question(
+          id: questionList.length + 1,
+          question: "What is the name of this flag?",
+          answers: nameAnswers,
+          answer: nameAnswers.indexOf(flag['name']!),
+          isFlagQuestion: true,
+          flagImage: flag['imagePath'],
+          flags: [],
+        ));
+      }
+
+      // Image questions
+      selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
+      selectedFlags.shuffle(random);
+      selectedFlags = selectedFlags.take(5).toList(); // Select 5 random flags again
+
+      for (var flag in selectedFlags) {
+        List<String> imageAnswers = flags.where((f) => f['type'] == mode).map((f) => f['imagePath']!).toList()..shuffle(random);
+        imageAnswers = imageAnswers.take(4).toList();
+
+        if (!imageAnswers.contains(flag['imagePath'])) {
+          imageAnswers[random.nextInt(4)] = flag['imagePath']!;
+        }
+
+        questionList.add(Question(
+          id: questionList.length + 1,
+          question: "${flag['name']}",
+          answers: imageAnswers,
+          answer: imageAnswers.indexOf(flag['imagePath']!),
+          isFlagQuestion: false,
+          flagImage: null,
+          flags: [],
+        ));
+      }
+    }
+    questionList.shuffle(random);
+
+    return questionList;
+  }
+
+  List<Map<String, dynamic>> _getCategoryMessages() {
+    switch (flagCount) {
+      case 1:
+        return singleFlagSignals;
+      case 2:
+        return _flattenCategory(distressEmergencySignals);
+      case 3:
+        return _flattenCategory(positionRescueSignals);
+      case 4:
+        return _flattenCategory(casualtiesDamagesSignals);
+      case 5:
+        return _flattenCategory(navigationHydrographySignals);
+      case 6:
+        return _flattenCategory(maneuversSignals);
+      case 7:
+        return _flattenCategory(miscellaneousSignals);
+      case 8:
+        return _flattenCategory(meteorologyWeatherSignals);
+      case 9:
+        return _flattenCategory(communicationsSignals);
+      default:
+        return [];
+    }
+  }
+
+  List<Map<String, dynamic>> _flattenCategory(List<Map<String, dynamic>> categoryList) {
+    List<Map<String, dynamic>> flattenedList = [];
+
+    for (var category in categoryList) {
+      flattenedList.addAll(category['signals']);
+    }
+    return flattenedList;
+  }
+
+  
+
 
   void checkAnswer(Question question, int selectedIndex) {
     _isAnswered = true;
@@ -131,101 +255,3 @@ class QuestionController extends GetxController
   }
 }
 
-List<Question> generateQuestions(String mode, int flagCount) {
-  final Random random = Random();
-  final List<Question> questionList = [];
-
-  if (mode == 'messages') {
-    // Message questions
-    List<Map<String, dynamic>> selectedMessages;
-
-    // Select sepecific messages based on flagCount (different section types in future)
-    if (flagCount == 1) {
-      selectedMessages = singleFlagSignals.toList();
-    } else {
-      selectedMessages = multipleFlagsSignals.toList();
-    }
-
-    selectedMessages.shuffle(random);
-    selectedMessages = selectedMessages.take(5).toList(); // Select 5 random messages
-
-    for (var messageData in selectedMessages) {
-      List<String> messageAnswers;
-
-      if (flagCount == 1) {
-        messageAnswers = singleFlagSignals.map((m) => m['message']['pl'] as String).toList()..shuffle(random);
-      } else {
-        messageAnswers = multipleFlagsSignals.map((m) => m['message']['pl'] as String).toList()..shuffle(random);
-      }
-
-      messageAnswers = messageAnswers.take(4).toList();
-
-      if (!messageAnswers.contains(messageData['message']['pl'])) {
-        messageAnswers[random.nextInt(4)] = messageData['message']['pl'];
-      }
-
-      questionList.add(Question(
-        id: questionList.length + 1,
-        question: "What is the message associated with these flags?",
-        answers: messageAnswers,
-        answer: messageAnswers.indexOf(messageData['message']['pl']),
-        isFlagQuestion: false, // used for handling in body
-        flagImage: null,
-        flags: (messageData['flags'] as List).map((flag) => flag as String).toList(),
-      ));
-    }
-
-  } else {
-  // Text questions
-  List<Map<String, String>> selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
-  selectedFlags.shuffle(random);
-  selectedFlags = selectedFlags.take(5).toList(); // Select 5 random flags
-
-  for (var flag in selectedFlags) {
-    List<String> nameAnswers = flags.where((f) => f['type'] == mode).map((f) => f['name']!).toList()..shuffle(random);
-    nameAnswers = nameAnswers.take(4).toList();
-
-    if (!nameAnswers.contains(flag['name'])) {
-      nameAnswers[random.nextInt(4)] = flag['name']!;
-    }
-
-    questionList.add(Question(
-      id: questionList.length + 1,
-      question: "What is the name of this flag?",
-      answers: nameAnswers,
-      answer: nameAnswers.indexOf(flag['name']!),
-      isFlagQuestion: true,
-      flagImage: flag['imagePath'],
-      flags: [],
-    ));
-  }
-
-  // Image questions
-  selectedFlags = flags.where((flag) => flag['type'] == mode).toList();
-  selectedFlags.shuffle(random);
-  selectedFlags = selectedFlags.take(5).toList();   // Select 5 random flags again
-
-  for(var flag in selectedFlags) {
-    List<String> imageAnswers = flags.where((f) => f['type'] == mode).map((f) => f['imagePath']!).toList()..shuffle(random);
-    imageAnswers = imageAnswers.take(4).toList();
-
-    if (!imageAnswers.contains(flag['imagePath'])) {
-      imageAnswers[random.nextInt(4)] = flag['imagePath']!;
-    }
-
-    questionList.add(Question(
-      id: questionList.length + 1,
-      question: "${flag['name']}",
-      answers: imageAnswers,
-      answer: imageAnswers.indexOf(flag['imagePath']!),
-      isFlagQuestion: false,
-      flagImage: null,
-      flags: [],
-    ));
-  }
-  }
-  questionList.shuffle(random);
-
-  return questionList;
-
-}

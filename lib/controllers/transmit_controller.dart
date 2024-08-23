@@ -6,8 +6,6 @@ import 'package:signal_flags_app/models/flags.dart';
 class SignalController extends GetxController {
   final int maxFlags = 35;
 
-  final int flagCount;
-
   List<Map<String, dynamic>> categoryMessages = [];
 
   RxList<Map<String, dynamic>> _signalList = <Map<String, dynamic>>[].obs;
@@ -33,6 +31,8 @@ class SignalController extends GetxController {
   RxBool answerChecked = false.obs;
 
   RxBool answeredCorrectly = false.obs;
+
+  final int flagCount;
 
   late DateTime _startTime;
 
