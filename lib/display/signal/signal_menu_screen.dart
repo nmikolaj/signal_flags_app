@@ -72,32 +72,36 @@ class SignalMenuScreen extends StatelessWidget {
                       ],
                     )),
                     const SizedBox(height: 8),
-                    Obx(() => Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Obx(() => Column(
                       children: [
                         Text(
                           "Kategoria: ",
                           style: TextStyle(color: kWhiteColor, fontSize: 24),
                         ),
-                        DropdownButton<int>(
-                              value: _controller.selectedFlagCount.value,
-                              items: const [
-                                DropdownMenuItem(
-                                    value: 1, child: Text('1')),
-                                DropdownMenuItem(
-                                    value: 2, child: Text('2')),
-                                DropdownMenuItem(
-                                    value: 3, child: Text('3')),
-                              ],
-                              onChanged: (value) {
-                                if (value != null) {
-                                  _controller.updateFlagCount(value);
-                                }
-                              },
-                              dropdownColor: kSecondaryColor,
-                              style: TextStyle(
-                                  color: kWhiteColor,
-                                  fontSize: 24),
+                        Center(
+                          child: DropdownButton<int>(
+                                value: _controller.selectedFlagCount.value,
+                                items: const [
+                                  DropdownMenuItem(value: 1, child: Text('Single-Flags')),
+                                  DropdownMenuItem(value: 2, child: Text('Distress-Emergency')),
+                                  DropdownMenuItem(value: 3, child: Text('Position-Rescue')),
+                                  DropdownMenuItem(value: 4, child: Text('Casualties-Damages')),
+                                  DropdownMenuItem(value: 5, child: Text('Navigation-Hydrography')),
+                                  DropdownMenuItem(value: 6, child: Text('Maneuvers')),
+                                  DropdownMenuItem(value: 7, child: Text('Miscellaneous')),
+                                  DropdownMenuItem(value: 8, child: Text('Meteorology-Weather')),
+                                  DropdownMenuItem(value: 9, child: Text('Communications')),
+                                ],
+                                onChanged: (value) {
+                                  if (value != null) {
+                                    _controller.updateFlagCount(value);
+                                  }
+                                },
+                                dropdownColor: kSecondaryColor,
+                                style: TextStyle(
+                                    color: kWhiteColor,
+                                    fontSize: 24),
+                          ),
                         ),
                       ],
                     )),

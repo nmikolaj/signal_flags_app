@@ -6,6 +6,10 @@ import 'package:signal_flags_app/models/flags.dart';
 class SignalController extends GetxController {
   final int maxFlags = 35;
 
+  final int flagCount;
+
+  List<Map<String, dynamic>> categoryMessages = [];
+
   RxList<Map<String, dynamic>> _signalList = <Map<String, dynamic>>[].obs;
   List<Map<String, dynamic>> get signalList => _signalList;
 
@@ -30,8 +34,6 @@ class SignalController extends GetxController {
 
   RxBool answeredCorrectly = false.obs;
 
-  final int flagCount;
-
   late DateTime _startTime;
 
   SignalController({required this.flagCount});
@@ -39,10 +41,43 @@ class SignalController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
      _startTime = DateTime.now();
 
     _signalList.value = _getRandomMessages(5, flagCount);
+  }
+
+  List<Map<String, dynamic>> _getCategoryMessages() {
+    switch (flagCount) {
+      case 1:
+        return singleFlagSignals;
+      case 2:
+        return _flattenCategory(distressEmergencySignals);
+      case 3:
+        return _flattenCategory(positionRescueSignals);
+      case 4:
+        return _flattenCategory(casualtiesDamagesSignals);
+      case 5:
+        return _flattenCategory(navigationHydrographySignals);
+      case 6:
+        return _flattenCategory(maneuversSignals);
+      case 7:
+        return _flattenCategory(miscellaneousSignals);
+      case 8:
+        return _flattenCategory(meteorologyWeatherSignals);
+      case 9:
+        return _flattenCategory(communicationsSignals);
+      default:
+        return [];
+    }
+  }
+
+  List<Map<String, dynamic>> _flattenCategory(List<Map<String, dynamic>> categoryList) {
+    List<Map<String, dynamic>> flattenedList = [];
+
+    for (var category in categoryList) {
+      flattenedList.addAll(category['signals']);
+    }
+    return flattenedList;
   }
 
   void nextSignal() {
@@ -119,11 +154,7 @@ class SignalController extends GetxController {
     final List<Map<String, dynamic>> selectedMessages = [];
     final List<Map<String, dynamic>> extractedMessages;
 
-    if (flagCount == 1) {
-      extractedMessages = singleFlagSignals.toList();
-    } else {
-      extractedMessages = multipleFlagsSignals.toList();
-    }
+    extractedMessages = _getCategoryMessages().toList();
 
     for (int i = 0; i < messagesCount; i++) {
       if (extractedMessages.isEmpty) break;
