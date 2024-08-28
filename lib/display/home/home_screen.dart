@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -28,7 +29,35 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(flex: 3),
+                    Column(
+                      children: [
+                        SizedBox(height: 5),
+                        GestureDetector(
+                          onTap: () {
+                            var locale = Locale('en', 'US');
+                            Get.updateLocale(locale);
+                          },
+                          child: Image.asset(
+                            'assets/images/us_flag.png',
+                            width: 50,
+                            height: 35,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        GestureDetector(
+                          onTap: () {
+                            var locale = Locale('pl', 'PL');
+                            Get.updateLocale(locale);
+                          },
+                          child: Image.asset(
+                            'assets/images/pl_flag.png',
+                            width: 50,
+                            height: 35,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(flex: 1),
                     Stack(
                       children: [
                         Positioned(
@@ -40,11 +69,11 @@ class HomeScreen extends StatelessWidget {
                             height: 150, 
                           ),
                         ),
-                        const Center(
+                        Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: 80.0),
                         child: Text(
-                          "Sygnały Flagowe",
+                          'home_screen.title'.tr,
                           style: TextStyle(
                             color: kHeaderColor,
                             fontWeight: FontWeight.bold,
@@ -55,19 +84,19 @@ class HomeScreen extends StatelessWidget {
                     ),
                       ],
                     ),
-                    const Text(
-                      "   Wybierz tryb",
+                    Text(
+                      'home_screen.choose_mode'.tr,
                       style: TextStyle(
                         color: kHeaderColor,
                         fontSize: 22,
                       ),
                     ),
                     const Spacer(flex: 6),
-                    buildButton("Nazwy flag", () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
+                    buildButton('home_screen.flag_names'.tr, () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
                     const SizedBox(height: 18),
-                    buildButton("Sygnały", () => SignalMenuScreen()),
+                    buildButton('home_screen.signals'.tr, () => SignalMenuScreen()),
                     const SizedBox(height: 18),
-                    buildButton("Nauka", () => DatasetScreen()),
+                    buildButton('home_screen.learning'.tr, () => DatasetScreen()),
                     const Spacer(flex: 4),
                   ],
                 ),

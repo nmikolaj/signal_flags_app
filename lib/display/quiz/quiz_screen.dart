@@ -29,10 +29,15 @@ class QuizScreen extends StatelessWidget {
           },
         ),
         actions: [
-          TextButton(onPressed: _controller.nextQuestion, child: const Padding(
-            padding: EdgeInsets.only(right: 10.0),
-            child: Text("Pomiń", style: TextStyle(fontSize: 17, color: kWhiteColor)),
-          )),
+          TextButton(
+              onPressed: _controller.nextQuestion,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  'skip'.tr,
+                  style: const TextStyle(fontSize: 17, color: kWhiteColor),
+                ),
+              )),
         ],
       ),
       body: Body(),

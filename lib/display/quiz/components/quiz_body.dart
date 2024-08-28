@@ -42,7 +42,8 @@ class Body extends StatelessWidget {
                     () => Text.rich(
                       TextSpan(
                         text:
-                            "Pytanie ${_questionController.questionNumber.value}",
+                            "quiz_body.question".trParams({
+                            'number': "${_questionController.questionNumber.value}"}),
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium

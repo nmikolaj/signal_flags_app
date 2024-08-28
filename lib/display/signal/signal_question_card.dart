@@ -16,7 +16,7 @@ class SignalQuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionController controller = Get.find<QuestionController>(); // Get.find() as controller is already initialized in parent widget
+    QuestionController controller = Get.find<QuestionController>();
     return Container(
       margin: const EdgeInsets.only(
         top: 0,

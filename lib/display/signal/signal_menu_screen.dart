@@ -35,9 +35,9 @@ class SignalMenuScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Spacer(flex: 5),
-                    const Center(
+                    Center(
                       child: Text(
-                        "Sygnały",
+                        'signal_menu.title'.tr,
                         style: TextStyle(
                           color: kHeaderColor,
                           fontWeight: FontWeight.bold,
@@ -46,9 +46,9 @@ class SignalMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 5),
-                    buildButton("Odczytaj", () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
+                    buildButton('signal_menu.read'.tr, () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
-                    buildButton("Nadaj", () => TransmitScreen(flagCount: _controller.selectedFlagCount.value,)),
+                    buildButton('signal_menu.transmit'.tr, () => TransmitScreen(flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
                     // Obx(() => Row(
                     //   mainAxisAlignment: MainAxisAlignment.center,
@@ -75,21 +75,21 @@ class SignalMenuScreen extends StatelessWidget {
                     Obx(() => Column(
                       children: [
                             Text(
-                              "Kategoria: ",
+                              'signal_menu.category'.tr,
                               style:
                                   TextStyle(color: kWhiteColor, fontSize: 22),
                             ),
                             Center(
                               child: DropdownButton<int>(
                                 value: _controller.selectedFlagCount.value,
-                                items: const [
+                                items: [
                                   DropdownMenuItem(
                                     value: 1,
                                     child: Row(
                                       children: [
                                         Icon(Icons.flag),
                                         SizedBox(width: 8),
-                                        Text('Single flags'),
+                                        Text('signal_menu.single_flags'.tr),
                                       ],
                                     ),
                                   ),
@@ -99,7 +99,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.warning),
                                         SizedBox(width: 8),
-                                        Text('Distress-Emergency'),
+                                        Text('signal_menu.distress_emergency'.tr),
                                       ],
                                     ),
                                   ),
@@ -109,7 +109,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.place),
                                         SizedBox(width: 8),
-                                        Text('Position-Rescue'),
+                                        Text('signal_menu.position_rescue'.tr),
                                       ],
                                     ),
                                   ),
@@ -119,7 +119,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.healing),
                                         SizedBox(width: 8),
-                                        Text('Casualties-Damages'),
+                                        Text('signal_menu.casualties_damages'.tr),
                                       ],
                                     ),
                                   ),
@@ -129,7 +129,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.navigation), 
                                         SizedBox(width: 8),
-                                        Text('Navigation-Hydrography'),
+                                        Text('signal_menu.navigation_hydrography'.tr),
                                       ],
                                     ),
                                   ),
@@ -139,7 +139,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.directions_boat),
                                         SizedBox(width: 8),
-                                        Text('Maneuvers'),
+                                        Text('signal_menu.maneuvers'.tr),
                                       ],
                                     ),
                                   ),
@@ -149,7 +149,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.miscellaneous_services),
                                         SizedBox(width: 8),
-                                        Text('Miscellaneous'),
+                                        Text('signal_menu.miscellaneous'.tr),
                                       ],
                                     ),
                                   ),
@@ -159,7 +159,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.cloud),
                                         SizedBox(width: 8),
-                                        Text('Meteorology-Weather'),
+                                        Text('signal_menu.meteorology_weather'.tr),
                                       ],
                                     ),
                                   ),
@@ -169,7 +169,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.spatial_audio_off),
                                         SizedBox(width: 8),
-                                        Text('Communications'),
+                                        Text('signal_menu.communications'.tr),
                                       ],
                                     ),
                                   ),
@@ -202,7 +202,7 @@ class SignalMenuScreen extends StatelessWidget {
                       ],
                     )),
                     const SizedBox(height: 18),
-                    buildButton("Stwórz własny", () => ExportScreen()),
+                    buildButton('signal_menu.create_custom'.tr, () => ExportScreen()),
                     const Spacer(flex: 5),
                   ],
                 ),
