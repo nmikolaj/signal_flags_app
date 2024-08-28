@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 6),
-                    buildButton("Flagi", () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
+                    buildButton("Nazwy flag", () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
                     const SizedBox(height: 18),
                     buildButton("Sygnały", () => SignalMenuScreen()),
                     const SizedBox(height: 18),

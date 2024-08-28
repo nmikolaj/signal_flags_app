@@ -46,68 +46,164 @@ class SignalMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 5),
-                    buildButton("Quiz", () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
+                    buildButton("Odczytaj", () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
-                    buildButton("Nadanie sygnału", () => TransmitScreen(flagCount: _controller.selectedFlagCount.value,)),
+                    buildButton("Nadaj", () => TransmitScreen(flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
-                    Obx(() => Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Czasomierz",
-                          style: TextStyle(color: kWhiteColor, fontSize: 25),
-                        ),
-                        SizedBox(width: 10),
-                        Transform.scale(
-                          scale: 1.5,
-                          child: Checkbox(
-                            value: _controller.showProgressBar.value,
-                            onChanged: (value) {
-                              _controller.toggleProgressBar(value!);
-                            },
-                            activeColor: kSecondaryColor,
-                            checkColor: kBlackColor,
-                          ),
-                        ),
-                      ],
-                    )),
-                    const SizedBox(height: 8),
+                    // Obx(() => Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       "Czasomierz",
+                    //       style: TextStyle(color: kWhiteColor, fontSize: 25),
+                    //     ),
+                    //     SizedBox(width: 10),
+                    //     Transform.scale(
+                    //       scale: 1.5,
+                    //       child: Checkbox(
+                    //         value: _controller.showProgressBar.value,
+                    //         onChanged: (value) {
+                    //           _controller.toggleProgressBar(value!);
+                    //         },
+                    //         activeColor: kSecondaryColor,
+                    //         checkColor: kBlackColor,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )),
+                    // const SizedBox(height: 8),
                     Obx(() => Column(
                       children: [
-                        Text(
-                          "Kategoria: ",
-                          style: TextStyle(color: kWhiteColor, fontSize: 24),
-                        ),
-                        Center(
-                          child: DropdownButton<int>(
+                            Text(
+                              "Kategoria: ",
+                              style:
+                                  TextStyle(color: kWhiteColor, fontSize: 22),
+                            ),
+                            Center(
+                              child: DropdownButton<int>(
                                 value: _controller.selectedFlagCount.value,
                                 items: const [
-                                  DropdownMenuItem(value: 1, child: Text('Single-Flags')),
-                                  DropdownMenuItem(value: 2, child: Text('Distress-Emergency')),
-                                  DropdownMenuItem(value: 3, child: Text('Position-Rescue')),
-                                  DropdownMenuItem(value: 4, child: Text('Casualties-Damages')),
-                                  DropdownMenuItem(value: 5, child: Text('Navigation-Hydrography')),
-                                  DropdownMenuItem(value: 6, child: Text('Maneuvers')),
-                                  DropdownMenuItem(value: 7, child: Text('Miscellaneous')),
-                                  DropdownMenuItem(value: 8, child: Text('Meteorology-Weather')),
-                                  DropdownMenuItem(value: 9, child: Text('Communications')),
+                                  DropdownMenuItem(
+                                    value: 1,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.flag),
+                                        SizedBox(width: 8),
+                                        Text('Single flags'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 2,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.warning),
+                                        SizedBox(width: 8),
+                                        Text('Distress-Emergency'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 3,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.place),
+                                        SizedBox(width: 8),
+                                        Text('Position-Rescue'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 4,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.healing),
+                                        SizedBox(width: 8),
+                                        Text('Casualties-Damages'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 5,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.navigation), 
+                                        SizedBox(width: 8),
+                                        Text('Navigation-Hydrography'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 6,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.directions_boat),
+                                        SizedBox(width: 8),
+                                        Text('Maneuvers'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 7,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.miscellaneous_services),
+                                        SizedBox(width: 8),
+                                        Text('Miscellaneous'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 8,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.cloud),
+                                        SizedBox(width: 8),
+                                        Text('Meteorology-Weather'),
+                                      ],
+                                    ),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 9,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.spatial_audio_off),
+                                        SizedBox(width: 8),
+                                        Text('Communications'),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                                 onChanged: (value) {
                                   if (value != null) {
                                     _controller.updateFlagCount(value);
                                   }
                                 },
-                                dropdownColor: kSecondaryColor,
+                                alignment: Alignment.center,
+                                icon: Icon(Icons.keyboard_arrow_up),
+                                underline: Container(
+                                  alignment:
+                                      Alignment.center,
+                                  child: Container(
+                                    width:
+                                        260,
+                                    height:
+                                        2, 
+                                    color:
+                                        kWhiteColor, 
+                                  ),
+                                ),
+                                dropdownColor: kBackgroundColor2,
                                 style: TextStyle(
-                                    color: kWhiteColor,
-                                    fontSize: 24),
+                                    color: kBackgroundColor,
+                                    fontSize: 24, fontWeight: FontWeight.w500),
                           ),
                         ),
                       ],
                     )),
                     const SizedBox(height: 18),
                     buildButton("Stwórz własny", () => ExportScreen()),
-                    const Spacer(flex: 4),
+                    const Spacer(flex: 5),
                   ],
                 ),
               ),

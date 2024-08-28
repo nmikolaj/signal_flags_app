@@ -25,14 +25,86 @@ class DatasetScreen extends StatelessWidget {
                 child: DropdownButton<int>(
                   value: controller.selectedCategoryIndex.value,
                   items: const [
-                    DropdownMenuItem(value: 1, child: Text('Distress-Emergency')),
-                    DropdownMenuItem(value: 2, child: Text('Position-Rescue')),
-                    DropdownMenuItem(value: 3, child: Text('Casualties-Damages')),
-                    DropdownMenuItem(value: 4, child: Text('Navigation-Hydrography')),
-                    DropdownMenuItem(value: 5, child: Text('Maneuvers')),
-                    DropdownMenuItem(value: 6, child: Text('Miscellaneous')),
-                    DropdownMenuItem(value: 7, child: Text('Meteorology-Weather')),
-                    DropdownMenuItem(value: 8, child: Text('Communications')),
+                    DropdownMenuItem(
+                      value: 1,
+                      child: Row(
+                        children: [
+                          Icon(Icons.warning),
+                          SizedBox(width: 8),
+                          Text('Distress-Emergency'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 2,
+                      child: Row(
+                        children: [
+                          Icon(Icons.place),
+                          SizedBox(width: 8),
+                          Text('Position-Rescue'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 3,
+                      child: Row(
+                        children: [
+                          Icon(Icons.healing),
+                          SizedBox(width: 8),
+                          Text('Casualties-Damages'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 4,
+                      child: Row(
+                        children: [
+                          Icon(Icons.navigation),
+                          SizedBox(width: 8),
+                          Text('Navigation-Hydrography'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 5,
+                      child: Row(
+                        children: [
+                          Icon(Icons.directions_boat),
+                          SizedBox(width: 8),
+                          Text('Maneuvers'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 6,
+                      child: Row(
+                        children: [
+                          Icon(Icons.miscellaneous_services),
+                          SizedBox(width: 8),
+                          Text('Miscellaneous'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 7,
+                      child: Row(
+                        children: [
+                          Icon(Icons.cloud),
+                          SizedBox(width: 8),
+                          Text('Meteorology-Weather'),
+                        ],
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 8,
+                      child: Row(
+                        children: [
+                          Icon(Icons.spatial_audio_off),
+                          SizedBox(width: 8),
+                          Text('Communications'),
+                        ],
+                      ),
+                    ),
                   ],
                   onChanged: (value) {
                     if (value != null) {
@@ -54,6 +126,22 @@ class DatasetScreen extends StatelessWidget {
             child: Obx(() {
               final filteredMessages = controller.filteredMessages;
 
+              if (controller.selectedMode.value == 3 &&
+                  filteredMessages.isEmpty) {
+                return const Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      "Nie masz jeszcze własnych sygnałów",
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                );
+              }
               return ListView.builder(
                 itemCount: filteredMessages.length + 1, // +1 for numeric flags/SizedBox.shrink()
                 itemBuilder: (context, index) {
@@ -100,12 +188,9 @@ class DatasetScreen extends StatelessWidget {
                   }
 
                   final message = filteredMessages[index];
-                  print(message['flags']);
-                  print(message['subcategory']);
 
                   // Check if it is a subcategory header
                   if (message.containsKey('subcategory')) {
-                    //print(message['subcategory']);
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
                       child: Text(
@@ -120,9 +205,7 @@ class DatasetScreen extends StatelessWidget {
                   }
 
                   // Regular signal rendering
-                  final flagNames = message['flags']
-                      .map((flag) => flagMap[flag]!['name'])
-                      .join(", ");
+                  final flagsFirstLetters = message['flags'].map((flag) => flagMap[flag]!['name']![0]).join();
 
                   if (controller.selectedMode.value == 1) {
                     final flag = flagMap[message['flags'].first]!;
@@ -180,7 +263,7 @@ class DatasetScreen extends StatelessWidget {
                         children: flagImages,
                       ),
                       title: Text(
-                        flagNames,
+                        flagsFirstLetters,
                         style: TextStyle(color: kBlackColor),
                       ),
                       subtitle: Column(
@@ -197,7 +280,8 @@ class DatasetScreen extends StatelessWidget {
                         ],
                       ),
                     );
-                  } else {
+                  } else if (controller.selectedMode.value == 3){
+                    
                     final flagImages = message['flags']
                         .map<Widget>((flag) => Padding(
                               padding: const EdgeInsets.only(
