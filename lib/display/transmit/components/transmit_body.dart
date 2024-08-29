@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/controllers/language_controller.dart';
 import 'package:signal_flags_app/controllers/transmit_controller.dart';
 import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/models/flags.dart';
@@ -11,6 +12,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SignalController _signalController = Get.find<SignalController>();
+    final LanguageController _languageController = Get.find<LanguageController>();
+
     return Stack(
       children: [
         Container(
@@ -77,7 +80,7 @@ class Body extends StatelessWidget {
                           child: Text(
                             _signalController.signalList[
                                     _signalController.questionNumber.value - 1]
-                                ['message']['pl'],
+                                ['message'][_languageController.selectedLanguage.value],
                             style: TextStyle(color: kBlackColor, fontSize: 20),
                           ),
                         ),
@@ -87,11 +90,13 @@ class Body extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text("Wybrane flagi: ",
-                              style: TextStyle(
-                                color: kWhiteColor,
-                                fontSize: 14,
-                              )),
+                          child: Text(
+                            'chosen_flags'.tr,
+                            style: const TextStyle(
+                              color: kWhiteColor,
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: kDefaultPadding / 2),

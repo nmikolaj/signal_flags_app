@@ -41,7 +41,7 @@ class ScoreScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background.jpg'),
             fit: BoxFit.cover,
@@ -52,7 +52,7 @@ class ScoreScreen extends StatelessWidget {
             children: [
               const Spacer(flex: 4),
               Text(
-                "Wynik",
+                'score'.tr,
                 style: TextStyle(
                   color: kWhiteColor,
                   fontSize: font_size,

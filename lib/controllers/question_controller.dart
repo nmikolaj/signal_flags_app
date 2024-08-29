@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/controllers/language_controller.dart';
 import 'package:signal_flags_app/display/score/score_screen.dart';
 import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/models/questions.dart';
@@ -43,6 +44,8 @@ class QuestionController extends GetxController
   int flagCount;
 
   late DateTime _startTime;
+
+  final LanguageController _languageController = Get.find<LanguageController>();
 
   QuestionController(this.mode, this.showProgressBar, this.flagCount);
 
@@ -90,9 +93,12 @@ class QuestionController extends GetxController
 
     if (mode == 'messages') {
       // Messages questions
+
+      String selectedLanguage = _languageController.selectedLanguage.value;
+
       List<Map<String, dynamic>> selectedMessages = _getCategoryMessages().toList();
 
-      List<String> allMessageAnswers = selectedMessages.map((m) => m['message']['pl'] as String).toList(); // Answers taken from the whole category list
+      List<String> allMessageAnswers = selectedMessages.map((m) => m['message'][selectedLanguage] as String).toList(); // Answers taken from the whole category list
 
       selectedMessages.shuffle(random);
       selectedMessages = selectedMessages.take(5).toList(); // Selects 5 random messages
@@ -102,17 +108,17 @@ class QuestionController extends GetxController
 
         messageAnswers = messageAnswers.take(4).toList();
 
-        if (!messageAnswers.contains(messageData['message']['pl'])) {
+        if (!messageAnswers.contains(messageData['message'][selectedLanguage])) { // Fine for a small list
           // Adds correct answer if chosen answers don't already contain it
-          messageAnswers[random.nextInt(4)] = messageData['message']['pl'];
+          messageAnswers[random.nextInt(4)] = messageData['message'][selectedLanguage];
         }
 
         questionList.add(Question(
           id: questionList.length + 1,
           question: "What is the message associated with these flags?",
           answers: messageAnswers,
-          answer: messageAnswers.indexOf(messageData['message']['pl']),
-          isFlagQuestion: false, // used for handling in body
+          answer: messageAnswers.indexOf(messageData['message'][selectedLanguage]),
+          isFlagQuestion: false, // Used for handling in body
           flagImage: null,
           flags: (messageData['flags'] as List).map((flag) => flag as String).toList(),
         ));

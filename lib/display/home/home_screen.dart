@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/controllers/language_controller.dart';
 import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_menu_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
@@ -9,10 +10,11 @@ import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/utils/widget_utils.dart';
 
 class HomeScreen extends StatelessWidget {
+  final LanguageController _languageController = Get.put(LanguageController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -31,16 +33,17 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        SizedBox(height: 5),
+                        SizedBox(height: 10),
                         GestureDetector(
                           onTap: () {
                             var locale = Locale('en', 'US');
                             Get.updateLocale(locale);
+                            _languageController.setLanguage('en');
                           },
                           child: Image.asset(
                             'assets/images/us_flag.png',
-                            width: 50,
-                            height: 35,
+                            width: 45,
+                            height: 30,
                           ),
                         ),
                         SizedBox(height: 5),
@@ -48,11 +51,12 @@ class HomeScreen extends StatelessWidget {
                           onTap: () {
                             var locale = Locale('pl', 'PL');
                             Get.updateLocale(locale);
+                            _languageController.setLanguage('pl');
                           },
                           child: Image.asset(
                             'assets/images/pl_flag.png',
-                            width: 50,
-                            height: 35,
+                            width: 45,
+                            height: 30,
                           ),
                         ),
                       ],
@@ -84,11 +88,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                       ],
                     ),
-                    Text(
-                      'home_screen.choose_mode'.tr,
-                      style: TextStyle(
-                        color: kHeaderColor,
-                        fontSize: 22,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0),
+                      child: Text(
+                        'home_screen.choose_mode'.tr,
+                        style: const TextStyle(
+                          color: kHeaderColor,
+                          fontSize: 22,
+                        ),
                       ),
                     ),
                     const Spacer(flex: 6),

@@ -50,7 +50,7 @@ class ExportBody extends StatelessWidget {
                           horizontal: kDefaultPadding),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("Wybrane flagi: ",
+                        child: Text('chosen_flags'.tr,
                             style: TextStyle(
                               color: kWhiteColor,
                               fontSize: 14,

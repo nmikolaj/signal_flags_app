@@ -34,10 +34,10 @@ class FlagsMenuScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Spacer(flex: 4),
-                    const Center(
+                    Center(
                       child: Text(
-                        "Flagi",
-                        style: TextStyle(
+                        'flags'.tr,
+                        style: const TextStyle(
                           color: kHeaderColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 50,
@@ -45,16 +45,16 @@ class FlagsMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 6),
-                    buildButton("Klasyczne", () => QuizScreen(mode: "normal", showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
+                    buildButton('quiz.letter'.tr, () => QuizScreen(mode: "normal", showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
                     const SizedBox(height: 18),
-                    buildButton("Numeryczne", () => QuizScreen(mode: 'numeric', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
+                    buildButton('quiz.numeric'.tr, () => QuizScreen(mode: 'numeric', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
                     const SizedBox(height: 18),
                     const Spacer(flex: 1),
                     Obx(() => Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Czasomierz",
+                          'timer'.tr,
                           style: TextStyle(color: kWhiteColor, fontSize: 25),
                         ),
                         SizedBox(width: 10),
