@@ -89,7 +89,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.flag),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.single_flags'.tr),
+                                        Text('single_flags'.tr),
                                       ],
                                     ),
                                   ),
@@ -99,7 +99,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.warning),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.distress_emergency'.tr),
+                                        Text('distress_emergency'.tr),
                                       ],
                                     ),
                                   ),
@@ -109,7 +109,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.place),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.position_rescue'.tr),
+                                        Text('position_rescue'.tr),
                                       ],
                                     ),
                                   ),
@@ -119,7 +119,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.healing),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.casualties_damages'.tr),
+                                        Text('casualties_damages'.tr),
                                       ],
                                     ),
                                   ),
@@ -129,7 +129,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.navigation), 
                                         SizedBox(width: 8),
-                                        Text('signal_menu.navigation_hydrography'.tr),
+                                        Text('navigation_hydrography'.tr),
                                       ],
                                     ),
                                   ),
@@ -139,7 +139,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.directions_boat),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.maneuvers'.tr),
+                                        Text('maneuvers'.tr),
                                       ],
                                     ),
                                   ),
@@ -149,7 +149,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.miscellaneous_services),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.miscellaneous'.tr),
+                                        Text('miscellaneous'.tr),
                                       ],
                                     ),
                                   ),
@@ -159,7 +159,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.cloud),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.meteorology_weather'.tr),
+                                        Text('meteorology_weather'.tr),
                                       ],
                                     ),
                                   ),
@@ -169,7 +169,7 @@ class SignalMenuScreen extends StatelessWidget {
                                       children: [
                                         Icon(Icons.spatial_audio_off),
                                         SizedBox(width: 8),
-                                        Text('signal_menu.communications'.tr),
+                                        Text('communications'.tr),
                                       ],
                                     ),
                                   ),

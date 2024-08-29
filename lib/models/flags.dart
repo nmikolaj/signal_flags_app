@@ -339,7 +339,7 @@ const List<Map<String, dynamic>> multipleFlagsSignals = [
 
 const List<Map<String, dynamic>> distressEmergencySignals = [
   {
-    "subcategory": "Abandon",
+    "subcategory": 'subcategory_abandon',
     "signals": [
       {
         "flags": ["Alfa", "Charlie"],
@@ -379,7 +379,7 @@ const List<Map<String, dynamic>> distressEmergencySignals = [
     ]
   },
   {
-    "subcategory": "Doctor",
+    "subcategory": 'subcategory_doctor',
     "signals": [
       {
         "flags": ["Alfa", "Lima"],
@@ -405,7 +405,7 @@ const List<Map<String, dynamic>> distressEmergencySignals = [
     ]
   },
   {
-    "subcategory": "Assistance",
+    "subcategory": 'subcategory_assistance',
     "signals": [
       {
         "flags": ["Charlie", "Bravo"],
@@ -508,7 +508,7 @@ const List<Map<String, dynamic>> distressEmergencySignals = [
     ]
   },
   {
-    "subcategory": "Boats-Rafts",
+    "subcategory": 'subcategory_boats_rafts',
     "signals": [
       {
         "flags": ["Charlie", "Whiskey"],
@@ -604,7 +604,7 @@ const List<Map<String, dynamic>> distressEmergencySignals = [
     ]
   },
   {
-    "subcategory": "Drifting",
+    "subcategory": 'subcategory_drifting',
     "signals": [
       {
         "flags": ["Delta", "Victor"],
@@ -616,7 +616,7 @@ const List<Map<String, dynamic>> distressEmergencySignals = [
     ]
   },
   {
-    "subcategory": "Distress",
+    "subcategory": 'subcategory_distress',
     "signals": [
       {
         "flags": ["Delta", "Zulu"],
@@ -673,7 +673,7 @@ const List<Map<String, dynamic>> distressEmergencySignals = [
 
 const List<Map<String, dynamic>> positionRescueSignals = [
   {
-    "subcategory": "Position",
+    "subcategory": 'subcategory_position',
     "signals": [
       {
         "flags": ["Echo", "Uniform"],
@@ -748,7 +748,7 @@ const List<Map<String, dynamic>> positionRescueSignals = [
     ]
   },
   {
-    "subcategory": "Search",
+    "subcategory": 'subcategory_search',
     "signals": [
       {
         "flags": ["Foxtrot", "Romeo"],
@@ -795,7 +795,7 @@ const List<Map<String, dynamic>> positionRescueSignals = [
     ]
   },
   {
-    "subcategory": "Rescue",
+    "subcategory": 'subcategory_rescue',
     "signals": [
       {
         "flags": ["Golf", "Mike"],
@@ -835,7 +835,7 @@ const List<Map<String, dynamic>> positionRescueSignals = [
     ]
   },
   {
-    "subcategory": "Survivors",
+    "subcategory": 'subcategory_survivors',
     "signals": [
       {
         "flags": ["Hotel", "Foxtrot"],
@@ -871,7 +871,7 @@ const List<Map<String, dynamic>> positionRescueSignals = [
 
 const List<Map<String, dynamic>> casualtiesDamagesSignals = [
   {
-    "subcategory": "Collision",
+    "subcategory": 'subcategory_collision',
     "signals": [
       {
         "flags": ["Hotel", "Victor"],
@@ -911,7 +911,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
     ]
   },
   {
-    "subcategory": "Damages-Repairs",
+    "subcategory": 'subcategory_damages_repairs',
     "signals": [
       {
         "flags": ["India", "Bravo"],
@@ -979,7 +979,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
     ]
   },
   {
-    "subcategory": "Diver",
+    "subcategory": 'subcategory_diver',
     "signals": [
       {
         "flags": ["India", "November"],
@@ -998,7 +998,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
     ]
   },
   {
-    "subcategory": "Fire",
+    "subcategory": 'subcategory_fire',
     "signals": [
       {
         "flags": ["India", "Tango"],
@@ -1038,7 +1038,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
     ]
   },
   {
-    "subcategory": "Grounding",
+    "subcategory": 'subcategory_grounding',
     "signals": [
       {
         "flags": ["Juliett", "Foxtrot"],
@@ -1064,7 +1064,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
     ]
   },
   {
-    "subcategory": "Leak",
+    "subcategory": 'subcategory_leak',
     "signals": [
       {
         "flags": ["Juliett", "Whiskey"],
@@ -1097,7 +1097,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
     ]
   },
   {
-    "subcategory": "Tug",
+    "subcategory": 'subcategory_tug',
     "signals": [
       {
         "flags": ["Kilo", "Foxtrot"],
@@ -1123,7 +1123,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
     ]
   },
   {
-    "subcategory": "Towing",
+    "subcategory": 'subcategory_towing',
     "signals": [
       {
         "flags": ["Kilo", "Juliett"],
@@ -1166,7 +1166,7 @@ const List<Map<String, dynamic>> casualtiesDamagesSignals = [
 
 const List<Map<String, dynamic>> navigationHydrographySignals = [
   {
-    "subcategory": "Canal",
+    "subcategory": 'subcategory_canal',
     "signals": [
       {
         "flags": ["Lima", "X-ray"],
@@ -1213,7 +1213,7 @@ const List<Map<String, dynamic>> navigationHydrographySignals = [
     ]
   },
   {
-    "subcategory": "Dangers-Warnings",
+    "subcategory": 'subcategory_dangers_warnings',
     "signals": [
       {
         "flags": ["Mike", "Kilo"],
@@ -1295,7 +1295,7 @@ const List<Map<String, dynamic>> navigationHydrographySignals = [
     ]
   },
   {
-    "subcategory": "Depth",
+    "subcategory": 'subcategory_depth',
     "signals": [
       {
         "flags": ["November", "Kilo"],
@@ -1328,7 +1328,7 @@ const List<Map<String, dynamic>> navigationHydrographySignals = [
     ]
   },
   {
-    "subcategory": "Radar",
+    "subcategory": 'subcategory_radar',
     "signals": [
       {
         "flags": ["Oscar", "Hotel"],
@@ -1354,7 +1354,7 @@ const List<Map<String, dynamic>> navigationHydrographySignals = [
     ]
   },
   {
-    "subcategory": "Navigation lights",
+    "subcategory": 'subcategory_navigation_lights',
     "signals": [
       {
         "flags": ["Papa", "Delta"],
@@ -1380,7 +1380,7 @@ const List<Map<String, dynamic>> navigationHydrographySignals = [
     ]
   },
   {
-    "subcategory": "Steering instructions",
+    "subcategory": 'subcategory_steering_instructions',
     "signals": [
       {
         "flags": ["Papa", "Hotel", "1 Unaone"],
@@ -1465,7 +1465,7 @@ const List<Map<String, dynamic>> navigationHydrographySignals = [
 
 const List<Map<String, dynamic>> maneuversSignals = [
   {
-    "subcategory": "Ahead",
+    "subcategory": 'subcategory_ahead',
     "signals": [
       {
         "flags": ["Quebec", "Delta"],
@@ -1498,7 +1498,7 @@ const List<Map<String, dynamic>> maneuversSignals = [
     ]
   },
   {
-    "subcategory": "Astern",
+    "subcategory": 'subcategory_astern',
     "signals": [
       {
         "flags": ["Quebec", "India"],
@@ -1531,7 +1531,7 @@ const List<Map<String, dynamic>> maneuversSignals = [
     ]
   },
   {
-    "subcategory": "Alongside",
+    "subcategory": 'subcategory_alongside',
     "signals": [
       {
         "flags": ["Quebec", "Oscar"],
@@ -1550,7 +1550,7 @@ const List<Map<String, dynamic>> maneuversSignals = [
     ]
   },
   {
-    "subcategory": "Anchor",
+    "subcategory": 'subcategory_anchor',
     "signals": [
       {
         "flags": ["Quebec", "Uniform"],
@@ -1597,7 +1597,7 @@ const List<Map<String, dynamic>> maneuversSignals = [
     ]
   },
   {
-    "subcategory": "Engines",
+    "subcategory": 'subcategory_engines',
     "signals": [
       {
         "flags": ["Romeo", "Juliett"],
@@ -1637,7 +1637,7 @@ const List<Map<String, dynamic>> maneuversSignals = [
     ]
   },
   {
-    "subcategory": "Boarding",
+    "subcategory": 'subcategory_boarding',
     "signals": [
       {
         "flags": ["Romeo", "Sierra"],
@@ -1649,7 +1649,7 @@ const List<Map<String, dynamic>> maneuversSignals = [
     ]
   },
   {
-    "subcategory": "Proceed-Underway",
+    "subcategory": 'subcategory_proceed_underway',
     "signals": [
       {
         "flags": ["Romeo", "Victor"],
@@ -1692,7 +1692,7 @@ const List<Map<String, dynamic>> maneuversSignals = [
 
 const List<Map<String, dynamic>> miscellaneousSignals = [
   {
-    "subcategory": "Cargo-Balast",
+    "subcategory": 'subcategory_cargo_balast',
     "signals": [
       {
         "flags": ["Sierra", "Tango"],
@@ -1711,7 +1711,7 @@ const List<Map<String, dynamic>> miscellaneousSignals = [
     ]
   },
   {
-    "subcategory": "Crew",
+    "subcategory": 'subcategory_crew',
     "signals": [
       {
         "flags": ["Sierra", "Zulu"],
@@ -1723,7 +1723,7 @@ const List<Map<String, dynamic>> miscellaneousSignals = [
     ]
   },
   {
-    "subcategory": "Fishery",
+    "subcategory": 'subcategory_fishery',
     "signals": [
       {
         "flags": ["Tango", "Delta"],
@@ -1756,7 +1756,7 @@ const List<Map<String, dynamic>> miscellaneousSignals = [
     ]
   },
   {
-    "subcategory": "Port-Harbor",
+    "subcategory": 'subcategory_port_harbor',
     "signals": [
       {
         "flags": ["Uniform", "Lima"],
@@ -1824,7 +1824,7 @@ const List<Map<String, dynamic>> miscellaneousSignals = [
     ]
   },
   {
-    "subcategory": "Miscellaneous",
+    "subcategory": 'subcategory_miscellaneous',
     "signals": [
       {
         "flags": ["Uniform", "Tango"],
@@ -1878,7 +1878,7 @@ const List<Map<String, dynamic>> miscellaneousSignals = [
     ]
   },
   {
-    "subcategory": "Exercises",
+    "subcategory": 'subcategory_exercises',
     "signals": [
       {
         "flags": ["Uniform", "Yankee"],
@@ -1893,7 +1893,7 @@ const List<Map<String, dynamic>> miscellaneousSignals = [
 
 const List<Map<String, dynamic>> meteorologyWeatherSignals = [
   {
-    "subcategory": "Gale-Storm",
+    "subcategory": 'subcategory_gale_storm',
     "signals": [
       {
         "flags": ["Victor", "Juliett"],
@@ -1912,7 +1912,7 @@ const List<Map<String, dynamic>> meteorologyWeatherSignals = [
     ]
   },
   {
-    "subcategory": "Atmospheric Pressure",
+    "subcategory": 'subcategory_atmospheric_pressure',
     "signals": [
       {
         "flags": ["Whiskey", "Papa"],
@@ -1938,7 +1938,7 @@ const List<Map<String, dynamic>> meteorologyWeatherSignals = [
     ]
   },
   {
-    "subcategory": "Weather",
+    "subcategory": 'subcategory_weather',
     "signals": [
       {
         "flags": ["X-ray", "Romeo"],
@@ -1988,7 +1988,7 @@ const List<Map<String, dynamic>> meteorologyWeatherSignals = [
 
 const List<Map<String, dynamic>> communicationsSignals = [
   {
-    "subcategory": "Answer",
+    "subcategory": 'subcategory_answer',
     "signals": [
       {
         "flags": ["Yankee", "Kilo"],
@@ -2000,7 +2000,7 @@ const List<Map<String, dynamic>> communicationsSignals = [
     ]
   },
   {
-    "subcategory": "Cancel",
+    "subcategory": 'subcategory_cancel',
     "signals": [
       {
         "flags": ["Yankee", "November"],
@@ -2012,7 +2012,7 @@ const List<Map<String, dynamic>> communicationsSignals = [
     ]
   },
   {
-    "subcategory": "Communicate",
+    "subcategory": 'subcategory_communicate',
     "signals": [
       {
         "flags": ["Yankee", "Zulu"],
@@ -2045,7 +2045,7 @@ const List<Map<String, dynamic>> communicationsSignals = [
     ]
   },
   {
-    "subcategory": "Repeat",
+    "subcategory": 'subcategory_repeat',
     "signals": [
       {
         "flags": ["Zulu", "Papa"],

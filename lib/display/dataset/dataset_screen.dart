@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:signal_flags_app/controllers/language_controller.dart';
 import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/utils/constants.dart';
 import 'package:signal_flags_app/controllers/dataset_controller.dart';
 
 class DatasetScreen extends StatelessWidget {
   final DatasetController controller = Get.put(DatasetController());
+  final LanguageController _languageController = Get.find<LanguageController>();
+  final Map<String, Map<String, String>> flagMap = {
+    for (var flag in flags) flag['name']!: flag
+  };
+
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, Map<String, String>> flagMap = {
-      for (var flag in flags) flag['name']!: flag
-    };
-
+    final selectedLanguage = _languageController.selectedLanguage.value;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBackgroundColor2,
@@ -24,14 +27,14 @@ class DatasetScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButton<int>(
                   value: controller.selectedCategoryIndex.value,
-                  items: const [
+                  items: [
                     DropdownMenuItem(
                       value: 1,
                       child: Row(
                         children: [
                           Icon(Icons.warning),
                           SizedBox(width: 8),
-                          Text('Distress-Emergency'),
+                          Text('distress_emergency'.tr),
                         ],
                       ),
                     ),
@@ -41,7 +44,7 @@ class DatasetScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.place),
                           SizedBox(width: 8),
-                          Text('Position-Rescue'),
+                          Text('position_rescue'.tr),
                         ],
                       ),
                     ),
@@ -51,7 +54,7 @@ class DatasetScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.healing),
                           SizedBox(width: 8),
-                          Text('Casualties-Damages'),
+                          Text('casualties_damages'.tr),
                         ],
                       ),
                     ),
@@ -61,7 +64,7 @@ class DatasetScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.navigation),
                           SizedBox(width: 8),
-                          Text('Navigation-Hydrography'),
+                          Text('navigation_hydrography'.tr),
                         ],
                       ),
                     ),
@@ -71,7 +74,7 @@ class DatasetScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.directions_boat),
                           SizedBox(width: 8),
-                          Text('Maneuvers'),
+                          Text('maneuvers'.tr),
                         ],
                       ),
                     ),
@@ -81,7 +84,7 @@ class DatasetScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.miscellaneous_services),
                           SizedBox(width: 8),
-                          Text('Miscellaneous'),
+                          Text('miscellaneous'.tr),
                         ],
                       ),
                     ),
@@ -91,7 +94,7 @@ class DatasetScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.cloud),
                           SizedBox(width: 8),
-                          Text('Meteorology-Weather'),
+                          Text('meteorology_weather'.tr),
                         ],
                       ),
                     ),
@@ -101,7 +104,7 @@ class DatasetScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.spatial_audio_off),
                           SizedBox(width: 8),
-                          Text('Communications'),
+                          Text('communications'.tr),
                         ],
                       ),
                     ),
@@ -128,11 +131,11 @@ class DatasetScreen extends StatelessWidget {
 
               if (controller.selectedMode.value == 3 &&
                   filteredMessages.isEmpty) {
-                return const Center(
+                return Center(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      "Nie masz jeszcze własnych sygnałów",
+                      'no_custom_signals'.tr,
                       style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -191,16 +194,29 @@ class DatasetScreen extends StatelessWidget {
 
                   // Check if it is a subcategory header
                   if (message.containsKey('subcategory')) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-                      child: Text(
-                        message['subcategory'],
-                        style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: kBackgroundColor2,
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                          child: Text(
+                            message['subcategory'].toString().tr,
+                            style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: kBackgroundColor2,
+                            ),
+                          ),
                         ),
-                      ),
+                        const FractionallySizedBox(
+                          widthFactor: 0.70, 
+                          alignment: Alignment.centerLeft,
+                          child: Divider(
+                            color: kBackgroundColor2,
+                            thickness: 1.0,
+                          ),
+                        ),
+                      ],
                     );
                   }
 
@@ -232,18 +248,9 @@ class DatasetScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "English: ${message['message']['en']}",
-                            style: const TextStyle(color: kBlackColor),
-                          ),
-                          Text(
-                            "Polski: ${message['message']['pl']}",
-                            style: const TextStyle(color: kBlackColor),
-                          ),
-                        ],
+                      subtitle: Text(
+                        message['message'][selectedLanguage] ?? 'Message not available',
+                        style: const TextStyle(color: kBlackColor),
                       ),
                     );
                   } else if (controller.selectedMode.value == 2) {
@@ -264,23 +271,14 @@ class DatasetScreen extends StatelessWidget {
                       ),
                       title: Text(
                         flagsFirstLetters,
-                        style: TextStyle(color: kBlackColor),
+                        style: const TextStyle(color: kBlackColor, fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "English: ${message['message']['en']}",
-                            style: const TextStyle(color: kBlackColor),
-                          ),
-                          Text(
-                            "Polski: ${message['message']['pl']}",
-                            style: const TextStyle(color: kBlackColor),
-                          ),
-                        ],
+                      subtitle: Text(
+                        message['message'][selectedLanguage] ?? 'Message not available',
+                        style: const TextStyle(color: kBlackColor),
                       ),
                     );
-                  } else if (controller.selectedMode.value == 3){
+                  } else if (controller.selectedMode.value == 3) {
                     
                     final flagImages = message['flags']
                         .map<Widget>((flag) => Padding(
@@ -295,44 +293,57 @@ class DatasetScreen extends StatelessWidget {
                         .toList();
 
                     return Padding(
-                      padding: const EdgeInsets.only(top: 20.0, right: 16.0, left: 16.0),
+                      padding: const EdgeInsets.only(top: 20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                    maxWidth: MediaQuery.of(context).size.width - 60,
-                                  ),
-                                  child: Wrap(
-                                    children: flagImages,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      maxWidth: MediaQuery.of(context).size.width - 60,
+                                    ),
+                                    child: Wrap(
+                                      children: flagImages,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.close,
-                                  color: kRedColor,
-                                  size: 30,
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: kRedColor,
+                                    size: 30,
+                                  ),
+                                  onPressed: () {
+                                    controller.deleteCustomMessage(index);
+                                  },
                                 ),
-                                onPressed: () {
-                                  controller.deleteCustomMessage(index);
-                                },
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                          SizedBox(height: 5.0),
-                          Text(
-                            message['message'],
-                            style: const TextStyle(
-                                color: kBlackColor,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold),
+                          const SizedBox(height: 5.0),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text(
+                              message['message'],
+                              style: const TextStyle(
+                                  color: kBlackColor,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          Divider(color: kBackgroundColor, thickness: 2.0)
+                          const FractionallySizedBox(
+                            widthFactor: 0.85, 
+                            alignment: Alignment.centerLeft, 
+                            child: Divider(
+                              color: kBackgroundColor2,
+                              thickness: 1.0,
+                            ),
+                          ),
                         ],
                       ),
                     );
@@ -353,18 +364,18 @@ class DatasetScreen extends StatelessWidget {
             selectedItemColor: Color.fromARGB(255, 87, 213, 255),
             unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
             
-            items: const [
+            items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.emoji_flags_rounded),
-                label: "Pojedyncze",
+                label: 'dataset_screen.single'.tr,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.map_outlined),
-                label: "Wiele",
+                label: 'dataset_screen.multiple'.tr,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.install_mobile),
-                label: "Własne",
+                label: 'dataset_screen.custom'.tr,
               ),
             ],
           )),
