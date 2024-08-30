@@ -4,7 +4,7 @@ import 'package:signal_flags_app/controllers/flags_menu_controller.dart';
 import 'package:signal_flags_app/display/home/home_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
-import 'package:signal_flags_app/utils/widget_utils.dart';
+import 'package:signal_flags_app/utils/build_button.dart';
 
 class FlagsMenuScreen extends StatelessWidget {
   final FlagsMenuController _controller = Get.put(FlagsMenuController());
@@ -45,9 +45,9 @@ class FlagsMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 6),
-                    buildButton('quiz.letter'.tr, () => QuizScreen(mode: "normal", showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
+                    BuildButtonWidget(text: 'quiz.letter'.tr, getScreen: () => QuizScreen(mode: "normal", showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
                     const SizedBox(height: 18),
-                    buildButton('quiz.numeric'.tr, () => QuizScreen(mode: 'numeric', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
+                    BuildButtonWidget(text: 'quiz.numeric'.tr, getScreen: () => QuizScreen(mode: 'numeric', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value)),
                     const SizedBox(height: 18),
                     const Spacer(flex: 1),
                     Obx(() => Row(

@@ -5,7 +5,7 @@ import 'package:signal_flags_app/display/export/export_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
 import 'package:signal_flags_app/display/transmit/transmit_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
-import 'package:signal_flags_app/utils/widget_utils.dart';
+import 'package:signal_flags_app/utils/build_button.dart';
 
 class SignalMenuScreen extends StatelessWidget {
   final SignalMenuController _controller = Get.put(SignalMenuController());
@@ -46,9 +46,9 @@ class SignalMenuScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 5),
-                    buildButton('signal_menu.read'.tr, () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
+                    BuildButtonWidget(text: 'signal_menu.read'.tr, getScreen: () => QuizScreen(mode: 'messages', showProgressBar: _controller.showProgressBar.value, flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
-                    buildButton('signal_menu.transmit'.tr, () => TransmitScreen(flagCount: _controller.selectedFlagCount.value,)),
+                    BuildButtonWidget(text: 'signal_menu.transmit'.tr, getScreen: () => TransmitScreen(flagCount: _controller.selectedFlagCount.value,)),
                     const SizedBox(height: 18),
                     // Obx(() => Row(
                     //   mainAxisAlignment: MainAxisAlignment.center,
@@ -202,7 +202,7 @@ class SignalMenuScreen extends StatelessWidget {
                       ],
                     )),
                     const SizedBox(height: 18),
-                    buildButton('signal_menu.create_custom'.tr, () => ExportScreen()),
+                    BuildButtonWidget(text: 'signal_menu.create_custom'.tr, getScreen: () => ExportScreen()),
                     const Spacer(flex: 5),
                   ],
                 ),

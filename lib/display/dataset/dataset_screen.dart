@@ -355,58 +355,31 @@ class DatasetScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Obx(() => 
-        BottomNavigationBar(
-          currentIndex: controller.selectedMode.value - 1,
-          onTap: (index) {
-            controller.updateMode(index + 1);
-          },
-          backgroundColor: kBackgroundColor2,
-          selectedItemColor: Color.fromARGB(255, 87, 213, 255),
-          unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
-          items: _buildBottomNavigationBarItems(controller),
-        ),
-      ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+            currentIndex: controller.selectedMode.value - 1,
+            onTap: (index) {
+              controller.updateMode(index + 1);
+            },
+
+            backgroundColor: kBackgroundColor2,
+            selectedItemColor: Color.fromARGB(255, 87, 213, 255),
+            unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
+            
+            items: [
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.emoji_flags_rounded),
+                label: 'dataset_screen.single'.tr,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.format_align_left_rounded),
+                label: 'dataset_screen.multiple'.tr,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.add_to_home_screen),
+                label: 'dataset_screen.custom'.tr,
+              ),
+            ],
+          )),
     );
   }
-}
-
-List<BottomNavigationBarItem> _buildBottomNavigationBarItems(DatasetController controller) {
-  return [
-    _buildNavItem(
-      icon: const Icon(Icons.flag_rounded),
-      label: 'dataset_screen.single'.tr,
-      isSelected: controller.selectedMode.value == 1,
-    ),
-    _buildNavItem(
-      icon: const Icon(Icons.format_align_left_rounded),
-      label: 'dataset_screen.multiple'.tr,
-      isSelected: controller.selectedMode.value == 2,
-    ),
-    _buildNavItem(
-      icon: const Icon(Icons.add_to_home_screen),
-      label: 'dataset_screen.custom'.tr,
-      isSelected: controller.selectedMode.value == 3,
-    ),
-  ];
-}
-
-BottomNavigationBarItem _buildNavItem({
-  required Icon icon,
-  required String label,
-  required bool isSelected,
-}) {
-  return BottomNavigationBarItem(
-    icon: Column(
-      children: [
-        Container(
-          height: 3.0,
-          color: isSelected ? Color.fromARGB(255, 87, 213, 255) : kBackgroundColor2,
-        ),
-        const SizedBox(height: 4.0),
-        icon,
-      ],
-    ),
-    label: label,
-  );
 }

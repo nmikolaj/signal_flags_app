@@ -3,11 +3,9 @@ import 'package:get/get.dart';
 import 'package:signal_flags_app/controllers/language_controller.dart';
 import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/display/quiz/quiz_menu_screen.dart';
-import 'package:signal_flags_app/display/quiz/quiz_screen.dart';
 import 'package:signal_flags_app/display/signal/signal_menu_screen.dart';
-import 'package:signal_flags_app/display/transmit/transmit_screen.dart';
 import 'package:signal_flags_app/utils/constants.dart';
-import 'package:signal_flags_app/utils/widget_utils.dart';
+import 'package:signal_flags_app/utils/build_button.dart';
 
 class HomeScreen extends StatelessWidget {
   final LanguageController _languageController = Get.put(LanguageController());
@@ -99,11 +97,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(flex: 6),
-                    buildButton('home_screen.flag_names'.tr, () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
+                    BuildButtonWidget(text: 'home_screen.flag_names'.tr, getScreen: () => FlagsMenuScreen()), // widget instantiated only when user taps the button (GetX recommendation)
                     const SizedBox(height: 18),
-                    buildButton('home_screen.signals'.tr, () => SignalMenuScreen()),
+                    BuildButtonWidget(text: 'home_screen.signals'.tr, getScreen: () => SignalMenuScreen()),
                     const SizedBox(height: 18),
-                    buildButton('home_screen.learning'.tr, () => DatasetScreen()),
+                    BuildButtonWidget(text: 'home_screen.learning'.tr, getScreen: () => DatasetScreen()),
                     const Spacer(flex: 4),
                   ],
                 ),
