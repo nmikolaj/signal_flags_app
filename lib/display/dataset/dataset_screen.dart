@@ -12,19 +12,20 @@ class DatasetScreen extends StatelessWidget {
     for (var flag in flags) flag['name']!: flag
   };
 
-
   @override
   Widget build(BuildContext context) {
     final selectedLanguage = _languageController.selectedLanguage.value;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBackgroundColor2,
-        title: const Text("Baza Flag"),
+        title: Obx(() { 
+          return controller.selectedMode.value != 2 ? Text('dataset_screen.flag_base'.tr) : const SizedBox.shrink();
+        }),
         actions: [
           Obx(() {
             if (controller.selectedMode.value == 2) {
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(2.0),
                 child: DropdownButton<int>(
                   value: controller.selectedCategoryIndex.value,
                   items: [
@@ -32,8 +33,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 1,
                       child: Row(
                         children: [
-                          Icon(Icons.warning),
-                          SizedBox(width: 8),
+                          const Icon(Icons.warning),
+                          const SizedBox(width: 8),
                           Text('distress_emergency'.tr),
                         ],
                       ),
@@ -42,8 +43,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 2,
                       child: Row(
                         children: [
-                          Icon(Icons.place),
-                          SizedBox(width: 8),
+                          const Icon(Icons.place),
+                          const SizedBox(width: 8),
                           Text('position_rescue'.tr),
                         ],
                       ),
@@ -52,8 +53,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 3,
                       child: Row(
                         children: [
-                          Icon(Icons.healing),
-                          SizedBox(width: 8),
+                          const Icon(Icons.healing),
+                          const SizedBox(width: 8),
                           Text('casualties_damages'.tr),
                         ],
                       ),
@@ -62,8 +63,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 4,
                       child: Row(
                         children: [
-                          Icon(Icons.navigation),
-                          SizedBox(width: 8),
+                          const Icon(Icons.navigation),
+                          const SizedBox(width: 8),
                           Text('navigation_hydrography'.tr),
                         ],
                       ),
@@ -72,8 +73,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 5,
                       child: Row(
                         children: [
-                          Icon(Icons.directions_boat),
-                          SizedBox(width: 8),
+                          const Icon(Icons.directions_boat),
+                          const SizedBox(width: 8),
                           Text('maneuvers'.tr),
                         ],
                       ),
@@ -82,8 +83,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 6,
                       child: Row(
                         children: [
-                          Icon(Icons.miscellaneous_services),
-                          SizedBox(width: 8),
+                          const Icon(Icons.miscellaneous_services),
+                          const SizedBox(width: 8),
                           Text('miscellaneous'.tr),
                         ],
                       ),
@@ -92,8 +93,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 7,
                       child: Row(
                         children: [
-                          Icon(Icons.cloud),
-                          SizedBox(width: 8),
+                          const Icon(Icons.cloud),
+                          const SizedBox(width: 8),
                           Text('meteorology_weather'.tr),
                         ],
                       ),
@@ -102,8 +103,8 @@ class DatasetScreen extends StatelessWidget {
                       value: 8,
                       child: Row(
                         children: [
-                          Icon(Icons.spatial_audio_off),
-                          SizedBox(width: 8),
+                          const Icon(Icons.spatial_audio_off),
+                          const SizedBox(width: 8),
                           Text('communications'.tr),
                         ],
                       ),
@@ -117,7 +118,7 @@ class DatasetScreen extends StatelessWidget {
                 ),
               );
             } else {
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             }
           }),
         ],
@@ -354,31 +355,58 @@ class DatasetScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-            currentIndex: controller.selectedMode.value - 1,
-            onTap: (index) {
-              controller.updateMode(index + 1);
-            },
-
-            backgroundColor: kBackgroundColor2,
-            selectedItemColor: Color.fromARGB(255, 87, 213, 255),
-            unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
-            
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.emoji_flags_rounded),
-                label: 'dataset_screen.single'.tr,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.map_outlined),
-                label: 'dataset_screen.multiple'.tr,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.install_mobile),
-                label: 'dataset_screen.custom'.tr,
-              ),
-            ],
-          )),
+      bottomNavigationBar: Obx(() => 
+        BottomNavigationBar(
+          currentIndex: controller.selectedMode.value - 1,
+          onTap: (index) {
+            controller.updateMode(index + 1);
+          },
+          backgroundColor: kBackgroundColor2,
+          selectedItemColor: Color.fromARGB(255, 87, 213, 255),
+          unselectedItemColor: Color.fromARGB(255, 226, 226, 226),
+          items: _buildBottomNavigationBarItems(controller),
+        ),
+      ),
     );
   }
+}
+
+List<BottomNavigationBarItem> _buildBottomNavigationBarItems(DatasetController controller) {
+  return [
+    _buildNavItem(
+      icon: const Icon(Icons.flag_rounded),
+      label: 'dataset_screen.single'.tr,
+      isSelected: controller.selectedMode.value == 1,
+    ),
+    _buildNavItem(
+      icon: const Icon(Icons.format_align_left_rounded),
+      label: 'dataset_screen.multiple'.tr,
+      isSelected: controller.selectedMode.value == 2,
+    ),
+    _buildNavItem(
+      icon: const Icon(Icons.add_to_home_screen),
+      label: 'dataset_screen.custom'.tr,
+      isSelected: controller.selectedMode.value == 3,
+    ),
+  ];
+}
+
+BottomNavigationBarItem _buildNavItem({
+  required Icon icon,
+  required String label,
+  required bool isSelected,
+}) {
+  return BottomNavigationBarItem(
+    icon: Column(
+      children: [
+        Container(
+          height: 3.0,
+          color: isSelected ? Color.fromARGB(255, 87, 213, 255) : kBackgroundColor2,
+        ),
+        const SizedBox(height: 4.0),
+        icon,
+      ],
+    ),
+    label: label,
+  );
 }
