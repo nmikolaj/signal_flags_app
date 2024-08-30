@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signal_flags_app/models/custom_messages.dart';
 import 'package:signal_flags_app/models/flags.dart';
@@ -44,6 +45,19 @@ class ExportController extends GetxController {
   }
 
   void addMessage() async {
+    if (_selectedFlags.isEmpty) {
+      Get.snackbar(
+        'export_controller.no_flags'.tr,
+        'export_controller.select_flag_warning'.tr,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color.fromARGB(255, 98, 205, 255),
+        duration: Duration(seconds: 4),
+        borderRadius: 20,
+        margin: EdgeInsets.all(20),
+        colorText: Colors.white,
+      );
+      return;
+    }
     String message = selectedFlags.map((flagName) => flagName[0]).join();
     List<Map<String, dynamic>> ownMessages = await flagsModel.readMessages();
     ownMessages.add({
