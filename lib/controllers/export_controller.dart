@@ -41,7 +41,7 @@ class ExportController extends GetxController {
   }
 
   void shareImage(String path) {
-    Share.shareFiles([path], text: 'Check out these flags!');
+    Share.shareXFiles([XFile(path)], text: 'Check out these flags!');
   }
 
   void addMessage() async {
