@@ -5,6 +5,7 @@ import 'package:signal_flags_app/controllers/transmit_controller.dart';
 import 'package:signal_flags_app/display/dataset/dataset_screen.dart';
 import 'package:signal_flags_app/models/flags.dart';
 import 'package:signal_flags_app/utils/constants.dart';
+import 'package:stroke_text/stroke_text.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -17,7 +18,7 @@ class Body extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          color: kBackgroundColor2,
+          color: kBackgroundColor,
         ),
         SafeArea(
           child: Column(
@@ -31,7 +32,8 @@ class Body extends StatelessWidget {
                     Obx(
                       () => Text.rich(
                         TextSpan(
-                          text: "Sygnał ${_signalController.questionNumber.value}",
+                          text: "transmit_body.signal".trParams({
+                            'number': "${_signalController.questionNumber.value}"}),
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium
@@ -73,7 +75,7 @@ class Body extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 157, 236, 252),
+                            color: kBackgroundColor2,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           padding: const EdgeInsets.all(10),
@@ -81,7 +83,7 @@ class Body extends StatelessWidget {
                             _signalController.signalList[
                                     _signalController.questionNumber.value - 1]
                                 ['message'][_languageController.selectedLanguage.value],
-                            style: TextStyle(color: kBlackColor, fontSize: 20),
+                            style: TextStyle(color: kWhiteColor, fontSize: 20),
                           ),
                         ),
                       ),
@@ -183,20 +185,20 @@ class Body extends StatelessWidget {
                       SizedBox(height: kDefaultPadding / 2),
                       Container(
                         height: 1.5,
-                        color: Color.fromARGB(255, 53, 99, 140),
+                        color: Colors.blue.shade300,
                       ),
                       Container(
                         height: 6,
-                        color: Color.fromARGB(255, 44, 121, 183),
+                        color: Color.fromARGB(255, 48, 135, 207),
                       ),
                       Container(
                         height: 1.5,
-                        color: Color.fromARGB(255, 121, 200, 237),
+                        color: Colors.indigo.shade700,
                       ),
                       Expanded(
                         child: Container(
                           width: double.infinity,
-                          color: Color.fromARGB(255, 211, 211, 211),
+                          color: Color.fromARGB(255, 198, 198, 198),
                           child: Center(
                             child: Stack(
                               children: [
@@ -237,28 +239,26 @@ class Body extends StatelessWidget {
                                           height: 70,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [Color.fromARGB(255, 178, 206, 255), Color.fromARGB(255, 34, 185, 255)],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                            ),
+                                            gradient: kButtonGradient,
                                             borderRadius: BorderRadius.circular(30),
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Color.fromARGB(255, 0, 55, 100),
-                                                blurRadius: 45,
+                                                blurRadius: 35,
                                                 offset: Offset(0, 15), 
                                               ),
                                             ],
                                           ),
-                                          child: Text(
-                                            "Następne",
-                                            style: TextStyle(
-                                              color: Colors.black,
+                                          child: StrokeText(
+                                            text: "Następne",
+                                            textStyle: TextStyle(
+                                              color: kWhiteColor,
                                               fontSize: 24,
                                               fontWeight: FontWeight.w500,
                                             ),
-                                            textAlign: TextAlign.center,
+                                            strokeWidth: 3,
+                                            strokeColor: Color.fromARGB(
+                                                255, 60, 139, 224),
                                           ),
                                         ),
                                       ),
@@ -268,7 +268,7 @@ class Body extends StatelessWidget {
                                       bottom: 140.0,
                                       right: 60.0,
                                       child: SizedBox(width: 240, height: 70),
-                                    );;
+                                    );
                                   }
                                 }),
                               ],

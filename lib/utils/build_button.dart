@@ -23,9 +23,9 @@ class BuildButtonWidget extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(20)),
             boxShadow: [
               BoxShadow(
-                color: Color.fromARGB(255, 61, 136, 197),
-                blurRadius: 9,
-                offset: Offset(0, 5),
+                color: Color.fromARGB(255, 63, 121, 167),
+                blurRadius: 3,
+                offset: Offset(0, 3),
               ),
             ],
           ),

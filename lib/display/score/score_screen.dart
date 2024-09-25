@@ -55,19 +55,28 @@ class ScoreScreen extends StatelessWidget {
                 'score'.tr,
                 style: TextStyle(
                   color: kWhiteColor,
-                  fontSize: font_size,
+                  fontSize: font_size * 1.2,
                 ),
               ),
-              const Spacer(),
-              Text(
-                "$percentage%", //sc test
-                style: TextStyle(
-                  color: kWhiteColor,
-                  fontSize: font_size * 1.4,
-                  fontWeight: FontWeight.w500,
+              const Spacer(flex: 2),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+                decoration: BoxDecoration(
+                  color: percentage == 100
+                      ? Color.fromARGB(255, 54, 190, 0).withOpacity(0.5)
+                      : kBlackColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  " $percentage%",
+                  style: TextStyle(
+                    color: kWhiteColor,
+                    fontSize: font_size * 1.5,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-              const Spacer(),
+              const Spacer(flex: 2),
               Container(
                 padding: EdgeInsets.all(20),
                 child: Column(
@@ -75,15 +84,15 @@ class ScoreScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildStat("Dobre", correctAnswers, Colors.green),
-                        _buildStat("Błędne", wrongAnswers, Colors.red),
+                        _buildStat('correct'.tr, correctAnswers, Colors.green),
+                        _buildStat('wrong'.tr, wrongAnswers, Colors.red),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildStat("Pominięte", passedAnswers, Colors.blue),
-                        _buildStat("Czas", elapsedTimeString, Colors.orange),
+                        _buildStat('skipped'.tr, passedAnswers, Colors.blue),
+                        _buildStat('time'.tr, elapsedTimeString, Colors.orange),
                       ],
                     ),
                   ],
