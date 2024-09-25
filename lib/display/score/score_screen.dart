@@ -84,15 +84,15 @@ class ScoreScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildStat('correct'.tr, correctAnswers, Colors.green),
-                        _buildStat('wrong'.tr, wrongAnswers, Colors.red),
+                        Expanded(child: _buildStat('correct'.tr, correctAnswers, Colors.green)),
+                        Expanded(child: _buildStat('wrong'.tr, wrongAnswers, Colors.red)),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildStat('skipped'.tr, passedAnswers, Colors.blue),
-                        _buildStat('time'.tr, elapsedTimeString, Colors.orange),
+                        Expanded(child: _buildStat('skipped'.tr, passedAnswers, Colors.blue)),
+                        Expanded(child: _buildStat('time'.tr, elapsedTimeString, Colors.orange)),
                       ],
                     ),
                   ],
@@ -108,7 +108,6 @@ class ScoreScreen extends StatelessWidget {
 
   Widget _buildStat(String title, dynamic value, Color color) {
     return Container(
-      width: 150,
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(

@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Positioned(
                           top: -5,
-                          right: 38,
+                          right: 37,
                           child: Image.asset(
                             'assets/images/two_flags.png',
                             width: 150,
@@ -90,12 +90,15 @@ class HomeScreen extends StatelessWidget {
                         Center(
                           child: Padding(
                             padding: EdgeInsets.only(top: 80.0),
-                            child: Text(
-                              'home_screen.title'.tr,
-                              style: const TextStyle(
-                                color: kHeaderColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 44,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                'home_screen.title'.tr,
+                                style: const TextStyle(
+                                  color: kHeaderColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 44,
+                                ),
                               ),
                             ),
                           ),

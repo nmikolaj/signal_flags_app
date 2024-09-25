@@ -15,7 +15,7 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionController controller = Get.find<QuestionController>(); // Get.find() as controller is already initialized in parent widget
+    QuestionController controller = Get.find<QuestionController>();
     return Container(
       margin: const EdgeInsets.only(
         top: 0,
@@ -27,7 +27,7 @@ class QuestionCard extends StatelessWidget {
         top: kDefaultPadding*2,
         right: kDefaultPadding*2,
         left: kDefaultPadding*2,
-        bottom: 0,
+        bottom: kDefaultPadding,
       ),
       decoration: BoxDecoration(
         color: kWhiteColor,
@@ -68,15 +68,21 @@ class QuestionCard extends StatelessWidget {
               ),
             )
           else
-            ...List.generate(
-              question.answers.length,
-              (index) => Answer(
-                index: index,
-                text: question.answers[index],
-                imagePath: '',
-                press: () => controller.checkAnswer(question, index),
+            Flexible(
+            child: SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                  question.answers.length,
+                  (index) => Answer(
+                    index: index,
+                    text: question.answers[index],
+                    imagePath: '',
+                    press: () => controller.checkAnswer(question, index),
+                  ),
+                ),
               ),
             ),
+          ),
         ],
       ),
     );

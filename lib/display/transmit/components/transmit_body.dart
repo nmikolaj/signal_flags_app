@@ -202,26 +202,28 @@ class Body extends StatelessWidget {
                           child: Center(
                             child: Stack(
                               children: [
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.vertical,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: kDefaultPadding),
-                                    child: Wrap(
-                                      spacing: 15,
-                                      runSpacing: 18,
-                                      children: flags.map((flag) {
-                                        return GestureDetector(
-                                          onTap: _signalController.answerChecked.value
-                                              ? null
-                                              : () => _signalController.selectFlag(flag['name']!),
-                                          child: Image.asset(
-                                            flag['imagePath']!,
-                                            width: 60,
-                                            height: 60,
-                                          ),
-                                        );
-                                      }).toList(),
-                                    ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                    vertical: kDefaultPadding,
+                                  ),
+                                  child: GridView.count(
+                                    crossAxisCount: 5,
+                                    mainAxisSpacing: 18,
+                                    crossAxisSpacing: 15,
+                                    children: flags.map((flag) {
+                                      return GestureDetector(
+                                        onTap: _signalController
+                                                .answerChecked.value
+                                            ? null
+                                            : () => _signalController
+                                                .selectFlag(flag['name']!),
+                                        child: Image.asset(
+                                          flag['imagePath']!,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
                                 ),
                                 Obx(() {
